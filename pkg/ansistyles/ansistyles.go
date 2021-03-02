@@ -104,8 +104,6 @@ import (
 	"regexp"
 )
 
-const ansiBackgroundOffset = 10
-
 // CSPair contains the ANSI color codes to open and close a given color.
 type CSPair struct {
 	Open  string
@@ -447,7 +445,7 @@ func RGBToAnsi256(red uint8, green uint8, blue uint8) uint8 {
 				math.Round(float64(blue)/255*5))
 }
 
-var hexColorRegex = regexp.MustCompile("([a-fA-F\\d]{6}|[a-fA-F\\d]{3})")
+var hexColorRegex = regexp.MustCompile(`([a-fA-F\d]{6}|[a-fA-F\d]{3})`)
 
 // HexToRGB converts from the RGB HEX color space to the RGB color space.
 //

@@ -66,9 +66,53 @@ type configuration struct {
 // configure without modifying the "default" Builder.
 //
 type Builder struct {
-	generatedBuilders
-	styler *stylerData
-	config *configuration
+	bgBlack         *Builder
+	bgBlackBright   *Builder
+	bgBlue          *Builder
+	bgBlueBright    *Builder
+	bgCyan          *Builder
+	bgCyanBright    *Builder
+	bgGray          *Builder
+	bgGreen         *Builder
+	bgGreenBright   *Builder
+	bgGrey          *Builder
+	bgMagenta       *Builder
+	bgMagentaBright *Builder
+	bgRed           *Builder
+	bgRedBright     *Builder
+	bgWhite         *Builder
+	bgWhiteBright   *Builder
+	bgYellow        *Builder
+	bgYellowBright  *Builder
+	black           *Builder
+	blackBright     *Builder
+	blue            *Builder
+	blueBright      *Builder
+	cyan            *Builder
+	cyanBright      *Builder
+	gray            *Builder
+	green           *Builder
+	greenBright     *Builder
+	grey            *Builder
+	magenta         *Builder
+	magentaBright   *Builder
+	red             *Builder
+	redBright       *Builder
+	white           *Builder
+	whiteBright     *Builder
+	yellow          *Builder
+	yellowBright    *Builder
+	bold            *Builder
+	dim             *Builder
+	hidden          *Builder
+	inverse         *Builder
+	italic          *Builder
+	overline        *Builder
+	strikethrough   *Builder
+	underline       *Builder
+	reset           *Builder
+	styler          *stylerData
+	config          *configuration
 }
 
 // An Option which can be passed to `New()`.
@@ -142,12 +186,13 @@ func (builder *Builder) applyStyle(strs ...string) string {
 	}
 
 	styler := builder.styler
-	openAll := styler.openAll
-	closeAll := styler.closeAll
 
 	if styler == nil {
 		return str
 	}
+
+	openAll := styler.openAll
+	closeAll := styler.closeAll
 
 	if strings.Contains(str, "\u001B") {
 		for styler != nil {
