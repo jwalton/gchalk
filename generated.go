@@ -3,153 +3,28 @@ package gawk
 // This file was generated.  Don't edit it directly.
 
 import (
-	"github.com/jwalton/go-ansistyles"
+	"github.com/jwalton/gawk/pkg/ansistyles"
 )
-
-// Black returns a string where the color is black.
-func Black(str ...string) string {
-	return rootBuilder.Black(str...)
-}
-
-// BlackAnd returns a Builder that generates strings where the color is black,
-// and further styles can be applied via chaining.
-func BlackAnd() *Builder {
-	return rootBuilder.BlackAnd()
-}
-
-// Black returns a string where the color is black, in addition to other styles from this builder.
-func (builder *Builder) Black(str ...string) string {
-	return builder.BlackAnd().applyStyle(str...)
-}
-
-// BlackAnd returns a Builder that generates strings where the color is black,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BlackAnd() *Builder {
-	if builder.black == nil {
-		builder.black = createBuilder(builder, ansistyles.Black.Open, ansistyles.Black.Close)
-	}
-	return builder.black
-}
-
-// Green returns a string where the color is green.
-func Green(str ...string) string {
-	return rootBuilder.Green(str...)
-}
-
-// GreenAnd returns a Builder that generates strings where the color is green,
-// and further styles can be applied via chaining.
-func GreenAnd() *Builder {
-	return rootBuilder.GreenAnd()
-}
-
-// Green returns a string where the color is green, in addition to other styles from this builder.
-func (builder *Builder) Green(str ...string) string {
-	return builder.GreenAnd().applyStyle(str...)
-}
-
-// GreenAnd returns a Builder that generates strings where the color is green,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) GreenAnd() *Builder {
-	if builder.green == nil {
-		builder.green = createBuilder(builder, ansistyles.Green.Open, ansistyles.Green.Close)
-	}
-	return builder.green
-}
-
-// Magenta returns a string where the color is magenta.
-func Magenta(str ...string) string {
-	return rootBuilder.Magenta(str...)
-}
-
-// MagentaAnd returns a Builder that generates strings where the color is magenta,
-// and further styles can be applied via chaining.
-func MagentaAnd() *Builder {
-	return rootBuilder.MagentaAnd()
-}
-
-// Magenta returns a string where the color is magenta, in addition to other styles from this builder.
-func (builder *Builder) Magenta(str ...string) string {
-	return builder.MagentaAnd().applyStyle(str...)
-}
-
-// MagentaAnd returns a Builder that generates strings where the color is magenta,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) MagentaAnd() *Builder {
-	if builder.magenta == nil {
-		builder.magenta = createBuilder(builder, ansistyles.Magenta.Open, ansistyles.Magenta.Close)
-	}
-	return builder.magenta
-}
-
-// Cyan returns a string where the color is cyan.
-func Cyan(str ...string) string {
-	return rootBuilder.Cyan(str...)
-}
-
-// CyanAnd returns a Builder that generates strings where the color is cyan,
-// and further styles can be applied via chaining.
-func CyanAnd() *Builder {
-	return rootBuilder.CyanAnd()
-}
-
-// Cyan returns a string where the color is cyan, in addition to other styles from this builder.
-func (builder *Builder) Cyan(str ...string) string {
-	return builder.CyanAnd().applyStyle(str...)
-}
-
-// CyanAnd returns a Builder that generates strings where the color is cyan,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) CyanAnd() *Builder {
-	if builder.cyan == nil {
-		builder.cyan = createBuilder(builder, ansistyles.Cyan.Open, ansistyles.Cyan.Close)
-	}
-	return builder.cyan
-}
-
-// Yellow returns a string where the color is yellow.
-func Yellow(str ...string) string {
-	return rootBuilder.Yellow(str...)
-}
-
-// YellowAnd returns a Builder that generates strings where the color is yellow,
-// and further styles can be applied via chaining.
-func YellowAnd() *Builder {
-	return rootBuilder.YellowAnd()
-}
-
-// Yellow returns a string where the color is yellow, in addition to other styles from this builder.
-func (builder *Builder) Yellow(str ...string) string {
-	return builder.YellowAnd().applyStyle(str...)
-}
-
-// YellowAnd returns a Builder that generates strings where the color is yellow,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) YellowAnd() *Builder {
-	if builder.yellow == nil {
-		builder.yellow = createBuilder(builder, ansistyles.Yellow.Open, ansistyles.Yellow.Close)
-	}
-	return builder.yellow
-}
 
 // Blue returns a string where the color is blue.
 func Blue(str ...string) string {
 	return rootBuilder.Blue(str...)
 }
 
-// BlueAnd returns a Builder that generates strings where the color is blue,
+// WithBlue returns a Builder that generates strings where the color is blue,
 // and further styles can be applied via chaining.
-func BlueAnd() *Builder {
-	return rootBuilder.BlueAnd()
+func WithBlue() *Builder {
+	return rootBuilder.WithBlue()
 }
 
 // Blue returns a string where the color is blue, in addition to other styles from this builder.
 func (builder *Builder) Blue(str ...string) string {
-	return builder.BlueAnd().applyStyle(str...)
+	return builder.WithBlue().applyStyle(str...)
 }
 
-// BlueAnd returns a Builder that generates strings where the color is blue,
+// WithBlue returns a Builder that generates strings where the color is blue,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BlueAnd() *Builder {
+func (builder *Builder) WithBlue() *Builder {
 	if builder.blue == nil {
 		builder.blue = createBuilder(builder, ansistyles.Blue.Open, ansistyles.Blue.Close)
 	}
@@ -161,199 +36,24 @@ func BlackBright(str ...string) string {
 	return rootBuilder.BlackBright(str...)
 }
 
-// BlackBrightAnd returns a Builder that generates strings where the color is blackBright,
+// WithBlackBright returns a Builder that generates strings where the color is blackBright,
 // and further styles can be applied via chaining.
-func BlackBrightAnd() *Builder {
-	return rootBuilder.BlackBrightAnd()
+func WithBlackBright() *Builder {
+	return rootBuilder.WithBlackBright()
 }
 
 // BlackBright returns a string where the color is blackBright, in addition to other styles from this builder.
 func (builder *Builder) BlackBright(str ...string) string {
-	return builder.BlackBrightAnd().applyStyle(str...)
+	return builder.WithBlackBright().applyStyle(str...)
 }
 
-// BlackBrightAnd returns a Builder that generates strings where the color is blackBright,
+// WithBlackBright returns a Builder that generates strings where the color is blackBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BlackBrightAnd() *Builder {
+func (builder *Builder) WithBlackBright() *Builder {
 	if builder.blackBright == nil {
 		builder.blackBright = createBuilder(builder, ansistyles.BlackBright.Open, ansistyles.BlackBright.Close)
 	}
 	return builder.blackBright
-}
-
-// GreenBright returns a string where the color is greenBright.
-func GreenBright(str ...string) string {
-	return rootBuilder.GreenBright(str...)
-}
-
-// GreenBrightAnd returns a Builder that generates strings where the color is greenBright,
-// and further styles can be applied via chaining.
-func GreenBrightAnd() *Builder {
-	return rootBuilder.GreenBrightAnd()
-}
-
-// GreenBright returns a string where the color is greenBright, in addition to other styles from this builder.
-func (builder *Builder) GreenBright(str ...string) string {
-	return builder.GreenBrightAnd().applyStyle(str...)
-}
-
-// GreenBrightAnd returns a Builder that generates strings where the color is greenBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) GreenBrightAnd() *Builder {
-	if builder.greenBright == nil {
-		builder.greenBright = createBuilder(builder, ansistyles.GreenBright.Open, ansistyles.GreenBright.Close)
-	}
-	return builder.greenBright
-}
-
-// WhiteBright returns a string where the color is whiteBright.
-func WhiteBright(str ...string) string {
-	return rootBuilder.WhiteBright(str...)
-}
-
-// WhiteBrightAnd returns a Builder that generates strings where the color is whiteBright,
-// and further styles can be applied via chaining.
-func WhiteBrightAnd() *Builder {
-	return rootBuilder.WhiteBrightAnd()
-}
-
-// WhiteBright returns a string where the color is whiteBright, in addition to other styles from this builder.
-func (builder *Builder) WhiteBright(str ...string) string {
-	return builder.WhiteBrightAnd().applyStyle(str...)
-}
-
-// WhiteBrightAnd returns a Builder that generates strings where the color is whiteBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) WhiteBrightAnd() *Builder {
-	if builder.whiteBright == nil {
-		builder.whiteBright = createBuilder(builder, ansistyles.WhiteBright.Open, ansistyles.WhiteBright.Close)
-	}
-	return builder.whiteBright
-}
-
-// Grey returns a string where the color is grey.
-func Grey(str ...string) string {
-	return rootBuilder.Grey(str...)
-}
-
-// GreyAnd returns a Builder that generates strings where the color is grey,
-// and further styles can be applied via chaining.
-func GreyAnd() *Builder {
-	return rootBuilder.GreyAnd()
-}
-
-// Grey returns a string where the color is grey, in addition to other styles from this builder.
-func (builder *Builder) Grey(str ...string) string {
-	return builder.GreyAnd().applyStyle(str...)
-}
-
-// GreyAnd returns a Builder that generates strings where the color is grey,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) GreyAnd() *Builder {
-	if builder.grey == nil {
-		builder.grey = createBuilder(builder, ansistyles.Grey.Open, ansistyles.Grey.Close)
-	}
-	return builder.grey
-}
-
-// Gray returns a string where the color is gray.
-func Gray(str ...string) string {
-	return rootBuilder.Gray(str...)
-}
-
-// GrayAnd returns a Builder that generates strings where the color is gray,
-// and further styles can be applied via chaining.
-func GrayAnd() *Builder {
-	return rootBuilder.GrayAnd()
-}
-
-// Gray returns a string where the color is gray, in addition to other styles from this builder.
-func (builder *Builder) Gray(str ...string) string {
-	return builder.GrayAnd().applyStyle(str...)
-}
-
-// GrayAnd returns a Builder that generates strings where the color is gray,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) GrayAnd() *Builder {
-	if builder.gray == nil {
-		builder.gray = createBuilder(builder, ansistyles.Gray.Open, ansistyles.Gray.Close)
-	}
-	return builder.gray
-}
-
-// Red returns a string where the color is red.
-func Red(str ...string) string {
-	return rootBuilder.Red(str...)
-}
-
-// RedAnd returns a Builder that generates strings where the color is red,
-// and further styles can be applied via chaining.
-func RedAnd() *Builder {
-	return rootBuilder.RedAnd()
-}
-
-// Red returns a string where the color is red, in addition to other styles from this builder.
-func (builder *Builder) Red(str ...string) string {
-	return builder.RedAnd().applyStyle(str...)
-}
-
-// RedAnd returns a Builder that generates strings where the color is red,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) RedAnd() *Builder {
-	if builder.red == nil {
-		builder.red = createBuilder(builder, ansistyles.Red.Open, ansistyles.Red.Close)
-	}
-	return builder.red
-}
-
-// RedBright returns a string where the color is redBright.
-func RedBright(str ...string) string {
-	return rootBuilder.RedBright(str...)
-}
-
-// RedBrightAnd returns a Builder that generates strings where the color is redBright,
-// and further styles can be applied via chaining.
-func RedBrightAnd() *Builder {
-	return rootBuilder.RedBrightAnd()
-}
-
-// RedBright returns a string where the color is redBright, in addition to other styles from this builder.
-func (builder *Builder) RedBright(str ...string) string {
-	return builder.RedBrightAnd().applyStyle(str...)
-}
-
-// RedBrightAnd returns a Builder that generates strings where the color is redBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) RedBrightAnd() *Builder {
-	if builder.redBright == nil {
-		builder.redBright = createBuilder(builder, ansistyles.RedBright.Open, ansistyles.RedBright.Close)
-	}
-	return builder.redBright
-}
-
-// BlueBright returns a string where the color is blueBright.
-func BlueBright(str ...string) string {
-	return rootBuilder.BlueBright(str...)
-}
-
-// BlueBrightAnd returns a Builder that generates strings where the color is blueBright,
-// and further styles can be applied via chaining.
-func BlueBrightAnd() *Builder {
-	return rootBuilder.BlueBrightAnd()
-}
-
-// BlueBright returns a string where the color is blueBright, in addition to other styles from this builder.
-func (builder *Builder) BlueBright(str ...string) string {
-	return builder.BlueBrightAnd().applyStyle(str...)
-}
-
-// BlueBrightAnd returns a Builder that generates strings where the color is blueBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BlueBrightAnd() *Builder {
-	if builder.blueBright == nil {
-		builder.blueBright = createBuilder(builder, ansistyles.BlueBright.Open, ansistyles.BlueBright.Close)
-	}
-	return builder.blueBright
 }
 
 // MagentaBright returns a string where the color is magentaBright.
@@ -361,20 +61,20 @@ func MagentaBright(str ...string) string {
 	return rootBuilder.MagentaBright(str...)
 }
 
-// MagentaBrightAnd returns a Builder that generates strings where the color is magentaBright,
+// WithMagentaBright returns a Builder that generates strings where the color is magentaBright,
 // and further styles can be applied via chaining.
-func MagentaBrightAnd() *Builder {
-	return rootBuilder.MagentaBrightAnd()
+func WithMagentaBright() *Builder {
+	return rootBuilder.WithMagentaBright()
 }
 
 // MagentaBright returns a string where the color is magentaBright, in addition to other styles from this builder.
 func (builder *Builder) MagentaBright(str ...string) string {
-	return builder.MagentaBrightAnd().applyStyle(str...)
+	return builder.WithMagentaBright().applyStyle(str...)
 }
 
-// MagentaBrightAnd returns a Builder that generates strings where the color is magentaBright,
+// WithMagentaBright returns a Builder that generates strings where the color is magentaBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) MagentaBrightAnd() *Builder {
+func (builder *Builder) WithMagentaBright() *Builder {
 	if builder.magentaBright == nil {
 		builder.magentaBright = createBuilder(builder, ansistyles.MagentaBright.Open, ansistyles.MagentaBright.Close)
 	}
@@ -386,24 +86,224 @@ func CyanBright(str ...string) string {
 	return rootBuilder.CyanBright(str...)
 }
 
-// CyanBrightAnd returns a Builder that generates strings where the color is cyanBright,
+// WithCyanBright returns a Builder that generates strings where the color is cyanBright,
 // and further styles can be applied via chaining.
-func CyanBrightAnd() *Builder {
-	return rootBuilder.CyanBrightAnd()
+func WithCyanBright() *Builder {
+	return rootBuilder.WithCyanBright()
 }
 
 // CyanBright returns a string where the color is cyanBright, in addition to other styles from this builder.
 func (builder *Builder) CyanBright(str ...string) string {
-	return builder.CyanBrightAnd().applyStyle(str...)
+	return builder.WithCyanBright().applyStyle(str...)
 }
 
-// CyanBrightAnd returns a Builder that generates strings where the color is cyanBright,
+// WithCyanBright returns a Builder that generates strings where the color is cyanBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) CyanBrightAnd() *Builder {
+func (builder *Builder) WithCyanBright() *Builder {
 	if builder.cyanBright == nil {
 		builder.cyanBright = createBuilder(builder, ansistyles.CyanBright.Open, ansistyles.CyanBright.Close)
 	}
 	return builder.cyanBright
+}
+
+// Grey returns a string where the color is grey.
+func Grey(str ...string) string {
+	return rootBuilder.Grey(str...)
+}
+
+// WithGrey returns a Builder that generates strings where the color is grey,
+// and further styles can be applied via chaining.
+func WithGrey() *Builder {
+	return rootBuilder.WithGrey()
+}
+
+// Grey returns a string where the color is grey, in addition to other styles from this builder.
+func (builder *Builder) Grey(str ...string) string {
+	return builder.WithGrey().applyStyle(str...)
+}
+
+// WithGrey returns a Builder that generates strings where the color is grey,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithGrey() *Builder {
+	if builder.grey == nil {
+		builder.grey = createBuilder(builder, ansistyles.Grey.Open, ansistyles.Grey.Close)
+	}
+	return builder.grey
+}
+
+// Black returns a string where the color is black.
+func Black(str ...string) string {
+	return rootBuilder.Black(str...)
+}
+
+// WithBlack returns a Builder that generates strings where the color is black,
+// and further styles can be applied via chaining.
+func WithBlack() *Builder {
+	return rootBuilder.WithBlack()
+}
+
+// Black returns a string where the color is black, in addition to other styles from this builder.
+func (builder *Builder) Black(str ...string) string {
+	return builder.WithBlack().applyStyle(str...)
+}
+
+// WithBlack returns a Builder that generates strings where the color is black,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBlack() *Builder {
+	if builder.black == nil {
+		builder.black = createBuilder(builder, ansistyles.Black.Open, ansistyles.Black.Close)
+	}
+	return builder.black
+}
+
+// Red returns a string where the color is red.
+func Red(str ...string) string {
+	return rootBuilder.Red(str...)
+}
+
+// WithRed returns a Builder that generates strings where the color is red,
+// and further styles can be applied via chaining.
+func WithRed() *Builder {
+	return rootBuilder.WithRed()
+}
+
+// Red returns a string where the color is red, in addition to other styles from this builder.
+func (builder *Builder) Red(str ...string) string {
+	return builder.WithRed().applyStyle(str...)
+}
+
+// WithRed returns a Builder that generates strings where the color is red,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithRed() *Builder {
+	if builder.red == nil {
+		builder.red = createBuilder(builder, ansistyles.Red.Open, ansistyles.Red.Close)
+	}
+	return builder.red
+}
+
+// Green returns a string where the color is green.
+func Green(str ...string) string {
+	return rootBuilder.Green(str...)
+}
+
+// WithGreen returns a Builder that generates strings where the color is green,
+// and further styles can be applied via chaining.
+func WithGreen() *Builder {
+	return rootBuilder.WithGreen()
+}
+
+// Green returns a string where the color is green, in addition to other styles from this builder.
+func (builder *Builder) Green(str ...string) string {
+	return builder.WithGreen().applyStyle(str...)
+}
+
+// WithGreen returns a Builder that generates strings where the color is green,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithGreen() *Builder {
+	if builder.green == nil {
+		builder.green = createBuilder(builder, ansistyles.Green.Open, ansistyles.Green.Close)
+	}
+	return builder.green
+}
+
+// Yellow returns a string where the color is yellow.
+func Yellow(str ...string) string {
+	return rootBuilder.Yellow(str...)
+}
+
+// WithYellow returns a Builder that generates strings where the color is yellow,
+// and further styles can be applied via chaining.
+func WithYellow() *Builder {
+	return rootBuilder.WithYellow()
+}
+
+// Yellow returns a string where the color is yellow, in addition to other styles from this builder.
+func (builder *Builder) Yellow(str ...string) string {
+	return builder.WithYellow().applyStyle(str...)
+}
+
+// WithYellow returns a Builder that generates strings where the color is yellow,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithYellow() *Builder {
+	if builder.yellow == nil {
+		builder.yellow = createBuilder(builder, ansistyles.Yellow.Open, ansistyles.Yellow.Close)
+	}
+	return builder.yellow
+}
+
+// Magenta returns a string where the color is magenta.
+func Magenta(str ...string) string {
+	return rootBuilder.Magenta(str...)
+}
+
+// WithMagenta returns a Builder that generates strings where the color is magenta,
+// and further styles can be applied via chaining.
+func WithMagenta() *Builder {
+	return rootBuilder.WithMagenta()
+}
+
+// Magenta returns a string where the color is magenta, in addition to other styles from this builder.
+func (builder *Builder) Magenta(str ...string) string {
+	return builder.WithMagenta().applyStyle(str...)
+}
+
+// WithMagenta returns a Builder that generates strings where the color is magenta,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithMagenta() *Builder {
+	if builder.magenta == nil {
+		builder.magenta = createBuilder(builder, ansistyles.Magenta.Open, ansistyles.Magenta.Close)
+	}
+	return builder.magenta
+}
+
+// BlueBright returns a string where the color is blueBright.
+func BlueBright(str ...string) string {
+	return rootBuilder.BlueBright(str...)
+}
+
+// WithBlueBright returns a Builder that generates strings where the color is blueBright,
+// and further styles can be applied via chaining.
+func WithBlueBright() *Builder {
+	return rootBuilder.WithBlueBright()
+}
+
+// BlueBright returns a string where the color is blueBright, in addition to other styles from this builder.
+func (builder *Builder) BlueBright(str ...string) string {
+	return builder.WithBlueBright().applyStyle(str...)
+}
+
+// WithBlueBright returns a Builder that generates strings where the color is blueBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBlueBright() *Builder {
+	if builder.blueBright == nil {
+		builder.blueBright = createBuilder(builder, ansistyles.BlueBright.Open, ansistyles.BlueBright.Close)
+	}
+	return builder.blueBright
+}
+
+// Cyan returns a string where the color is cyan.
+func Cyan(str ...string) string {
+	return rootBuilder.Cyan(str...)
+}
+
+// WithCyan returns a Builder that generates strings where the color is cyan,
+// and further styles can be applied via chaining.
+func WithCyan() *Builder {
+	return rootBuilder.WithCyan()
+}
+
+// Cyan returns a string where the color is cyan, in addition to other styles from this builder.
+func (builder *Builder) Cyan(str ...string) string {
+	return builder.WithCyan().applyStyle(str...)
+}
+
+// WithCyan returns a Builder that generates strings where the color is cyan,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithCyan() *Builder {
+	if builder.cyan == nil {
+		builder.cyan = createBuilder(builder, ansistyles.Cyan.Open, ansistyles.Cyan.Close)
+	}
+	return builder.cyan
 }
 
 // White returns a string where the color is white.
@@ -411,24 +311,99 @@ func White(str ...string) string {
 	return rootBuilder.White(str...)
 }
 
-// WhiteAnd returns a Builder that generates strings where the color is white,
+// WithWhite returns a Builder that generates strings where the color is white,
 // and further styles can be applied via chaining.
-func WhiteAnd() *Builder {
-	return rootBuilder.WhiteAnd()
+func WithWhite() *Builder {
+	return rootBuilder.WithWhite()
 }
 
 // White returns a string where the color is white, in addition to other styles from this builder.
 func (builder *Builder) White(str ...string) string {
-	return builder.WhiteAnd().applyStyle(str...)
+	return builder.WithWhite().applyStyle(str...)
 }
 
-// WhiteAnd returns a Builder that generates strings where the color is white,
+// WithWhite returns a Builder that generates strings where the color is white,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) WhiteAnd() *Builder {
+func (builder *Builder) WithWhite() *Builder {
 	if builder.white == nil {
 		builder.white = createBuilder(builder, ansistyles.White.Open, ansistyles.White.Close)
 	}
 	return builder.white
+}
+
+// RedBright returns a string where the color is redBright.
+func RedBright(str ...string) string {
+	return rootBuilder.RedBright(str...)
+}
+
+// WithRedBright returns a Builder that generates strings where the color is redBright,
+// and further styles can be applied via chaining.
+func WithRedBright() *Builder {
+	return rootBuilder.WithRedBright()
+}
+
+// RedBright returns a string where the color is redBright, in addition to other styles from this builder.
+func (builder *Builder) RedBright(str ...string) string {
+	return builder.WithRedBright().applyStyle(str...)
+}
+
+// WithRedBright returns a Builder that generates strings where the color is redBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithRedBright() *Builder {
+	if builder.redBright == nil {
+		builder.redBright = createBuilder(builder, ansistyles.RedBright.Open, ansistyles.RedBright.Close)
+	}
+	return builder.redBright
+}
+
+// WhiteBright returns a string where the color is whiteBright.
+func WhiteBright(str ...string) string {
+	return rootBuilder.WhiteBright(str...)
+}
+
+// WithWhiteBright returns a Builder that generates strings where the color is whiteBright,
+// and further styles can be applied via chaining.
+func WithWhiteBright() *Builder {
+	return rootBuilder.WithWhiteBright()
+}
+
+// WhiteBright returns a string where the color is whiteBright, in addition to other styles from this builder.
+func (builder *Builder) WhiteBright(str ...string) string {
+	return builder.WithWhiteBright().applyStyle(str...)
+}
+
+// WithWhiteBright returns a Builder that generates strings where the color is whiteBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithWhiteBright() *Builder {
+	if builder.whiteBright == nil {
+		builder.whiteBright = createBuilder(builder, ansistyles.WhiteBright.Open, ansistyles.WhiteBright.Close)
+	}
+	return builder.whiteBright
+}
+
+// GreenBright returns a string where the color is greenBright.
+func GreenBright(str ...string) string {
+	return rootBuilder.GreenBright(str...)
+}
+
+// WithGreenBright returns a Builder that generates strings where the color is greenBright,
+// and further styles can be applied via chaining.
+func WithGreenBright() *Builder {
+	return rootBuilder.WithGreenBright()
+}
+
+// GreenBright returns a string where the color is greenBright, in addition to other styles from this builder.
+func (builder *Builder) GreenBright(str ...string) string {
+	return builder.WithGreenBright().applyStyle(str...)
+}
+
+// WithGreenBright returns a Builder that generates strings where the color is greenBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithGreenBright() *Builder {
+	if builder.greenBright == nil {
+		builder.greenBright = createBuilder(builder, ansistyles.GreenBright.Open, ansistyles.GreenBright.Close)
+	}
+	return builder.greenBright
 }
 
 // YellowBright returns a string where the color is yellowBright.
@@ -436,224 +411,49 @@ func YellowBright(str ...string) string {
 	return rootBuilder.YellowBright(str...)
 }
 
-// YellowBrightAnd returns a Builder that generates strings where the color is yellowBright,
+// WithYellowBright returns a Builder that generates strings where the color is yellowBright,
 // and further styles can be applied via chaining.
-func YellowBrightAnd() *Builder {
-	return rootBuilder.YellowBrightAnd()
+func WithYellowBright() *Builder {
+	return rootBuilder.WithYellowBright()
 }
 
 // YellowBright returns a string where the color is yellowBright, in addition to other styles from this builder.
 func (builder *Builder) YellowBright(str ...string) string {
-	return builder.YellowBrightAnd().applyStyle(str...)
+	return builder.WithYellowBright().applyStyle(str...)
 }
 
-// YellowBrightAnd returns a Builder that generates strings where the color is yellowBright,
+// WithYellowBright returns a Builder that generates strings where the color is yellowBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) YellowBrightAnd() *Builder {
+func (builder *Builder) WithYellowBright() *Builder {
 	if builder.yellowBright == nil {
 		builder.yellowBright = createBuilder(builder, ansistyles.YellowBright.Open, ansistyles.YellowBright.Close)
 	}
 	return builder.yellowBright
 }
 
-// BgCyan returns a string where the background color is Cyan.
-func BgCyan(str ...string) string {
-	return rootBuilder.BgCyan(str...)
+// Gray returns a string where the color is gray.
+func Gray(str ...string) string {
+	return rootBuilder.Gray(str...)
 }
 
-// BgCyanAnd returns a Builder that generates strings where the background color is Cyan,
+// WithGray returns a Builder that generates strings where the color is gray,
 // and further styles can be applied via chaining.
-func BgCyanAnd() *Builder {
-	return rootBuilder.BgCyanAnd()
+func WithGray() *Builder {
+	return rootBuilder.WithGray()
 }
 
-// BgCyan returns a string where the background color is Cyan, in addition to other styles from this builder.
-func (builder *Builder) BgCyan(str ...string) string {
-	return builder.BgCyanAnd().applyStyle(str...)
+// Gray returns a string where the color is gray, in addition to other styles from this builder.
+func (builder *Builder) Gray(str ...string) string {
+	return builder.WithGray().applyStyle(str...)
 }
 
-// BgCyanAnd returns a Builder that generates strings where the background color is Cyan,
+// WithGray returns a Builder that generates strings where the color is gray,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgCyanAnd() *Builder {
-	if builder.bgCyan == nil {
-		builder.bgCyan = createBuilder(builder, ansistyles.BgCyan.Open, ansistyles.BgCyan.Close)
+func (builder *Builder) WithGray() *Builder {
+	if builder.gray == nil {
+		builder.gray = createBuilder(builder, ansistyles.Gray.Open, ansistyles.Gray.Close)
 	}
-	return builder.bgCyan
-}
-
-// BgBlueBright returns a string where the background color is BlueBright.
-func BgBlueBright(str ...string) string {
-	return rootBuilder.BgBlueBright(str...)
-}
-
-// BgBlueBrightAnd returns a Builder that generates strings where the background color is BlueBright,
-// and further styles can be applied via chaining.
-func BgBlueBrightAnd() *Builder {
-	return rootBuilder.BgBlueBrightAnd()
-}
-
-// BgBlueBright returns a string where the background color is BlueBright, in addition to other styles from this builder.
-func (builder *Builder) BgBlueBright(str ...string) string {
-	return builder.BgBlueBrightAnd().applyStyle(str...)
-}
-
-// BgBlueBrightAnd returns a Builder that generates strings where the background color is BlueBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgBlueBrightAnd() *Builder {
-	if builder.bgBlueBright == nil {
-		builder.bgBlueBright = createBuilder(builder, ansistyles.BgBlueBright.Open, ansistyles.BgBlueBright.Close)
-	}
-	return builder.bgBlueBright
-}
-
-// BgGrey returns a string where the background color is Grey.
-func BgGrey(str ...string) string {
-	return rootBuilder.BgGrey(str...)
-}
-
-// BgGreyAnd returns a Builder that generates strings where the background color is Grey,
-// and further styles can be applied via chaining.
-func BgGreyAnd() *Builder {
-	return rootBuilder.BgGreyAnd()
-}
-
-// BgGrey returns a string where the background color is Grey, in addition to other styles from this builder.
-func (builder *Builder) BgGrey(str ...string) string {
-	return builder.BgGreyAnd().applyStyle(str...)
-}
-
-// BgGreyAnd returns a Builder that generates strings where the background color is Grey,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgGreyAnd() *Builder {
-	if builder.bgGrey == nil {
-		builder.bgGrey = createBuilder(builder, ansistyles.BgGrey.Open, ansistyles.BgGrey.Close)
-	}
-	return builder.bgGrey
-}
-
-// BgGreen returns a string where the background color is Green.
-func BgGreen(str ...string) string {
-	return rootBuilder.BgGreen(str...)
-}
-
-// BgGreenAnd returns a Builder that generates strings where the background color is Green,
-// and further styles can be applied via chaining.
-func BgGreenAnd() *Builder {
-	return rootBuilder.BgGreenAnd()
-}
-
-// BgGreen returns a string where the background color is Green, in addition to other styles from this builder.
-func (builder *Builder) BgGreen(str ...string) string {
-	return builder.BgGreenAnd().applyStyle(str...)
-}
-
-// BgGreenAnd returns a Builder that generates strings where the background color is Green,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgGreenAnd() *Builder {
-	if builder.bgGreen == nil {
-		builder.bgGreen = createBuilder(builder, ansistyles.BgGreen.Open, ansistyles.BgGreen.Close)
-	}
-	return builder.bgGreen
-}
-
-// BgGreenBright returns a string where the background color is GreenBright.
-func BgGreenBright(str ...string) string {
-	return rootBuilder.BgGreenBright(str...)
-}
-
-// BgGreenBrightAnd returns a Builder that generates strings where the background color is GreenBright,
-// and further styles can be applied via chaining.
-func BgGreenBrightAnd() *Builder {
-	return rootBuilder.BgGreenBrightAnd()
-}
-
-// BgGreenBright returns a string where the background color is GreenBright, in addition to other styles from this builder.
-func (builder *Builder) BgGreenBright(str ...string) string {
-	return builder.BgGreenBrightAnd().applyStyle(str...)
-}
-
-// BgGreenBrightAnd returns a Builder that generates strings where the background color is GreenBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgGreenBrightAnd() *Builder {
-	if builder.bgGreenBright == nil {
-		builder.bgGreenBright = createBuilder(builder, ansistyles.BgGreenBright.Open, ansistyles.BgGreenBright.Close)
-	}
-	return builder.bgGreenBright
-}
-
-// BgMagenta returns a string where the background color is Magenta.
-func BgMagenta(str ...string) string {
-	return rootBuilder.BgMagenta(str...)
-}
-
-// BgMagentaAnd returns a Builder that generates strings where the background color is Magenta,
-// and further styles can be applied via chaining.
-func BgMagentaAnd() *Builder {
-	return rootBuilder.BgMagentaAnd()
-}
-
-// BgMagenta returns a string where the background color is Magenta, in addition to other styles from this builder.
-func (builder *Builder) BgMagenta(str ...string) string {
-	return builder.BgMagentaAnd().applyStyle(str...)
-}
-
-// BgMagentaAnd returns a Builder that generates strings where the background color is Magenta,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgMagentaAnd() *Builder {
-	if builder.bgMagenta == nil {
-		builder.bgMagenta = createBuilder(builder, ansistyles.BgMagenta.Open, ansistyles.BgMagenta.Close)
-	}
-	return builder.bgMagenta
-}
-
-// BgBlue returns a string where the background color is Blue.
-func BgBlue(str ...string) string {
-	return rootBuilder.BgBlue(str...)
-}
-
-// BgBlueAnd returns a Builder that generates strings where the background color is Blue,
-// and further styles can be applied via chaining.
-func BgBlueAnd() *Builder {
-	return rootBuilder.BgBlueAnd()
-}
-
-// BgBlue returns a string where the background color is Blue, in addition to other styles from this builder.
-func (builder *Builder) BgBlue(str ...string) string {
-	return builder.BgBlueAnd().applyStyle(str...)
-}
-
-// BgBlueAnd returns a Builder that generates strings where the background color is Blue,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgBlueAnd() *Builder {
-	if builder.bgBlue == nil {
-		builder.bgBlue = createBuilder(builder, ansistyles.BgBlue.Open, ansistyles.BgBlue.Close)
-	}
-	return builder.bgBlue
-}
-
-// BgWhite returns a string where the background color is White.
-func BgWhite(str ...string) string {
-	return rootBuilder.BgWhite(str...)
-}
-
-// BgWhiteAnd returns a Builder that generates strings where the background color is White,
-// and further styles can be applied via chaining.
-func BgWhiteAnd() *Builder {
-	return rootBuilder.BgWhiteAnd()
-}
-
-// BgWhite returns a string where the background color is White, in addition to other styles from this builder.
-func (builder *Builder) BgWhite(str ...string) string {
-	return builder.BgWhiteAnd().applyStyle(str...)
-}
-
-// BgWhiteAnd returns a Builder that generates strings where the background color is White,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgWhiteAnd() *Builder {
-	if builder.bgWhite == nil {
-		builder.bgWhite = createBuilder(builder, ansistyles.BgWhite.Open, ansistyles.BgWhite.Close)
-	}
-	return builder.bgWhite
+	return builder.gray
 }
 
 // BgYellowBright returns a string where the background color is YellowBright.
@@ -661,24 +461,74 @@ func BgYellowBright(str ...string) string {
 	return rootBuilder.BgYellowBright(str...)
 }
 
-// BgYellowBrightAnd returns a Builder that generates strings where the background color is YellowBright,
+// WithBgYellowBright returns a Builder that generates strings where the background color is YellowBright,
 // and further styles can be applied via chaining.
-func BgYellowBrightAnd() *Builder {
-	return rootBuilder.BgYellowBrightAnd()
+func WithBgYellowBright() *Builder {
+	return rootBuilder.WithBgYellowBright()
 }
 
 // BgYellowBright returns a string where the background color is YellowBright, in addition to other styles from this builder.
 func (builder *Builder) BgYellowBright(str ...string) string {
-	return builder.BgYellowBrightAnd().applyStyle(str...)
+	return builder.WithBgYellowBright().applyStyle(str...)
 }
 
-// BgYellowBrightAnd returns a Builder that generates strings where the background color is YellowBright,
+// WithBgYellowBright returns a Builder that generates strings where the background color is YellowBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgYellowBrightAnd() *Builder {
+func (builder *Builder) WithBgYellowBright() *Builder {
 	if builder.bgYellowBright == nil {
 		builder.bgYellowBright = createBuilder(builder, ansistyles.BgYellowBright.Open, ansistyles.BgYellowBright.Close)
 	}
 	return builder.bgYellowBright
+}
+
+// BgBlueBright returns a string where the background color is BlueBright.
+func BgBlueBright(str ...string) string {
+	return rootBuilder.BgBlueBright(str...)
+}
+
+// WithBgBlueBright returns a Builder that generates strings where the background color is BlueBright,
+// and further styles can be applied via chaining.
+func WithBgBlueBright() *Builder {
+	return rootBuilder.WithBgBlueBright()
+}
+
+// BgBlueBright returns a string where the background color is BlueBright, in addition to other styles from this builder.
+func (builder *Builder) BgBlueBright(str ...string) string {
+	return builder.WithBgBlueBright().applyStyle(str...)
+}
+
+// WithBgBlueBright returns a Builder that generates strings where the background color is BlueBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgBlueBright() *Builder {
+	if builder.bgBlueBright == nil {
+		builder.bgBlueBright = createBuilder(builder, ansistyles.BgBlueBright.Open, ansistyles.BgBlueBright.Close)
+	}
+	return builder.bgBlueBright
+}
+
+// BgCyanBright returns a string where the background color is CyanBright.
+func BgCyanBright(str ...string) string {
+	return rootBuilder.BgCyanBright(str...)
+}
+
+// WithBgCyanBright returns a Builder that generates strings where the background color is CyanBright,
+// and further styles can be applied via chaining.
+func WithBgCyanBright() *Builder {
+	return rootBuilder.WithBgCyanBright()
+}
+
+// BgCyanBright returns a string where the background color is CyanBright, in addition to other styles from this builder.
+func (builder *Builder) BgCyanBright(str ...string) string {
+	return builder.WithBgCyanBright().applyStyle(str...)
+}
+
+// WithBgCyanBright returns a Builder that generates strings where the background color is CyanBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgCyanBright() *Builder {
+	if builder.bgCyanBright == nil {
+		builder.bgCyanBright = createBuilder(builder, ansistyles.BgCyanBright.Open, ansistyles.BgCyanBright.Close)
+	}
+	return builder.bgCyanBright
 }
 
 // BgWhiteBright returns a string where the background color is WhiteBright.
@@ -686,74 +536,149 @@ func BgWhiteBright(str ...string) string {
 	return rootBuilder.BgWhiteBright(str...)
 }
 
-// BgWhiteBrightAnd returns a Builder that generates strings where the background color is WhiteBright,
+// WithBgWhiteBright returns a Builder that generates strings where the background color is WhiteBright,
 // and further styles can be applied via chaining.
-func BgWhiteBrightAnd() *Builder {
-	return rootBuilder.BgWhiteBrightAnd()
+func WithBgWhiteBright() *Builder {
+	return rootBuilder.WithBgWhiteBright()
 }
 
 // BgWhiteBright returns a string where the background color is WhiteBright, in addition to other styles from this builder.
 func (builder *Builder) BgWhiteBright(str ...string) string {
-	return builder.BgWhiteBrightAnd().applyStyle(str...)
+	return builder.WithBgWhiteBright().applyStyle(str...)
 }
 
-// BgWhiteBrightAnd returns a Builder that generates strings where the background color is WhiteBright,
+// WithBgWhiteBright returns a Builder that generates strings where the background color is WhiteBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgWhiteBrightAnd() *Builder {
+func (builder *Builder) WithBgWhiteBright() *Builder {
 	if builder.bgWhiteBright == nil {
 		builder.bgWhiteBright = createBuilder(builder, ansistyles.BgWhiteBright.Open, ansistyles.BgWhiteBright.Close)
 	}
 	return builder.bgWhiteBright
 }
 
-// BgGray returns a string where the background color is Gray.
-func BgGray(str ...string) string {
-	return rootBuilder.BgGray(str...)
+// BgBlack returns a string where the background color is Black.
+func BgBlack(str ...string) string {
+	return rootBuilder.BgBlack(str...)
 }
 
-// BgGrayAnd returns a Builder that generates strings where the background color is Gray,
+// WithBgBlack returns a Builder that generates strings where the background color is Black,
 // and further styles can be applied via chaining.
-func BgGrayAnd() *Builder {
-	return rootBuilder.BgGrayAnd()
+func WithBgBlack() *Builder {
+	return rootBuilder.WithBgBlack()
 }
 
-// BgGray returns a string where the background color is Gray, in addition to other styles from this builder.
-func (builder *Builder) BgGray(str ...string) string {
-	return builder.BgGrayAnd().applyStyle(str...)
+// BgBlack returns a string where the background color is Black, in addition to other styles from this builder.
+func (builder *Builder) BgBlack(str ...string) string {
+	return builder.WithBgBlack().applyStyle(str...)
 }
 
-// BgGrayAnd returns a Builder that generates strings where the background color is Gray,
+// WithBgBlack returns a Builder that generates strings where the background color is Black,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgGrayAnd() *Builder {
-	if builder.bgGray == nil {
-		builder.bgGray = createBuilder(builder, ansistyles.BgGray.Open, ansistyles.BgGray.Close)
+func (builder *Builder) WithBgBlack() *Builder {
+	if builder.bgBlack == nil {
+		builder.bgBlack = createBuilder(builder, ansistyles.BgBlack.Open, ansistyles.BgBlack.Close)
 	}
-	return builder.bgGray
+	return builder.bgBlack
 }
 
-// BgRed returns a string where the background color is Red.
-func BgRed(str ...string) string {
-	return rootBuilder.BgRed(str...)
+// BgGreen returns a string where the background color is Green.
+func BgGreen(str ...string) string {
+	return rootBuilder.BgGreen(str...)
 }
 
-// BgRedAnd returns a Builder that generates strings where the background color is Red,
+// WithBgGreen returns a Builder that generates strings where the background color is Green,
 // and further styles can be applied via chaining.
-func BgRedAnd() *Builder {
-	return rootBuilder.BgRedAnd()
+func WithBgGreen() *Builder {
+	return rootBuilder.WithBgGreen()
 }
 
-// BgRed returns a string where the background color is Red, in addition to other styles from this builder.
-func (builder *Builder) BgRed(str ...string) string {
-	return builder.BgRedAnd().applyStyle(str...)
+// BgGreen returns a string where the background color is Green, in addition to other styles from this builder.
+func (builder *Builder) BgGreen(str ...string) string {
+	return builder.WithBgGreen().applyStyle(str...)
 }
 
-// BgRedAnd returns a Builder that generates strings where the background color is Red,
+// WithBgGreen returns a Builder that generates strings where the background color is Green,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgRedAnd() *Builder {
-	if builder.bgRed == nil {
-		builder.bgRed = createBuilder(builder, ansistyles.BgRed.Open, ansistyles.BgRed.Close)
+func (builder *Builder) WithBgGreen() *Builder {
+	if builder.bgGreen == nil {
+		builder.bgGreen = createBuilder(builder, ansistyles.BgGreen.Open, ansistyles.BgGreen.Close)
 	}
-	return builder.bgRed
+	return builder.bgGreen
+}
+
+// BgCyan returns a string where the background color is Cyan.
+func BgCyan(str ...string) string {
+	return rootBuilder.BgCyan(str...)
+}
+
+// WithBgCyan returns a Builder that generates strings where the background color is Cyan,
+// and further styles can be applied via chaining.
+func WithBgCyan() *Builder {
+	return rootBuilder.WithBgCyan()
+}
+
+// BgCyan returns a string where the background color is Cyan, in addition to other styles from this builder.
+func (builder *Builder) BgCyan(str ...string) string {
+	return builder.WithBgCyan().applyStyle(str...)
+}
+
+// WithBgCyan returns a Builder that generates strings where the background color is Cyan,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgCyan() *Builder {
+	if builder.bgCyan == nil {
+		builder.bgCyan = createBuilder(builder, ansistyles.BgCyan.Open, ansistyles.BgCyan.Close)
+	}
+	return builder.bgCyan
+}
+
+// BgWhite returns a string where the background color is White.
+func BgWhite(str ...string) string {
+	return rootBuilder.BgWhite(str...)
+}
+
+// WithBgWhite returns a Builder that generates strings where the background color is White,
+// and further styles can be applied via chaining.
+func WithBgWhite() *Builder {
+	return rootBuilder.WithBgWhite()
+}
+
+// BgWhite returns a string where the background color is White, in addition to other styles from this builder.
+func (builder *Builder) BgWhite(str ...string) string {
+	return builder.WithBgWhite().applyStyle(str...)
+}
+
+// WithBgWhite returns a Builder that generates strings where the background color is White,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgWhite() *Builder {
+	if builder.bgWhite == nil {
+		builder.bgWhite = createBuilder(builder, ansistyles.BgWhite.Open, ansistyles.BgWhite.Close)
+	}
+	return builder.bgWhite
+}
+
+// BgGrey returns a string where the background color is Grey.
+func BgGrey(str ...string) string {
+	return rootBuilder.BgGrey(str...)
+}
+
+// WithBgGrey returns a Builder that generates strings where the background color is Grey,
+// and further styles can be applied via chaining.
+func WithBgGrey() *Builder {
+	return rootBuilder.WithBgGrey()
+}
+
+// BgGrey returns a string where the background color is Grey, in addition to other styles from this builder.
+func (builder *Builder) BgGrey(str ...string) string {
+	return builder.WithBgGrey().applyStyle(str...)
+}
+
+// WithBgGrey returns a Builder that generates strings where the background color is Grey,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgGrey() *Builder {
+	if builder.bgGrey == nil {
+		builder.bgGrey = createBuilder(builder, ansistyles.BgGrey.Open, ansistyles.BgGrey.Close)
+	}
+	return builder.bgGrey
 }
 
 // BgYellow returns a string where the background color is Yellow.
@@ -761,24 +686,174 @@ func BgYellow(str ...string) string {
 	return rootBuilder.BgYellow(str...)
 }
 
-// BgYellowAnd returns a Builder that generates strings where the background color is Yellow,
+// WithBgYellow returns a Builder that generates strings where the background color is Yellow,
 // and further styles can be applied via chaining.
-func BgYellowAnd() *Builder {
-	return rootBuilder.BgYellowAnd()
+func WithBgYellow() *Builder {
+	return rootBuilder.WithBgYellow()
 }
 
 // BgYellow returns a string where the background color is Yellow, in addition to other styles from this builder.
 func (builder *Builder) BgYellow(str ...string) string {
-	return builder.BgYellowAnd().applyStyle(str...)
+	return builder.WithBgYellow().applyStyle(str...)
 }
 
-// BgYellowAnd returns a Builder that generates strings where the background color is Yellow,
+// WithBgYellow returns a Builder that generates strings where the background color is Yellow,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgYellowAnd() *Builder {
+func (builder *Builder) WithBgYellow() *Builder {
 	if builder.bgYellow == nil {
 		builder.bgYellow = createBuilder(builder, ansistyles.BgYellow.Open, ansistyles.BgYellow.Close)
 	}
 	return builder.bgYellow
+}
+
+// BgMagenta returns a string where the background color is Magenta.
+func BgMagenta(str ...string) string {
+	return rootBuilder.BgMagenta(str...)
+}
+
+// WithBgMagenta returns a Builder that generates strings where the background color is Magenta,
+// and further styles can be applied via chaining.
+func WithBgMagenta() *Builder {
+	return rootBuilder.WithBgMagenta()
+}
+
+// BgMagenta returns a string where the background color is Magenta, in addition to other styles from this builder.
+func (builder *Builder) BgMagenta(str ...string) string {
+	return builder.WithBgMagenta().applyStyle(str...)
+}
+
+// WithBgMagenta returns a Builder that generates strings where the background color is Magenta,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgMagenta() *Builder {
+	if builder.bgMagenta == nil {
+		builder.bgMagenta = createBuilder(builder, ansistyles.BgMagenta.Open, ansistyles.BgMagenta.Close)
+	}
+	return builder.bgMagenta
+}
+
+// BgGray returns a string where the background color is Gray.
+func BgGray(str ...string) string {
+	return rootBuilder.BgGray(str...)
+}
+
+// WithBgGray returns a Builder that generates strings where the background color is Gray,
+// and further styles can be applied via chaining.
+func WithBgGray() *Builder {
+	return rootBuilder.WithBgGray()
+}
+
+// BgGray returns a string where the background color is Gray, in addition to other styles from this builder.
+func (builder *Builder) BgGray(str ...string) string {
+	return builder.WithBgGray().applyStyle(str...)
+}
+
+// WithBgGray returns a Builder that generates strings where the background color is Gray,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgGray() *Builder {
+	if builder.bgGray == nil {
+		builder.bgGray = createBuilder(builder, ansistyles.BgGray.Open, ansistyles.BgGray.Close)
+	}
+	return builder.bgGray
+}
+
+// BgBlue returns a string where the background color is Blue.
+func BgBlue(str ...string) string {
+	return rootBuilder.BgBlue(str...)
+}
+
+// WithBgBlue returns a Builder that generates strings where the background color is Blue,
+// and further styles can be applied via chaining.
+func WithBgBlue() *Builder {
+	return rootBuilder.WithBgBlue()
+}
+
+// BgBlue returns a string where the background color is Blue, in addition to other styles from this builder.
+func (builder *Builder) BgBlue(str ...string) string {
+	return builder.WithBgBlue().applyStyle(str...)
+}
+
+// WithBgBlue returns a Builder that generates strings where the background color is Blue,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgBlue() *Builder {
+	if builder.bgBlue == nil {
+		builder.bgBlue = createBuilder(builder, ansistyles.BgBlue.Open, ansistyles.BgBlue.Close)
+	}
+	return builder.bgBlue
+}
+
+// BgGreenBright returns a string where the background color is GreenBright.
+func BgGreenBright(str ...string) string {
+	return rootBuilder.BgGreenBright(str...)
+}
+
+// WithBgGreenBright returns a Builder that generates strings where the background color is GreenBright,
+// and further styles can be applied via chaining.
+func WithBgGreenBright() *Builder {
+	return rootBuilder.WithBgGreenBright()
+}
+
+// BgGreenBright returns a string where the background color is GreenBright, in addition to other styles from this builder.
+func (builder *Builder) BgGreenBright(str ...string) string {
+	return builder.WithBgGreenBright().applyStyle(str...)
+}
+
+// WithBgGreenBright returns a Builder that generates strings where the background color is GreenBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgGreenBright() *Builder {
+	if builder.bgGreenBright == nil {
+		builder.bgGreenBright = createBuilder(builder, ansistyles.BgGreenBright.Open, ansistyles.BgGreenBright.Close)
+	}
+	return builder.bgGreenBright
+}
+
+// BgMagentaBright returns a string where the background color is MagentaBright.
+func BgMagentaBright(str ...string) string {
+	return rootBuilder.BgMagentaBright(str...)
+}
+
+// WithBgMagentaBright returns a Builder that generates strings where the background color is MagentaBright,
+// and further styles can be applied via chaining.
+func WithBgMagentaBright() *Builder {
+	return rootBuilder.WithBgMagentaBright()
+}
+
+// BgMagentaBright returns a string where the background color is MagentaBright, in addition to other styles from this builder.
+func (builder *Builder) BgMagentaBright(str ...string) string {
+	return builder.WithBgMagentaBright().applyStyle(str...)
+}
+
+// WithBgMagentaBright returns a Builder that generates strings where the background color is MagentaBright,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgMagentaBright() *Builder {
+	if builder.bgMagentaBright == nil {
+		builder.bgMagentaBright = createBuilder(builder, ansistyles.BgMagentaBright.Open, ansistyles.BgMagentaBright.Close)
+	}
+	return builder.bgMagentaBright
+}
+
+// BgRed returns a string where the background color is Red.
+func BgRed(str ...string) string {
+	return rootBuilder.BgRed(str...)
+}
+
+// WithBgRed returns a Builder that generates strings where the background color is Red,
+// and further styles can be applied via chaining.
+func WithBgRed() *Builder {
+	return rootBuilder.WithBgRed()
+}
+
+// BgRed returns a string where the background color is Red, in addition to other styles from this builder.
+func (builder *Builder) BgRed(str ...string) string {
+	return builder.WithBgRed().applyStyle(str...)
+}
+
+// WithBgRed returns a Builder that generates strings where the background color is Red,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBgRed() *Builder {
+	if builder.bgRed == nil {
+		builder.bgRed = createBuilder(builder, ansistyles.BgRed.Open, ansistyles.BgRed.Close)
+	}
+	return builder.bgRed
 }
 
 // BgBlackBright returns a string where the background color is BlackBright.
@@ -786,20 +861,20 @@ func BgBlackBright(str ...string) string {
 	return rootBuilder.BgBlackBright(str...)
 }
 
-// BgBlackBrightAnd returns a Builder that generates strings where the background color is BlackBright,
+// WithBgBlackBright returns a Builder that generates strings where the background color is BlackBright,
 // and further styles can be applied via chaining.
-func BgBlackBrightAnd() *Builder {
-	return rootBuilder.BgBlackBrightAnd()
+func WithBgBlackBright() *Builder {
+	return rootBuilder.WithBgBlackBright()
 }
 
 // BgBlackBright returns a string where the background color is BlackBright, in addition to other styles from this builder.
 func (builder *Builder) BgBlackBright(str ...string) string {
-	return builder.BgBlackBrightAnd().applyStyle(str...)
+	return builder.WithBgBlackBright().applyStyle(str...)
 }
 
-// BgBlackBrightAnd returns a Builder that generates strings where the background color is BlackBright,
+// WithBgBlackBright returns a Builder that generates strings where the background color is BlackBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgBlackBrightAnd() *Builder {
+func (builder *Builder) WithBgBlackBright() *Builder {
 	if builder.bgBlackBright == nil {
 		builder.bgBlackBright = createBuilder(builder, ansistyles.BgBlackBright.Open, ansistyles.BgBlackBright.Close)
 	}
@@ -811,249 +886,24 @@ func BgRedBright(str ...string) string {
 	return rootBuilder.BgRedBright(str...)
 }
 
-// BgRedBrightAnd returns a Builder that generates strings where the background color is RedBright,
+// WithBgRedBright returns a Builder that generates strings where the background color is RedBright,
 // and further styles can be applied via chaining.
-func BgRedBrightAnd() *Builder {
-	return rootBuilder.BgRedBrightAnd()
+func WithBgRedBright() *Builder {
+	return rootBuilder.WithBgRedBright()
 }
 
 // BgRedBright returns a string where the background color is RedBright, in addition to other styles from this builder.
 func (builder *Builder) BgRedBright(str ...string) string {
-	return builder.BgRedBrightAnd().applyStyle(str...)
+	return builder.WithBgRedBright().applyStyle(str...)
 }
 
-// BgRedBrightAnd returns a Builder that generates strings where the background color is RedBright,
+// WithBgRedBright returns a Builder that generates strings where the background color is RedBright,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgRedBrightAnd() *Builder {
+func (builder *Builder) WithBgRedBright() *Builder {
 	if builder.bgRedBright == nil {
 		builder.bgRedBright = createBuilder(builder, ansistyles.BgRedBright.Open, ansistyles.BgRedBright.Close)
 	}
 	return builder.bgRedBright
-}
-
-// BgMagentaBright returns a string where the background color is MagentaBright.
-func BgMagentaBright(str ...string) string {
-	return rootBuilder.BgMagentaBright(str...)
-}
-
-// BgMagentaBrightAnd returns a Builder that generates strings where the background color is MagentaBright,
-// and further styles can be applied via chaining.
-func BgMagentaBrightAnd() *Builder {
-	return rootBuilder.BgMagentaBrightAnd()
-}
-
-// BgMagentaBright returns a string where the background color is MagentaBright, in addition to other styles from this builder.
-func (builder *Builder) BgMagentaBright(str ...string) string {
-	return builder.BgMagentaBrightAnd().applyStyle(str...)
-}
-
-// BgMagentaBrightAnd returns a Builder that generates strings where the background color is MagentaBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgMagentaBrightAnd() *Builder {
-	if builder.bgMagentaBright == nil {
-		builder.bgMagentaBright = createBuilder(builder, ansistyles.BgMagentaBright.Open, ansistyles.BgMagentaBright.Close)
-	}
-	return builder.bgMagentaBright
-}
-
-// BgCyanBright returns a string where the background color is CyanBright.
-func BgCyanBright(str ...string) string {
-	return rootBuilder.BgCyanBright(str...)
-}
-
-// BgCyanBrightAnd returns a Builder that generates strings where the background color is CyanBright,
-// and further styles can be applied via chaining.
-func BgCyanBrightAnd() *Builder {
-	return rootBuilder.BgCyanBrightAnd()
-}
-
-// BgCyanBright returns a string where the background color is CyanBright, in addition to other styles from this builder.
-func (builder *Builder) BgCyanBright(str ...string) string {
-	return builder.BgCyanBrightAnd().applyStyle(str...)
-}
-
-// BgCyanBrightAnd returns a Builder that generates strings where the background color is CyanBright,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgCyanBrightAnd() *Builder {
-	if builder.bgCyanBright == nil {
-		builder.bgCyanBright = createBuilder(builder, ansistyles.BgCyanBright.Open, ansistyles.BgCyanBright.Close)
-	}
-	return builder.bgCyanBright
-}
-
-// BgBlack returns a string where the background color is Black.
-func BgBlack(str ...string) string {
-	return rootBuilder.BgBlack(str...)
-}
-
-// BgBlackAnd returns a Builder that generates strings where the background color is Black,
-// and further styles can be applied via chaining.
-func BgBlackAnd() *Builder {
-	return rootBuilder.BgBlackAnd()
-}
-
-// BgBlack returns a string where the background color is Black, in addition to other styles from this builder.
-func (builder *Builder) BgBlack(str ...string) string {
-	return builder.BgBlackAnd().applyStyle(str...)
-}
-
-// BgBlackAnd returns a Builder that generates strings where the background color is Black,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BgBlackAnd() *Builder {
-	if builder.bgBlack == nil {
-		builder.bgBlack = createBuilder(builder, ansistyles.BgBlack.Open, ansistyles.BgBlack.Close)
-	}
-	return builder.bgBlack
-}
-
-// Bold returns a string with the bold modifier.
-func Bold(str ...string) string {
-	return rootBuilder.Bold(str...)
-}
-
-// BoldAnd returns a Builder that generates strings with the bold modifier,
-// and further styles can be applied via chaining.
-func BoldAnd() *Builder {
-	return rootBuilder.BoldAnd()
-}
-
-// Bold returns a string with the bold modifier, in addition to other styles from this builder.
-func (builder *Builder) Bold(str ...string) string {
-	return builder.BoldAnd().applyStyle(str...)
-}
-
-// BoldAnd returns a Builder that generates strings with the bold modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) BoldAnd() *Builder {
-	if builder.bold == nil {
-		builder.bold = createBuilder(builder, ansistyles.Bold.Open, ansistyles.Bold.Close)
-	}
-	return builder.bold
-}
-
-// Dim returns a string with the dim modifier.
-func Dim(str ...string) string {
-	return rootBuilder.Dim(str...)
-}
-
-// DimAnd returns a Builder that generates strings with the dim modifier,
-// and further styles can be applied via chaining.
-func DimAnd() *Builder {
-	return rootBuilder.DimAnd()
-}
-
-// Dim returns a string with the dim modifier, in addition to other styles from this builder.
-func (builder *Builder) Dim(str ...string) string {
-	return builder.DimAnd().applyStyle(str...)
-}
-
-// DimAnd returns a Builder that generates strings with the dim modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) DimAnd() *Builder {
-	if builder.dim == nil {
-		builder.dim = createBuilder(builder, ansistyles.Dim.Open, ansistyles.Dim.Close)
-	}
-	return builder.dim
-}
-
-// Italic returns a string with the italic modifier.
-func Italic(str ...string) string {
-	return rootBuilder.Italic(str...)
-}
-
-// ItalicAnd returns a Builder that generates strings with the italic modifier,
-// and further styles can be applied via chaining.
-func ItalicAnd() *Builder {
-	return rootBuilder.ItalicAnd()
-}
-
-// Italic returns a string with the italic modifier, in addition to other styles from this builder.
-func (builder *Builder) Italic(str ...string) string {
-	return builder.ItalicAnd().applyStyle(str...)
-}
-
-// ItalicAnd returns a Builder that generates strings with the italic modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) ItalicAnd() *Builder {
-	if builder.italic == nil {
-		builder.italic = createBuilder(builder, ansistyles.Italic.Open, ansistyles.Italic.Close)
-	}
-	return builder.italic
-}
-
-// Overline returns a string with the overline modifier.
-func Overline(str ...string) string {
-	return rootBuilder.Overline(str...)
-}
-
-// OverlineAnd returns a Builder that generates strings with the overline modifier,
-// and further styles can be applied via chaining.
-func OverlineAnd() *Builder {
-	return rootBuilder.OverlineAnd()
-}
-
-// Overline returns a string with the overline modifier, in addition to other styles from this builder.
-func (builder *Builder) Overline(str ...string) string {
-	return builder.OverlineAnd().applyStyle(str...)
-}
-
-// OverlineAnd returns a Builder that generates strings with the overline modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) OverlineAnd() *Builder {
-	if builder.overline == nil {
-		builder.overline = createBuilder(builder, ansistyles.Overline.Open, ansistyles.Overline.Close)
-	}
-	return builder.overline
-}
-
-// Inverse returns a string with the inverse modifier.
-func Inverse(str ...string) string {
-	return rootBuilder.Inverse(str...)
-}
-
-// InverseAnd returns a Builder that generates strings with the inverse modifier,
-// and further styles can be applied via chaining.
-func InverseAnd() *Builder {
-	return rootBuilder.InverseAnd()
-}
-
-// Inverse returns a string with the inverse modifier, in addition to other styles from this builder.
-func (builder *Builder) Inverse(str ...string) string {
-	return builder.InverseAnd().applyStyle(str...)
-}
-
-// InverseAnd returns a Builder that generates strings with the inverse modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) InverseAnd() *Builder {
-	if builder.inverse == nil {
-		builder.inverse = createBuilder(builder, ansistyles.Inverse.Open, ansistyles.Inverse.Close)
-	}
-	return builder.inverse
-}
-
-// Strikethrough returns a string with the strikethrough modifier.
-func Strikethrough(str ...string) string {
-	return rootBuilder.Strikethrough(str...)
-}
-
-// StrikethroughAnd returns a Builder that generates strings with the strikethrough modifier,
-// and further styles can be applied via chaining.
-func StrikethroughAnd() *Builder {
-	return rootBuilder.StrikethroughAnd()
-}
-
-// Strikethrough returns a string with the strikethrough modifier, in addition to other styles from this builder.
-func (builder *Builder) Strikethrough(str ...string) string {
-	return builder.StrikethroughAnd().applyStyle(str...)
-}
-
-// StrikethroughAnd returns a Builder that generates strings with the strikethrough modifier,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) StrikethroughAnd() *Builder {
-	if builder.strikethrough == nil {
-		builder.strikethrough = createBuilder(builder, ansistyles.Strikethrough.Open, ansistyles.Strikethrough.Close)
-	}
-	return builder.strikethrough
 }
 
 // Reset returns a string with the reset modifier.
@@ -1061,24 +911,74 @@ func Reset(str ...string) string {
 	return rootBuilder.Reset(str...)
 }
 
-// ResetAnd returns a Builder that generates strings with the reset modifier,
+// WithReset returns a Builder that generates strings with the reset modifier,
 // and further styles can be applied via chaining.
-func ResetAnd() *Builder {
-	return rootBuilder.ResetAnd()
+func WithReset() *Builder {
+	return rootBuilder.WithReset()
 }
 
 // Reset returns a string with the reset modifier, in addition to other styles from this builder.
 func (builder *Builder) Reset(str ...string) string {
-	return builder.ResetAnd().applyStyle(str...)
+	return builder.WithReset().applyStyle(str...)
 }
 
-// ResetAnd returns a Builder that generates strings with the reset modifier,
+// WithReset returns a Builder that generates strings with the reset modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) ResetAnd() *Builder {
+func (builder *Builder) WithReset() *Builder {
 	if builder.reset == nil {
 		builder.reset = createBuilder(builder, ansistyles.Reset.Open, ansistyles.Reset.Close)
 	}
 	return builder.reset
+}
+
+// Bold returns a string with the bold modifier.
+func Bold(str ...string) string {
+	return rootBuilder.Bold(str...)
+}
+
+// WithBold returns a Builder that generates strings with the bold modifier,
+// and further styles can be applied via chaining.
+func WithBold() *Builder {
+	return rootBuilder.WithBold()
+}
+
+// Bold returns a string with the bold modifier, in addition to other styles from this builder.
+func (builder *Builder) Bold(str ...string) string {
+	return builder.WithBold().applyStyle(str...)
+}
+
+// WithBold returns a Builder that generates strings with the bold modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithBold() *Builder {
+	if builder.bold == nil {
+		builder.bold = createBuilder(builder, ansistyles.Bold.Open, ansistyles.Bold.Close)
+	}
+	return builder.bold
+}
+
+// Italic returns a string with the italic modifier.
+func Italic(str ...string) string {
+	return rootBuilder.Italic(str...)
+}
+
+// WithItalic returns a Builder that generates strings with the italic modifier,
+// and further styles can be applied via chaining.
+func WithItalic() *Builder {
+	return rootBuilder.WithItalic()
+}
+
+// Italic returns a string with the italic modifier, in addition to other styles from this builder.
+func (builder *Builder) Italic(str ...string) string {
+	return builder.WithItalic().applyStyle(str...)
+}
+
+// WithItalic returns a Builder that generates strings with the italic modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithItalic() *Builder {
+	if builder.italic == nil {
+		builder.italic = createBuilder(builder, ansistyles.Italic.Open, ansistyles.Italic.Close)
+	}
+	return builder.italic
 }
 
 // Underline returns a string with the underline modifier.
@@ -1086,20 +986,20 @@ func Underline(str ...string) string {
 	return rootBuilder.Underline(str...)
 }
 
-// UnderlineAnd returns a Builder that generates strings with the underline modifier,
+// WithUnderline returns a Builder that generates strings with the underline modifier,
 // and further styles can be applied via chaining.
-func UnderlineAnd() *Builder {
-	return rootBuilder.UnderlineAnd()
+func WithUnderline() *Builder {
+	return rootBuilder.WithUnderline()
 }
 
 // Underline returns a string with the underline modifier, in addition to other styles from this builder.
 func (builder *Builder) Underline(str ...string) string {
-	return builder.UnderlineAnd().applyStyle(str...)
+	return builder.WithUnderline().applyStyle(str...)
 }
 
-// UnderlineAnd returns a Builder that generates strings with the underline modifier,
+// WithUnderline returns a Builder that generates strings with the underline modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) UnderlineAnd() *Builder {
+func (builder *Builder) WithUnderline() *Builder {
 	if builder.underline == nil {
 		builder.underline = createBuilder(builder, ansistyles.Underline.Open, ansistyles.Underline.Close)
 	}
@@ -1111,70 +1011,170 @@ func Hidden(str ...string) string {
 	return rootBuilder.Hidden(str...)
 }
 
-// HiddenAnd returns a Builder that generates strings with the hidden modifier,
+// WithHidden returns a Builder that generates strings with the hidden modifier,
 // and further styles can be applied via chaining.
-func HiddenAnd() *Builder {
-	return rootBuilder.HiddenAnd()
+func WithHidden() *Builder {
+	return rootBuilder.WithHidden()
 }
 
 // Hidden returns a string with the hidden modifier, in addition to other styles from this builder.
 func (builder *Builder) Hidden(str ...string) string {
-	return builder.HiddenAnd().applyStyle(str...)
+	return builder.WithHidden().applyStyle(str...)
 }
 
-// HiddenAnd returns a Builder that generates strings with the hidden modifier,
+// WithHidden returns a Builder that generates strings with the hidden modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) HiddenAnd() *Builder {
+func (builder *Builder) WithHidden() *Builder {
 	if builder.hidden == nil {
 		builder.hidden = createBuilder(builder, ansistyles.Hidden.Open, ansistyles.Hidden.Close)
 	}
 	return builder.hidden
 }
 
+// Dim returns a string with the dim modifier.
+func Dim(str ...string) string {
+	return rootBuilder.Dim(str...)
+}
+
+// WithDim returns a Builder that generates strings with the dim modifier,
+// and further styles can be applied via chaining.
+func WithDim() *Builder {
+	return rootBuilder.WithDim()
+}
+
+// Dim returns a string with the dim modifier, in addition to other styles from this builder.
+func (builder *Builder) Dim(str ...string) string {
+	return builder.WithDim().applyStyle(str...)
+}
+
+// WithDim returns a Builder that generates strings with the dim modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithDim() *Builder {
+	if builder.dim == nil {
+		builder.dim = createBuilder(builder, ansistyles.Dim.Open, ansistyles.Dim.Close)
+	}
+	return builder.dim
+}
+
+// Overline returns a string with the overline modifier.
+func Overline(str ...string) string {
+	return rootBuilder.Overline(str...)
+}
+
+// WithOverline returns a Builder that generates strings with the overline modifier,
+// and further styles can be applied via chaining.
+func WithOverline() *Builder {
+	return rootBuilder.WithOverline()
+}
+
+// Overline returns a string with the overline modifier, in addition to other styles from this builder.
+func (builder *Builder) Overline(str ...string) string {
+	return builder.WithOverline().applyStyle(str...)
+}
+
+// WithOverline returns a Builder that generates strings with the overline modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithOverline() *Builder {
+	if builder.overline == nil {
+		builder.overline = createBuilder(builder, ansistyles.Overline.Open, ansistyles.Overline.Close)
+	}
+	return builder.overline
+}
+
+// Inverse returns a string with the inverse modifier.
+func Inverse(str ...string) string {
+	return rootBuilder.Inverse(str...)
+}
+
+// WithInverse returns a Builder that generates strings with the inverse modifier,
+// and further styles can be applied via chaining.
+func WithInverse() *Builder {
+	return rootBuilder.WithInverse()
+}
+
+// Inverse returns a string with the inverse modifier, in addition to other styles from this builder.
+func (builder *Builder) Inverse(str ...string) string {
+	return builder.WithInverse().applyStyle(str...)
+}
+
+// WithInverse returns a Builder that generates strings with the inverse modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithInverse() *Builder {
+	if builder.inverse == nil {
+		builder.inverse = createBuilder(builder, ansistyles.Inverse.Open, ansistyles.Inverse.Close)
+	}
+	return builder.inverse
+}
+
+// Strikethrough returns a string with the strikethrough modifier.
+func Strikethrough(str ...string) string {
+	return rootBuilder.Strikethrough(str...)
+}
+
+// WithStrikethrough returns a Builder that generates strings with the strikethrough modifier,
+// and further styles can be applied via chaining.
+func WithStrikethrough() *Builder {
+	return rootBuilder.WithStrikethrough()
+}
+
+// Strikethrough returns a string with the strikethrough modifier, in addition to other styles from this builder.
+func (builder *Builder) Strikethrough(str ...string) string {
+	return builder.WithStrikethrough().applyStyle(str...)
+}
+
+// WithStrikethrough returns a Builder that generates strings with the strikethrough modifier,
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) WithStrikethrough() *Builder {
+	if builder.strikethrough == nil {
+		builder.strikethrough = createBuilder(builder, ansistyles.Strikethrough.Open, ansistyles.Strikethrough.Close)
+	}
+	return builder.strikethrough
+}
+
 type generatedBuilders struct {
-	blackBright     *Builder
-	whiteBright     *Builder
-	grey            *Builder
-	bgBlue          *Builder
-	bgBlueBright    *Builder
-	italic          *Builder
-	overline        *Builder
-	red             *Builder
-	bgBlack         *Builder
-	bgMagenta       *Builder
-	bgYellowBright  *Builder
-	bgMagentaBright *Builder
-	hidden          *Builder
-	white           *Builder
-	yellowBright    *Builder
-	bgGray          *Builder
-	green           *Builder
-	blueBright      *Builder
-	bgYellow        *Builder
-	bgRed           *Builder
-	bgWhite         *Builder
-	bgRedBright     *Builder
-	bold            *Builder
-	inverse         *Builder
-	strikethrough   *Builder
-	bgGrey          *Builder
-	reset           *Builder
-	dim             *Builder
-	bgCyan          *Builder
-	magentaBright   *Builder
-	bgBlackBright   *Builder
-	yellow          *Builder
-	magenta         *Builder
-	greenBright     *Builder
-	bgGreen         *Builder
-	cyan            *Builder
-	redBright       *Builder
-	cyanBright      *Builder
-	gray            *Builder
-	bgGreenBright   *Builder
-	bgCyanBright    *Builder
 	bgWhiteBright   *Builder
 	underline       *Builder
+	strikethrough   *Builder
+	green           *Builder
+	blackBright     *Builder
+	redBright       *Builder
+	bgWhite         *Builder
+	cyan            *Builder
+	bgYellowBright  *Builder
+	bgGray          *Builder
+	bgCyanBright    *Builder
+	red             *Builder
+	white           *Builder
+	whiteBright     *Builder
+	bgBlack         *Builder
+	bgRed           *Builder
+	bgGreen         *Builder
+	italic          *Builder
+	hidden          *Builder
+	magenta         *Builder
+	greenBright     *Builder
+	yellowBright    *Builder
+	bgGreenBright   *Builder
+	bgBlueBright    *Builder
+	bold            *Builder
+	inverse         *Builder
 	black           *Builder
+	magentaBright   *Builder
+	gray            *Builder
+	bgBlue          *Builder
+	yellow          *Builder
 	blue            *Builder
+	bgYellow        *Builder
+	bgMagentaBright *Builder
+	bgGrey          *Builder
+	dim             *Builder
+	cyanBright      *Builder
+	grey            *Builder
+	bgMagenta       *Builder
+	reset           *Builder
+	overline        *Builder
+	blueBright      *Builder
+	bgCyan          *Builder
+	bgBlackBright   *Builder
+	bgRedBright     *Builder
 }

@@ -1,10 +1,50 @@
+// Package gawk is terminal string styling for go done right, with full and painless Windows 10 support.
+//
+// Gawk is a library heavily inspired by https://github.com/chalk/chalk, the
+// popular Node.js terminal color library, and using golang ports of supports-color
+// (https://github.com/jwalton/go-supportscolor) and ansi-styles
+// (https://github.com/jwalton/gawk/pkg/ansistyles).
+//
+// A very simple usage example would be:
+//
+//     fmt.Println(gawk.Blue("This line is blue"))
+//
+// Note that this works on all platforms - there's no need to write to a special
+// stream or use a special print function to get color on Windows 10.
+//
+// Some examples:
+//
+//     // Combine styled and normal strings
+//     fmt.Println(gawk.Blue("Hello") + " World" + gawk.Red("!"))
+//
+//     // Compose multiple styles using the chainable API
+//     fmt.Println(gawk.WithBlue().WithBgRed().Bold("Hello world!"))
+//
+//     // Pass in multiple arguments
+//     fmt.Println(gawk.Blue("Hello", "World!", "Foo", "bar", "biz", "baz"))
+//
+//     // Nest styles
+//     fmt.Println(gawk.Green(
+//         "I am a green line " +
+//         gawk.WithBlue().WithUnderline().Bold("with a blue substring") +
+//         " that becomes green again!"
+//     ))
+//
+//     // Use RGB colors in terminal emulators that support it.
+//     fmt.Println(gawk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
+//     fmt.Println(gawk.WihHex("#DEADED").Bold("Bold gray!"))
+//
+//     // Write to stderr:
+//     os.Stderr.WriteString(gawk.Stderr.Red("Ohs noes!\n"))
+//
+// See the README.md for more details.
+//
 package gawk
 
 import (
-	"fmt"
 	"strings"
 
-	"github.com/jwalton/go-ansistyles"
+	"github.com/jwalton/go-supportscolor"
 )
 
 type stylerData struct {
@@ -15,28 +55,56 @@ type stylerData struct {
 	parent   *stylerData
 }
 
-// Builder is an intermediate result used to chain together styles.
-type Builder struct {
-	generatedBuilders
-	styler      *stylerData
-	rootBuilder *Builder
-	Level       int
+type configuration struct {
+	Level ColorLevel
 }
 
-// Instance creates a new instance of Gawk.
-func Instance() *Builder {
+// A Builder is used to define and chain together styles.
+//
+// Instances of Builder cannot be constructed directly - you can build a new
+// instance via the New() function, which will give you an instance you can
+// configure without modifying the "default" Builder.
+//
+type Builder struct {
+	generatedBuilders
+	styler *stylerData
+	config *configuration
+}
+
+// An Option which can be passed to `New()`.
+type Option func(*Builder)
+
+// ForceLevel is an option that can be passed to `New` to force the color level
+// used.
+func ForceLevel(level ColorLevel) Option {
+	return func(builder *Builder) {
+		builder.config.Level = level
+	}
+}
+
+// New creates a new instance of Gawk.
+func New(options ...Option) *Builder {
 	builder := &Builder{styler: nil}
-	builder.rootBuilder = builder
-	// FIXME: Auto-detect level
-	// FIXME: Instead of storing level on the builder, store it in a config object that's shared across builders.
-	// FIXME: Add option to `Instance()` for setting level.
-	// FIXME: Look into storing closures in Builder, see if this speeds things up, since we can get rid of an if.
-	// FIXME: Export an interface instead of exporting Builder directly.
-	builder.Level = 3
+
+	builder.config = &configuration{
+		Level: ColorLevel(supportscolor.Stdout().Level),
+	}
+
+	for index := range options {
+		options[index](builder)
+	}
+
 	return builder
 }
 
-var rootBuilder = Instance()
+// rootBuilder is the default Gawk instance, pre-configured for stdout.
+var rootBuilder = New()
+
+// Stderr is an instance of Gawk pre-configured for stderr.  Use this when coloring
+// strings you intend to write the stderr.
+var Stderr = New(
+	ForceLevel(ColorLevel(supportscolor.Stderr().Level)),
+)
 
 func createBuilder(builder *Builder, open string, close string) *Builder {
 	var parent *stylerData
@@ -52,6 +120,7 @@ func createBuilder(builder *Builder, open string, close string) *Builder {
 	}
 
 	return &Builder{
+		config: builder.config,
 		styler: &stylerData{
 			open:     open,
 			close:    close,
@@ -63,13 +132,13 @@ func createBuilder(builder *Builder, open string, close string) *Builder {
 }
 
 func (builder *Builder) applyStyle(strs ...string) string {
-	if /* FIXME: builder.level <= 0 || */ len(strs) == 0 {
+	if len(strs) == 0 {
 		return ""
 	}
 
 	str := strings.Join(strs, " ")
-	if str == "" {
-		return ""
+	if (builder.config != nil && builder.config.Level <= LevelNone) || str == "" {
+		return str
 	}
 
 	styler := builder.styler
@@ -85,7 +154,24 @@ func (builder *Builder) applyStyle(strs ...string) string {
 			// Replace any instances already present with a re-opening code
 			// otherwise only the part of the string until said closing code
 			// will be colored, and the rest will simply be 'plain'.
-			str = strings.ReplaceAll(str, styler.close, styler.open)
+			if styler.close == "\u001b[22m" {
+				// This is kind of a weird corner case - both "bold" and "dim"
+				// close with "22", but these are actually not mutually exclusive
+				// styles - you can have something both bold and dim at the same
+				// time (iTerm 2, for example, will render it as a dimmer color,
+				// with a bold font face).  So when we nest "dim" inside "bold",
+				// if we just replace the dim's close with bold's open, we'll
+				// end up with something that is dim and bold at the same time.
+				// The fix here is to keep the close tag.  This can lead to
+				// a big chain of close tags followed immediately by open tags
+				// in cases where we do a lot of nesting, and in any other
+				// case this is pointless (as a string can't be both red and
+				// blue at the same time, for example), so we treat this as a
+				// special case.
+				str = strings.ReplaceAll(str, styler.close, styler.close+styler.open)
+			} else {
+				str = strings.ReplaceAll(str, styler.close, styler.open)
+			}
 
 			styler = styler.parent
 		}
@@ -98,30 +184,27 @@ func (builder *Builder) applyStyle(strs ...string) string {
 		str = stringEncaseCRLF(str, closeAll, openAll)
 	}
 
-	return fmt.Sprintf("%s%s%s", openAll, str, closeAll)
+	// Concat using "+" instead of fmt.Sprintf, because it's about four times faster.
+	return openAll + str + closeAll
 }
 
-// Black returns a string where the color is black.
-func RGB(r uint8, g uint8, b uint8) func(strs ...string) string {
-	return rootBuilder.RGB(r, g, b)
+// SetLevel is used to override the auto-detected color level.
+func SetLevel(level ColorLevel) {
+	rootBuilder.SetLevel(level)
 }
 
-// BlackAnd returns a Builder that generates strings where the color is black,
-// and further styles can be applied via chaining.
-func RGBAnd(r uint8, g uint8, b uint8) *Builder {
-	return rootBuilder.RGBAnd(r, g, b)
+// GetLevel returns the currently configured color level.
+func GetLevel() ColorLevel {
+	return rootBuilder.GetLevel()
 }
 
-// Black returns a string where the color is black, in addition to other styles from this builder.
-func (builder *Builder) RGB(r uint8, g uint8, b uint8) func(strs ...string) string {
-	return builder.RGBAnd(r, g, b).applyStyle
+// SetLevel is used to override the auto-detected color level for a builder.  Calling
+// this at any level of the builder will affect the entire instance of the builder.
+func (builder *Builder) SetLevel(level ColorLevel) {
+	builder.config.Level = level
 }
 
-// BlackAnd returns a Builder that generates strings where the color is black,
-// in addition to other styles from this builder, and further styles can be applied via chaining.
-func (builder *Builder) RGBAnd(r uint8, g uint8, b uint8) *Builder {
-	if builder.black == nil {
-		builder.black = createBuilder(builder, ansistyles.Ansi16m(r, g, b), ansistyles.Close)
-	}
-	return builder.black
+// GetLevel returns the currently configured level for this builder.
+func (builder *Builder) GetLevel() ColorLevel {
+	return builder.config.Level
 }
