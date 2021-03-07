@@ -1,4 +1,4 @@
-// Package gawk is terminal string styling for go done right, with full and painless Windows 10 support.
+// Package gawk is terminal string styling for go done right, with full Linux, MacOS, and painless Windows 10 support.
 //
 // Gawk is a library heavily inspired by https://github.com/chalk/chalk, the
 // popular Node.js terminal color library, and using golang ports of supports-color
