@@ -37,3 +37,9 @@ func BenchmarkNested(b *testing.B) {
 		benchGawk.Red("Hello", benchGawk.Green("green"), "world!")
 	}
 }
+
+func BenchmarkStyle(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		benchGawk.StyleMust("red")("Hello world!")
+	}
+}

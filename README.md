@@ -60,6 +60,10 @@ fmt.Println(gawk.Green(
 fmt.Println(gawk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
 fmt.Println(gawk.WihHex("#DEADED").Bold("Bold gray!"))
 
+// Use color name strings
+fmt.Println(gawk.StyleMust("blue")("Hello World!"))
+
+
 // Write to stderr:
 os.Stderr.WriteString(gawk.Stderr.Red("Ohs noes!\n"))
 ```
@@ -76,11 +80,26 @@ fmt.Println(warning("Warning!"))
 
 ## API
 
-### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string, [string...])
+### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
 
 Example: `gawk.WithRed().WithBold.Underline("Hello", "world")`
 
 Chain styles and call the last one as a method with a string argument. Order doesn't matter, and later styles take precedent in case of a conflict. Multiple arguments will be separated by a space.
+
+### gawk.Style(style [, style...])(string [, string...])
+
+Example:
+
+```go
+styler, err := gawk.Style("bold", "red")
+if err == nil {
+    fmt.Println(styler("This is bold and red"))
+}
+
+fmt.Println(gawk.StyleMust("bold", "red")("This is also bold and red."))
+```
+
+`Style` and `StyleMust` allow styling a string based on the names of colors and modifiers. There's also a `WithStyle` and `WithStyleMust` for chaining named styles with other styles.
 
 ### gawk.SetLevel(level) and gawk.GetLevel()
 
@@ -188,7 +207,7 @@ The following color models can be used:
 
 Gawk is cross-platform, and will work on Linux and MacOS systems, but will also work on Windows 10, and without the need for writing to a special stream or using [ansicon](https://github.com/adoxa/ansicon).
 
-Many ANSI color libraries for Go do a poor job of handling colors in Windows.  This is because historically, Windows has not supported ANSI color codes, so hacks like ansicon or [go-colorable](https://github.com/mattn/go-colorable) were required.  However, Windows 10 has supported ANSI escape codes since 2017 (build 10586 for 256 color support, and build 14931 for 16.7 million true color support).  In [Windows Terminal](https://github.com/Microsoft/Terminal) this is enabled by default, but in `CMD.EXE` or PowerShell, ANSI support must be enabled via [`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences).  Gawk, of course, takes care of all of this for you.  This functionality is also availabile in the [supportscolor](https://github.com/jwalton/go-supportscolor) library if you're an ANSI library author and you'd like to add this functionality to your own project.
+Many ANSI color libraries for Go do a poor job of handling colors in Windows. This is because historically, Windows has not supported ANSI color codes, so hacks like ansicon or [go-colorable](https://github.com/mattn/go-colorable) were required. However, Windows 10 has supported ANSI escape codes since 2017 (build 10586 for 256 color support, and build 14931 for 16.7 million true color support). In [Windows Terminal](https://github.com/Microsoft/Terminal) this is enabled by default, but in `CMD.EXE` or PowerShell, ANSI support must be enabled via [`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences). Gawk, of course, takes care of all of this for you. This functionality is also availabile in the [supportscolor](https://github.com/jwalton/go-supportscolor) library if you're an ANSI library author and you'd like to add this functionality to your own project.
 
 ## Related
 

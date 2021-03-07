@@ -42,6 +42,7 @@
 package gawk
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/jwalton/go-supportscolor"
@@ -150,10 +151,10 @@ var Stderr = New(
 	ForceLevel(ColorLevel(supportscolor.Stderr().Level)),
 )
 
-func createBuilder(builder *Builder, open string, close string) *Builder {
+func createBuilder(parentBuilder *Builder, open string, close string) *Builder {
 	var parent *stylerData
-	if builder.styler != nil {
-		parent = builder.styler
+	if parentBuilder.styler != nil {
+		parent = parentBuilder.styler
 	}
 
 	openAll := open
@@ -164,7 +165,7 @@ func createBuilder(builder *Builder, open string, close string) *Builder {
 	}
 
 	return &Builder{
-		config: builder.config,
+		config: parentBuilder.config,
 		styler: &stylerData{
 			open:     open,
 			close:    close,
@@ -252,4 +253,78 @@ func (builder *Builder) SetLevel(level ColorLevel) {
 // GetLevel returns the currently configured level for this builder.
 func (builder *Builder) GetLevel() ColorLevel {
 	return builder.config.Level
+}
+
+// StyleMust will return a function which colors a string with the specified
+// named styles.  If a given style does not exist, this will panic.
+func StyleMust(styles ...string) func(strs ...string) string {
+	return rootBuilder.WithStyleMust(styles...).applyStyle
+}
+
+// WithStyleMust will construct a Builder that generates strings with the specified
+// named styles.  If a given style does not exist, this will panic.
+func WithStyleMust(styles ...string) *Builder {
+	return rootBuilder.WithStyleMust(styles...)
+}
+
+// StyleMust will return a function which colors a string with the specified
+// named styles.  If a given style does not exist, this will panic.
+func (builder *Builder) StyleMust(styles ...string) func(strs ...string) string {
+	return builder.WithStyleMust(styles...).applyStyle
+}
+
+// WithStyleMust will construct a Builder that generates strings with the specified
+// named styles.  If a given style does not exist, this will panic.
+func (builder *Builder) WithStyleMust(styles ...string) *Builder {
+	var result, err = builder.WithStyle(styles...)
+	if err != nil {
+		panic(err)
+	}
+
+	return result
+}
+
+// Style will return a function which colors a string with the specified
+// named styles,  or an error if any named style does not exist.
+func Style(styles ...string) (func(strs ...string) string, error) {
+	newBuilder, err := rootBuilder.WithStyle(styles...)
+	if err != nil {
+		return rootBuilder.applyStyle, err
+	}
+	return newBuilder.applyStyle, nil
+}
+
+// WithStyle will construct a Builder that generates strings with the specified
+// named styles, or an error if any named style does not exist.
+func WithStyle(styles ...string) (*Builder, error) {
+	return rootBuilder.WithStyle(styles...)
+}
+
+// Style will return a function which colors a string with the specified
+// named styles,  or an error if any named style does not exist.
+func (builder *Builder) Style(styles ...string) (func(strs ...string) string, error) {
+	newBuilder, err := rootBuilder.WithStyle(styles...)
+	if err != nil {
+		return rootBuilder.applyStyle, err
+	}
+	return newBuilder.applyStyle, nil
+}
+
+// WithStyle will construct a Builder that generates strings with the specified
+// named styles, or an error if any named style does not exist.
+func (builder *Builder) WithStyle(styles ...string) (*Builder, error) {
+	var err error = nil
+	var result *Builder = builder
+
+	for _, style := range styles {
+		newBuilder := result.getBuilderForStyle(style)
+		if newBuilder != nil {
+			result = newBuilder
+		} else {
+			err = fmt.Errorf("No such style: %s", style)
+			result = builder
+		}
+	}
+
+	return result, err
 }

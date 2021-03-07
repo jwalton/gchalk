@@ -1,0 +1,130 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"strings"
+	"text/template"
+
+	"github.com/jwalton/gawk/pkg/ansistyles"
+)
+
+var functionsTemplate = template.Must(template.New("functions").Parse(`
+// {{.capStyle}} returns a string {{.description}}.
+func {{.capStyle}}(str ...string) string {
+	return rootBuilder.With{{.capStyle}}().applyStyle(str...)
+}
+
+// With{{.capStyle}} returns a Builder that generates strings {{.description}},
+// and further styles can be applied via chaining.
+func With{{.capStyle}}() *Builder {
+	return rootBuilder.With{{.capStyle}}()
+}
+
+// {{.capStyle}} returns a string {{.description}}, in addition to other styles from this builder.
+func (builder *Builder) {{.capStyle}}(str ...string) string {
+	return builder.With{{.capStyle}}().applyStyle(str...)
+}
+
+// With{{.capStyle}} returns a Builder that generates strings {{.description}},
+// in addition to other styles from this builder, and further styles can be applied via chaining.
+func (builder *Builder) With{{.capStyle}}() *Builder {
+	if builder.{{.style}} == nil {
+		builder.{{.style}} = createBuilder(builder, ansistyles.{{.capStyle}}.Open, ansistyles.{{.capStyle}}.Close)
+	}
+	return builder.{{.style}}
+}
+`))
+
+func sortedKeys(collection map[string]ansistyles.CSPair) []string {
+	strings := make([]string, len(collection))
+	i := 0
+	for style := range collection {
+		strings[i] = style
+		i++
+	}
+	return strings
+}
+
+func sortedStyles() []string {
+	styles := make([]string, 0)
+
+	for _, key := range sortedKeys(ansistyles.Color) {
+		styles = append(styles, key)
+	}
+	for _, key := range sortedKeys(ansistyles.BgColor) {
+		styles = append(styles, key)
+	}
+	for _, key := range sortedKeys(ansistyles.Modifier) {
+		styles = append(styles, key)
+	}
+
+	return styles
+}
+
+func main() {
+	fmt.Print(`package gawk
+
+// This file was generated.  Don't edit it directly.
+
+import (
+	"github.com/jwalton/gawk/pkg/ansistyles"
+)
+
+`)
+	generateStyles()
+	generateWithStyle()
+}
+
+func generateStyles() {
+	for _, style := range sortedKeys(ansistyles.Color) {
+		args := map[string]string{
+			"style":       style,
+			"capStyle":    strings.Title(style),
+			"description": fmt.Sprintf("where the color is %s", style),
+		}
+		functionsTemplate.Execute(os.Stdout, args)
+	}
+
+	for _, style := range sortedKeys(ansistyles.BgColor) {
+		baseStyle := style[2:]
+		args := map[string]string{
+			"style":       style,
+			"capStyle":    strings.Title(style),
+			"description": fmt.Sprintf("where the background color is %s", baseStyle),
+		}
+		functionsTemplate.Execute(os.Stdout, args)
+	}
+
+	for _, style := range sortedKeys(ansistyles.Modifier) {
+		args := map[string]string{
+			"style":       style,
+			"capStyle":    strings.Title(style),
+			"description": fmt.Sprintf("with the %s modifier", style),
+		}
+		functionsTemplate.Execute(os.Stdout, args)
+	}
+
+}
+
+func generateWithStyle() {
+	fmt.Println("func (builder *Builder) getBuilderForStyle(style string) *Builder {")
+	fmt.Println("	switch style {")
+
+	for _, style := range sortedStyles() {
+		fmt.Printf("	case \"%s\":\n", style)
+		fmt.Printf("		return builder.With%s()\n", strings.Title(style))
+	}
+	fmt.Println("	default:")
+	fmt.Println("		return nil")
+
+	fmt.Println("	}")
+	fmt.Println("}")
+}
+
+func getBuilderForStyle(style string) {
+	switch style {
+	case "black":
+
+	}
+}

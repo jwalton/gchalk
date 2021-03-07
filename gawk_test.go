@@ -203,3 +203,21 @@ func TestColorDowngradeAnsi256(t *testing.T) {
 		"\u001b[38;5;40mHelloHex\u001b[39m",
 	)
 }
+
+func TestStyle(t *testing.T) {
+	gawk := New(ForceLevel(LevelAnsi16m))
+
+	assertEqual(t, gawk.StyleMust("underline")("foo"), "\u001B[4mfoo\u001B[24m")
+	assertEqual(t, gawk.StyleMust("red")("foo"), "\u001B[31mfoo\u001B[39m")
+	assertEqual(t, gawk.StyleMust("bgRed")("foo"), "\u001B[41mfoo\u001B[49m")
+
+	assertEqual(t,
+		gawk.StyleMust("red", "bgGreen", "underline")("foo"),
+		"\u001B[31m\u001B[42m\u001B[4mfoo\u001B[24m\u001B[49m\u001B[39m",
+	)
+
+	styler, err := gawk.Style("idonotexist")
+	str := styler("foo")
+	assertEqual(t, str, "foo")
+	assertEqual(t, fmt.Sprintf("%v", err), "No such style: idonotexist")
+}
