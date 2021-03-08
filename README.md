@@ -1,6 +1,11 @@
 # Gawk
 
-Gawk is a library heavily inspired by/based on [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using golang ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gawk/pkg/ansistyles).
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/jwalton/gawk)](https://pkg.go.dev/github.com/jwalton/gawk?readme=expanded#section-readme)
+[![Build Status](https://github.com/jwalton/gawk/workflows/Build/badge.svg)](https://github.com/jwalton/gawk/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jwalton/gawk)](https://goreportcard.com/report/github.com/jwalton/gawk)
+[![Release](https://img.shields.io/github/release/jwalton/gawk.svg?style=flat-square)](https://github.com/jwalton/gawk/releases/latest)
+
+Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using go ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gawk/pkg/ansistyles).
 
 <img src="screenshot.png" width="900">
 
@@ -12,7 +17,6 @@ Gawk is a library heavily inspired by/based on [chalk](https://github.com/chalk/
 - [256/Truecolor color support](https://github.com/jwalton/gawk#256-and-truecolor-color-support)
 - Auto-detects color support
 - Painless [Windows 10 support](https://github.com/jwalton/gawk#windows-10-support)
-- Actively maintained
 
 ## Install
 
