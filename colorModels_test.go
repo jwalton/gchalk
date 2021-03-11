@@ -8,10 +8,12 @@ func TestAnsi(t *testing.T) {
 	gawk := New(ForceLevel(LevelAnsi16m))
 	assertEqual(t, gawk.Ansi(31)("foo"), "\u001b[31mfoo\u001b[39m")
 	assertEqual(t, gawk.BgAnsi(31)("foo"), "\u001b[41mfoo\u001b[49m")
+	assertEqual(t, gawk.Ansi(1)("foo"), "\u001b[1mfoo\u001b[22m")
 
 	SetLevel(LevelAnsi16m)
 	assertEqual(t, Ansi(31)("foo"), "\u001b[31mfoo\u001b[39m")
 	assertEqual(t, BgAnsi(31)("foo"), "\u001b[41mfoo\u001b[49m")
+	assertEqual(t, Ansi(1)("foo"), "\u001b[1mfoo\u001b[22m")
 }
 
 func TestAnsi256(t *testing.T) {

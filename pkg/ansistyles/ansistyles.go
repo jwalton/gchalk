@@ -111,7 +111,7 @@ type CSPair struct {
 }
 
 func namedCSPair(open uint8, close uint8) CSPair {
-	Codes[open] = close
+	codes[open] = close
 	return CSPair{
 		Open:  fmt.Sprintf("\u001B[%dm", open),
 		Close: fmt.Sprintf("\u001B[%dm", close),
@@ -122,14 +122,6 @@ func namedCSPair(open uint8, close uint8) CSPair {
 //
 // `color` should be a number between 30 and 37 or 90 and 97, inclusive.
 func Ansi(color uint8) string {
-	if color < 16 {
-		if color < 8 {
-			color = color + 30
-		} else {
-			color = color + 82
-		}
-	}
-
 	return fmt.Sprintf("\u001B[%dm", color)
 }
 
@@ -137,14 +129,6 @@ func Ansi(color uint8) string {
 //
 // `color` should be a number between 30 and 37 or 90 and 97, inclusive.
 func BgAnsi(color uint8) string {
-	if color < 16 {
-		if color < 8 {
-			color = color + 30
-		} else {
-			color = color + 82
-		}
-	}
-
 	return fmt.Sprintf("\u001B[%dm", color+10)
 }
 
@@ -506,9 +490,18 @@ func Ansi256ToAnsi(code uint8) uint8 {
 	return ansi256ToAnsi16Lut[code]
 }
 
-// Codes is a map of raw escape codes (i.e. without the CSI escape prefix `\u001B[`
+// codes is a map of raw escape codes (i.e. without the CSI escape prefix `\u001B[`
 // and render mode postfix `m`), with the open codes as keys and close codes as values.
 //
 //     fmt.Println(ansistyles.Codes[36]); //=> 39
 //
-var Codes map[uint8]uint8 = make(map[uint8]uint8, 41)
+var codes map[uint8]uint8 = make(map[uint8]uint8, 41)
+
+// CloseCode returns the raw close escape code (i.e. without the CSI escape prefix `\u001B[`
+// and render mode postfix `m`), given a raw open code.
+//
+//     fmt.Println(ansistyles.CloseCode(36)); //=> 39
+//
+func CloseCode(code uint8) uint8 {
+	return codes[code]
+}

@@ -95,11 +95,11 @@ func TestConversionToAnsi16MillionColors(t *testing.T) {
 }
 
 func TestExportRawAnsiEscapeCodes(t *testing.T) {
-	assertEqualUint8(t, Codes[0], 0)
-	assertEqualUint8(t, Codes[1], 22)
-	assertEqualUint8(t, Codes[91], 39)
-	assertEqualUint8(t, Codes[40], 49)
-	assertEqualUint8(t, Codes[100], 49)
+	assertEqualUint8(t, CloseCode(0), 0)
+	assertEqualUint8(t, CloseCode(1), 22)
+	assertEqualUint8(t, CloseCode(91), 39)
+	assertEqualUint8(t, CloseCode(40), 49)
+	assertEqualUint8(t, CloseCode(100), 49)
 }
 
 func TestAnsi16m(t *testing.T) {

@@ -21,7 +21,11 @@ func (builder *Builder) Ansi(code uint8) func(strs ...string) string {
 
 // WithAnsi returns a Builder that generates strings with the specified color.
 func (builder *Builder) WithAnsi(code uint8) *Builder {
-	return createBuilder(builder, ansistyles.Ansi(code), ansistyles.Close)
+	closeCode := ansistyles.CloseCode(code)
+	if closeCode == 0 {
+		closeCode = 39
+	}
+	return createBuilder(builder, ansistyles.Ansi(code), ansistyles.Ansi(closeCode))
 }
 
 // BgAnsi returns a function which colors the background of a string using the ANSI 16 color pallette.
