@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -43,6 +44,7 @@ func sortedKeys(collection map[string]ansistyles.CSPair) []string {
 		strings[i] = style
 		i++
 	}
+	sort.Strings(strings)
 	return strings
 }
 

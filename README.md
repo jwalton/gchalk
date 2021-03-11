@@ -156,15 +156,14 @@ Creates a new instance of gawk. Options include:
 - `Magenta`
 - `Cyan`
 - `White`
-- `BlackBright` (alias: `gray`, `grey`)
-- `RedBright`
-- `GreenBright`
-- `YellowBright`
-- `BlueBright`
-- `MagentaBright`
-- `CyanBright`
-- `WhiteBright`
-
+- `BrightBlack` (alias: `gray`, `grey`)
+- `BrightRed`
+- `BrightGreen`
+- `BrightYellow`
+- `BrightBlue`
+- `BrightMagenta`
+- `BrightCyan`
+- `BrightWhite`
 ### Background colors
 
 - `BgBlack`
@@ -175,14 +174,14 @@ Creates a new instance of gawk. Options include:
 - `BgMagenta`
 - `BgCyan`
 - `BgWhite`
-- `BgBlackBright` (alias: `BgGray`, `BgGrey`)
-- `BgRedBright`
-- `BgGreenBright`
-- `BgYellowBright`
-- `BgBlueBright`
-- `BgMagentaBright`
-- `BgCyanBright`
-- `BgWhiteBright`
+- `BgBrightBlack` (alias: `BgGray`, `BgGrey`)
+- `BgBrightRed`
+- `BgBrightGreen`
+- `BgBrightYellow`
+- `BgBrightBlue`
+- `BgBrightMagenta`
+- `BgBrightCyan`
+- `BgBrightWhite`
 
 ## 256 and Truecolor color support
 
@@ -205,7 +204,7 @@ The following color models can be used:
 - [`rgb`](https://en.wikipedia.org/wiki/RGB_color_model) - Example: `gawk.RGB(255, 136, 0)('Orange!')`
 - [`hex`](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet) - Example: `gawk.Hex('#FF8800')('Orange!')`
 - [`ansi256`](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit) - Example: `gawk.BgAnsi256(194)('Honeydew, more or less')`
-- [`ansi`](https://en.wikipedia.org/wiki/ANSI_escape_code#3/4_bit) - Example: `gawk.WithAnsi(31).BgAnsi(93)('red on yellowBright')`
+- [`ansi`](https://en.wikipedia.org/wiki/ANSI_escape_code#3/4_bit) - Example: `gawk.WithAnsi(31).BgAnsi(93)('red on bright yellow')`
 
 ## Windows 10 Support
 

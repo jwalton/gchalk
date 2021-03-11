@@ -32,14 +32,14 @@
 // - `Magenta`
 // - `Cyan`
 // - `White`
-// - `BlackBright` (alias: `Gray`, `Grey`)
-// - `RedBright`
-// - `GreenBright`
-// - `YellowBright`
-// - `BlueBright`
-// - `MagentaBright`
-// - `CyanBright`
-// - `WhiteBright`
+// - `BrightBlack` (alias: `Gray`, `Grey`)
+// - `BrightRed`
+// - `BrightGreen`
+// - `BrightYellow`
+// - `BrightBlue`
+// - `BrightMagenta`
+// - `BrightCyan`
+// - `BrightWhite`
 //
 // Background colors:
 //
@@ -51,14 +51,14 @@
 // - `BgMagenta`
 // - `BgCyan`
 // - `BgWhite`
-// - `BgBlackBright` (alias: `BgGray`, `BgGrey`)
-// - `BgRedBright`
-// - `BgGreenBright`
-// - `BgYellowBright`
-// - `BgBlueBright`
-// - `BgMagentaBright`
-// - `BgCyanBright`
-// - `BgWhiteBright`
+// - `BgBrightBlack` (alias: `BgGray`, `BgGrey`)
+// - `BgBrightRed`
+// - `BgBrightGreen`
+// - `BgBrightYellow`
+// - `BgBrightBlue`
+// - `BgBrightMagenta`
+// - `BgBrightCyan`
+// - `BgBrightWhite`
 //
 // Styles are available directly as values (e.g. `ansistyles.Blue`), via a
 // lookup map using string names (e.g. `ansistyles.Styles["blue"]`), and also by
@@ -230,35 +230,35 @@ var Cyan = namedCSPair(36, 39)
 // White foreground color
 var White = namedCSPair(37, 39)
 
-// BlackBright foreground color
-var BlackBright = namedCSPair(90, 39)
+// BrightBlack foreground color
+var BrightBlack = namedCSPair(90, 39)
 
-// RedBright foreground color
-var RedBright = namedCSPair(91, 39)
+// BrightRed foreground color
+var BrightRed = namedCSPair(91, 39)
 
-// GreenBright foreground color
-var GreenBright = namedCSPair(92, 39)
+// BrightGreen foreground color
+var BrightGreen = namedCSPair(92, 39)
 
-// YellowBright foreground color
-var YellowBright = namedCSPair(93, 39)
+// BrightYellow foreground color
+var BrightYellow = namedCSPair(93, 39)
 
-// BlueBright foreground color
-var BlueBright = namedCSPair(94, 39)
+// BrightBlue foreground color
+var BrightBlue = namedCSPair(94, 39)
 
-// MagentaBright foreground color
-var MagentaBright = namedCSPair(95, 39)
+// BrightMagenta foreground color
+var BrightMagenta = namedCSPair(95, 39)
 
-// CyanBright foreground color
-var CyanBright = namedCSPair(96, 39)
+// BrightCyan foreground color
+var BrightCyan = namedCSPair(96, 39)
 
-// WhiteBright foreground color
-var WhiteBright = namedCSPair(97, 39)
+// BrightWhite foreground color
+var BrightWhite = namedCSPair(97, 39)
 
-// Grey is an alias for BlackBright
-var Grey = BlackBright
+// Grey is an alias for BrightBlack
+var Grey = BrightBlack
 
-// Gray is an alias for BlackBright
-var Gray = BlackBright
+// Gray is an alias for BrightBlack
+var Gray = BrightBlack
 
 // BgBlack background color
 var BgBlack = namedCSPair(40, 49)
@@ -284,35 +284,35 @@ var BgCyan = namedCSPair(46, 49)
 // BgWhite background color
 var BgWhite = namedCSPair(47, 49)
 
-// BgBlackBright background color
-var BgBlackBright = namedCSPair(100, 49)
+// BgBrightBlack background color
+var BgBrightBlack = namedCSPair(100, 49)
 
-// BgRedBright background color
-var BgRedBright = namedCSPair(101, 49)
+// BgBrightRed background color
+var BgBrightRed = namedCSPair(101, 49)
 
-// BgGreenBright background color
-var BgGreenBright = namedCSPair(102, 49)
+// BgBrightGreen background color
+var BgBrightGreen = namedCSPair(102, 49)
 
-// BgYellowBright background color
-var BgYellowBright = namedCSPair(103, 49)
+// BgBrightYellow background color
+var BgBrightYellow = namedCSPair(103, 49)
 
-// BgBlueBright background color
-var BgBlueBright = namedCSPair(104, 49)
+// BgBrightBlue background color
+var BgBrightBlue = namedCSPair(104, 49)
 
-// BgMagentaBright background color
-var BgMagentaBright = namedCSPair(105, 49)
+// BgBrightMagenta background color
+var BgBrightMagenta = namedCSPair(105, 49)
 
-// BgCyanBright background color
-var BgCyanBright = namedCSPair(106, 49)
+// BgBrightCyan background color
+var BgBrightCyan = namedCSPair(106, 49)
 
-// BgWhiteBright background color
-var BgWhiteBright = namedCSPair(107, 49)
+// BgBrightWhite background color
+var BgBrightWhite = namedCSPair(107, 49)
 
-// BgGrey is an alias for BgBlackBright
-var BgGrey = BgBlackBright
+// BgGrey is an alias for BgBrightBlack
+var BgGrey = BgBrightBlack
 
-// BgGray is an alias for BgBlackBright
-var BgGray = BgBlackBright
+// BgGray is an alias for BgBrightBlack
+var BgGray = BgBrightBlack
 
 // Styles is a map of colors and modifiers by name
 var Styles = map[string]CSPair{
@@ -333,16 +333,16 @@ var Styles = map[string]CSPair{
 	"magenta":         Magenta,
 	"cyan":            Cyan,
 	"white":           White,
-	"blackBright":     BlackBright,
-	"redBright":       RedBright,
-	"greenBright":     GreenBright,
-	"yellowBright":    YellowBright,
-	"blueBright":      BlueBright,
-	"magentaBright":   MagentaBright,
-	"cyanBright":      CyanBright,
-	"whiteBright":     WhiteBright,
-	"grey":            BlackBright,
-	"gray":            BlackBright,
+	"brightBlack":     BrightBlack,
+	"brightRed":       BrightRed,
+	"brightGreen":     BrightGreen,
+	"brightYellow":    BrightYellow,
+	"brightBlue":      BrightBlue,
+	"brightMagenta":   BrightMagenta,
+	"brightCyan":      BrightCyan,
+	"brightWhite":     BrightWhite,
+	"grey":            BrightBlack,
+	"gray":            BrightBlack,
 	"bgBlack":         BgBlack,
 	"bgRed":           BgRed,
 	"bgGreen":         BgGreen,
@@ -351,16 +351,16 @@ var Styles = map[string]CSPair{
 	"bgMagenta":       BgMagenta,
 	"bgCyan":          BgCyan,
 	"bgWhite":         BgWhite,
-	"bgBlackBright":   BgBlackBright,
-	"bgRedBright":     BgRedBright,
-	"bgGreenBright":   BgGreenBright,
-	"bgYellowBright":  BgYellowBright,
-	"bgBlueBright":    BgBlueBright,
-	"bgMagentaBright": BgMagentaBright,
-	"bgCyanBright":    BgCyanBright,
-	"bgWhiteBright":   BgWhiteBright,
-	"bgGrey":          BgBlackBright,
-	"bgGray":          BgBlackBright,
+	"bgBrightBlack":   BgBrightBlack,
+	"bgBrightRed":     BgBrightRed,
+	"bgBrightGreen":   BgBrightGreen,
+	"bgBrightYellow":  BgBrightYellow,
+	"bgBrightBlue":    BgBrightBlue,
+	"bgBrightMagenta": BgBrightMagenta,
+	"bgBrightCyan":    BgBrightCyan,
+	"bgBrightWhite":   BgBrightWhite,
+	"bgGrey":          BgBrightBlack,
+	"bgGray":          BgBrightBlack,
 }
 
 // Modifier is a map of modifiers by name
@@ -386,16 +386,16 @@ var Color = map[string]CSPair{
 	"magenta":       Magenta,
 	"cyan":          Cyan,
 	"white":         White,
-	"blackBright":   BlackBright,
-	"redBright":     RedBright,
-	"greenBright":   GreenBright,
-	"yellowBright":  YellowBright,
-	"blueBright":    BlueBright,
-	"magentaBright": MagentaBright,
-	"cyanBright":    CyanBright,
-	"whiteBright":   WhiteBright,
-	"grey":          BlackBright,
-	"gray":          BlackBright,
+	"brightBlack":   BrightBlack,
+	"brightRed":     BrightRed,
+	"brightGreen":   BrightGreen,
+	"brightYellow":  BrightYellow,
+	"brightBlue":    BrightBlue,
+	"brightMagenta": BrightMagenta,
+	"brightCyan":    BrightCyan,
+	"brightWhite":   BrightWhite,
+	"grey":          BrightBlack,
+	"gray":          BrightBlack,
 }
 
 // BgColor is a map of background colors by name
@@ -408,16 +408,16 @@ var BgColor = map[string]CSPair{
 	"bgMagenta":       BgMagenta,
 	"bgCyan":          BgCyan,
 	"bgWhite":         BgWhite,
-	"bgBlackBright":   BgBlackBright,
-	"bgRedBright":     BgRedBright,
-	"bgGreenBright":   BgGreenBright,
-	"bgYellowBright":  BgYellowBright,
-	"bgBlueBright":    BgBlueBright,
-	"bgMagentaBright": BgMagentaBright,
-	"bgCyanBright":    BgCyanBright,
-	"bgWhiteBright":   BgWhiteBright,
-	"bgGrey":          BgBlackBright,
-	"bgGray":          BgBlackBright,
+	"bgBrightBlack":   BgBrightBlack,
+	"bgBrightRed":     BgBrightRed,
+	"bgBrightGreen":   BgBrightGreen,
+	"bgBrightYellow":  BgBrightYellow,
+	"bgBrightBlue":    BgBrightBlue,
+	"bgBrightMagenta": BgBrightMagenta,
+	"bgBrightCyan":    BgBrightCyan,
+	"bgBrightWhite":   BgBrightWhite,
+	"bgGrey":          BgBrightBlack,
+	"bgGray":          BgBrightBlack,
 }
 
 // RGBToAnsi256 converts from the RGB color space to the ANSI 256 color space.

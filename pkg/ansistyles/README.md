@@ -68,14 +68,14 @@ Each style has an `Open` and `Close` property.
 - `Magenta`
 - `Cyan`
 - `White`
-- `BlackBright` (alias: `Gray`, `Grey`)
-- `RedBright`
-- `GreenBright`
-- `YellowBright`
-- `BlueBright`
-- `MagentaBright`
-- `CyanBright`
-- `WhiteBright`
+- `BrightBlack` (alias: `Gray`, `Grey`)
+- `BrightRed`
+- `BrightGreen`
+- `BrightYellow`
+- `BrightBlue`
+- `BrightMagenta`
+- `BrightCyan`
+- `BrightWhite`
 
 ### Background colors
 
@@ -87,14 +87,14 @@ Each style has an `Open` and `Close` property.
 - `BgMagenta`
 - `BgCyan`
 - `BgWhite`
-- `BgBlackBright` (alias: `BgGray`, `BgGrey`)
-- `BgRedBright`
-- `BgGreenBright`
-- `BgYellowBright`
-- `BgBlueBright`
-- `BgMagentaBright`
-- `BgCyanBright`
-- `BgWhiteBright`
+- `BgBrightBlack` (alias: `BgGray`, `BgGrey`)
+- `BgBrightRed`
+- `BgBrightGreen`
+- `BgBrightYellow`
+- `BgBrightBlue`
+- `BgBrightMagenta`
+- `BgBrightCyan`
+- `BgBrightWhite`
 
 ## Advanced usage
 

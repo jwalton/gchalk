@@ -121,10 +121,10 @@ func TestLineBreaksShouldOpenAndCLoseColorsWithCRLF(t *testing.T) {
 	)
 }
 
-func TestSupportsBlackBrightColor(t *testing.T) {
+func TestSupportsBrightBlackColor(t *testing.T) {
 	gawk := New(ForceLevel(LevelAnsi16m))
 	assertEqual(t,
-		gawk.BlackBright("foo"),
+		gawk.BrightBlack("foo"),
 		"\u001B[90mfoo\u001B[39m",
 	)
 }
@@ -209,6 +209,7 @@ func TestStyle(t *testing.T) {
 
 	assertEqual(t, gawk.StyleMust("underline")("foo"), "\u001B[4mfoo\u001B[24m")
 	assertEqual(t, gawk.StyleMust("red")("foo"), "\u001B[31mfoo\u001B[39m")
+	assertEqual(t, gawk.StyleMust("brightRed")("foo"), "\u001B[91mfoo\u001B[39m")
 	assertEqual(t, gawk.StyleMust("bgRed")("foo"), "\u001B[41mfoo\u001B[49m")
 
 	assertEqual(t,

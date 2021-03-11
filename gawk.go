@@ -68,41 +68,41 @@ type configuration struct {
 //
 type Builder struct {
 	bgBlack         *Builder
-	bgBlackBright   *Builder
+	bgBrightBlack   *Builder
 	bgBlue          *Builder
-	bgBlueBright    *Builder
+	bgBrightBlue    *Builder
 	bgCyan          *Builder
-	bgCyanBright    *Builder
+	bgBrightCyan    *Builder
 	bgGray          *Builder
 	bgGreen         *Builder
-	bgGreenBright   *Builder
+	bgBrightGreen   *Builder
 	bgGrey          *Builder
 	bgMagenta       *Builder
-	bgMagentaBright *Builder
+	bgBrightMagenta *Builder
 	bgRed           *Builder
-	bgRedBright     *Builder
+	bgBrightRed     *Builder
 	bgWhite         *Builder
-	bgWhiteBright   *Builder
+	bgBrightWhite   *Builder
 	bgYellow        *Builder
-	bgYellowBright  *Builder
+	bgBrightYellow  *Builder
 	black           *Builder
-	blackBright     *Builder
+	brightBlack     *Builder
 	blue            *Builder
-	blueBright      *Builder
+	brightBlue      *Builder
 	cyan            *Builder
-	cyanBright      *Builder
+	brightCyan      *Builder
 	gray            *Builder
 	green           *Builder
-	greenBright     *Builder
+	brightGreen     *Builder
 	grey            *Builder
 	magenta         *Builder
-	magentaBright   *Builder
+	brightMagenta   *Builder
 	red             *Builder
-	redBright       *Builder
+	brightRed       *Builder
 	white           *Builder
-	whiteBright     *Builder
+	brightWhite     *Builder
 	yellow          *Builder
-	yellowBright    *Builder
+	brightYellow    *Builder
 	bold            *Builder
 	dim             *Builder
 	hidden          *Builder
