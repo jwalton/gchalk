@@ -86,9 +86,20 @@ fmt.Println(warning("Warning!"))
 
 ### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
 
-Example: `gawk.WithRed().WithBold.Underline("Hello", "world")`
+Example:
+
+```go
+fmt.Println(gawk.WithRed().WithBold().Underline("Hello", "world"))
+```
 
 Chain styles and call the last one as a method with a string argument. Order doesn't matter, and later styles take precedent in case of a conflict. Multiple arguments will be separated by a space.
+
+You can also obtain a `Builder` instance and then use the `Paint()` function, similar to Rust's `ansi_term` crate, or use the `Sprintf()` convenience function:
+
+```go
+fmt.Println(gawk.WithRed().Paint("Hello", "world"))
+fmt.Println(gawk.WithRed().Sprintf("Hello %v", "world"))
+```
 
 ### gawk.Style(style [, style...])(string [, string...])
 
@@ -164,6 +175,7 @@ Creates a new instance of gawk. Options include:
 - `BrightMagenta`
 - `BrightCyan`
 - `BrightWhite`
+
 ### Background colors
 
 - `BgBlack`

@@ -176,6 +176,22 @@ func createBuilder(parentBuilder *Builder, open string, close string) *Builder {
 	}
 }
 
+// Paint is similar to the `paint()` function from Rust's `ansi_term` crate.
+//
+//     gawk.WithRed().Paint("Hello World!")
+//
+func (builder *Builder) Paint(strs ...string) string {
+	return builder.applyStyle(strs...)
+}
+
+// Sprintf is a convenience function for coloring formatted strings.
+//
+//     gawk.WithRed().Sprtinf("Hello %s", "World!")
+//
+func (builder *Builder) Sprintf(format string, a ...interface{}) string {
+	return builder.applyStyle(fmt.Sprintf(format, a...))
+}
+
 func (builder *Builder) applyStyle(strs ...string) string {
 	if len(strs) == 0 {
 		return ""

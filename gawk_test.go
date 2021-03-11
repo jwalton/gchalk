@@ -222,3 +222,15 @@ func TestStyle(t *testing.T) {
 	assertEqual(t, str, "foo")
 	assertEqual(t, fmt.Sprintf("%v", err), "No such style: idonotexist")
 }
+
+func TestPaint(t *testing.T) {
+	gawk := New(ForceLevel(LevelAnsi16m))
+
+	assertEqual(t, gawk.WithRed().Paint("foo"), "\u001B[31mfoo\u001B[39m")
+}
+
+func TestSprintf(t *testing.T) {
+	gawk := New(ForceLevel(LevelAnsi16m))
+
+	assertEqual(t, gawk.WithRed().Sprintf("Hello %s", "World"), "\u001B[31mHello World\u001B[39m")
+}
