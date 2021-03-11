@@ -14,25 +14,25 @@ Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), t
 - Expressive API
 - Highly performant
 - Ability to nest styles
-- [256/Truecolor color support](https://github.com/jwalton/gawk#256-and-truecolor-color-support)
+- [256/Truecolor color support](https://github.com/jwalton/gawk#256-and-truecolor-color-support) with automatic conversion if not supported
 - Auto-detects color support
 - Painless [Windows 10 support](https://github.com/jwalton/gawk#windows-10-support)
 
 ## Feature Comparison
 
-|      Feature         | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
-| :------------------: | :--: | :----: | :---------: | :--------: |
-|  Color Detection     | ✅    | ❌     | ❌          | ❌         |
-|  TTY Detection       | ✅    | ❌     | 😐 (1)      | ❌         |
-|  Windows 10          | ✅    | ❌     | 😐 (2)      | ❌         |
-|  Nested Styles       | ✅    | ✅ (3) | ❌          | ❌         |
-|  256 Color Support   | ✅    | ✅ (4) | ❌          | ✅ (4)     |
-|  16.7m Color Support | ✅    | ❌     | ❌          | ❌         |
+|      Feature                                                               | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
+| :------------------------------------------------------------------------: | :--: | :----: | :---------: | :--------: |
+|  Color Detection                                                           | ✅    | ❌     | ❌          | ❌         |
+|  TTY Detection                                                             | ✅    | ❌     | ✅ (1)      | ❌         |
+|  Windows 10                                                                | ✅    | ❌     | ✅ (2)      | ❌         |
+|  Nested Styles                                                             | ✅    | ✅ (3) | ❌          | ❌         |
+|  256 Color Support                                                         | ✅    | ✅ (4) | ❌          | ✅ (4)     |
+|  16.7m Color Support                                                       | ✅    | ❌     | ❌          | ❌         |
 |  [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) | 60ns  | 196ns | 420ns       | 40ns       |
 
 1) fatih/color supports automatic TTY detection, but doesn't automatically detect when running in a CI environment.  fatih/color also assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
 2) fatih/color supports Windows 10, but you need to write to a special stream.
-3) Auora supports nested styles via `Sprintf`, but you can't convert things to a string first - need to keep everything as Aurora objects.
+3) auora supports nested styles via its custom `Sprintf()`, but you can't convert things to a string first - need to keep everything as aurora `Value`s.
 4) aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
 
 ## Install
@@ -56,7 +56,7 @@ func main() {
 }
 ```
 
-Note that this works on all platforms - there"s no need to write to a special stream or use a special print function to get color on Windows 10.
+Note that this works on all platforms - there's no need to write to a special stream or use a special print function to get color on Windows 10.
 
 Gawk uses a chainable syntax for composing styles together, which should be instantly familiar if you've ever used chalk or similar libraries. To style a string blue, for example, you"d call `gawk.Blue("hello")`. To style it blue with a red background, you can use `gawk.WithBgRed().Blue("hello")`.
 
@@ -101,7 +101,7 @@ fmt.Println(warning("Warning!"))
 
 ## API
 
-### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
+### gawk[.With&lt;style>][.With&lt;style>...].&lt;style>(string [, string...])
 
 Example:
 
@@ -135,7 +135,7 @@ fmt.Println(gawk.StyleMust("bold", "red")("This is also bold and red."))
 
 ### gawk.SetLevel(level) and gawk.GetLevel()
 
-Specifies the level of color support. Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here.
+Specifies the level of color support. Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here.  For example, the environment variable `FORCE_COLOR=1` will force the application to use LevelBasic (see table below), or passing the command line argument `--no-color` will force your program to run without color.
 
 You can override the detected level by calling `SetLevel()`. You should however only do this in your own application, as it applies globally to all gawk consumers. If you need to change this in a library, create a new instance:
 
@@ -153,6 +153,14 @@ var myGawk = gawk.New(gawk.ForceLevel(gawk.LevelNone))
 ### gawk.Stderr
 
 `gawk.Stderr` contains a separate instance configured with color support detected for `stderr` stream instead of `stdout`.
+
+Stdout and stderr can be different in cases where the user is piping output.  For example, if a user runs:
+
+```sh
+myprogram > out.txt
+```
+
+then `stdout` will not be a TTY, so by default gawk will not emit any color, however `stderr` will be a TTY, so `gawk.Stderr.Red(...)` will still generate colored output.
 
 ### gawk.New(options...)
 
