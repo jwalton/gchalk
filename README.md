@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/jwalton/gawk)](https://goreportcard.com/report/github.com/jwalton/gawk)
 [![Release](https://img.shields.io/github/release/jwalton/gawk.svg?style=flat-square)](https://github.com/jwalton/gawk/releases/latest)
 
-Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using go ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gawk/pkg/ansistyles).
+Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using go ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gawk/tree/master/pkg/ansistyles).
 
 <img src="screenshot.png" width="900">
 
@@ -226,5 +226,5 @@ Many ANSI color libraries for Go do a poor job of handling colors in Windows. Th
 
 ## Related
 
-- [ansistyles](https://github.com/jwalton/gawk/pkg/ansistyles) - A low level library for generating ANSI escape codes, ported from Node.js's [ansi-styles](https://github.com/chalk/ansi-styles).
+- [ansistyles](https://github.com/jwalton/gawk/tree/master/pkg/ansistyles) - A low level library for generating ANSI escape codes, ported from Node.js's [ansi-styles](https://github.com/chalk/ansi-styles).
 - [supportscolor](https://github.com/jwalton/go-supportscolor) - Detect whether a terminal supports color, ported from Node.js's [supports-color](https://github.com/chalk/supports-color).
