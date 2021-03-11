@@ -18,6 +18,23 @@ Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), t
 - Auto-detects color support
 - Painless [Windows 10 support](https://github.com/jwalton/gawk#windows-10-support)
 
+## Feature Comparison
+
+|      Feature         | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
+| :------------------: | :--: | :----: | :---------: | :--------: |
+|  Color Detection     | ✅    | ❌     | ❌          | ❌         |
+|  TTY Detection       | ✅    | ❌     | 😐 (1)      | ❌         |
+|  Windows 10          | ✅    | ❌     | 😐 (2)      | ❌         |
+|  Nested Styles       | ✅    | ✅ (3) | ❌          | ❌         |
+|  256 Color Support   | ✅    | ✅ (4) | ❌          | ✅ (4)     |
+|  16.7m Color Support | ✅    | ❌     | ❌          | ❌         |
+|  [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) | 60ns  | 196ns | 420ns       | 40ns       |
+
+1) fatih/color supports automatic TTY detection, but doesn't automatically detect when running in a CI environment.  fatih/color also assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
+2) fatih/color supports Windows 10, but you need to write to a special stream.
+3) Auora supports nested styles via `Sprintf`, but you can't convert things to a string first - need to keep everything as Aurora objects.
+4) aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
+
 ## Install
 
 ```sh
