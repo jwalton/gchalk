@@ -15,25 +15,25 @@ Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), t
 - Highly performant
 - Ability to nest styles
 - [256/Truecolor color support](https://github.com/jwalton/gawk#256-and-truecolor-color-support) with automatic conversion if not supported
-- Auto-detects color support
+- [Auto-detects color support](https://github.com/jwalton/gawk#color-detection)
 - Painless [Windows 10 support](https://github.com/jwalton/gawk#windows-10-support)
 
 ## Feature Comparison
 
-|      Feature                                                               | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
-| :------------------------------------------------------------------------: | :--: | :----: | :---------: | :--------: |
-|  Color Detection                                                           | ✅    | ❌     | ❌          | ❌         |
-|  TTY Detection                                                             | ✅    | ❌     | ✅ (1)      | ❌         |
-|  Windows 10                                                                | ✅    | ❌     | ✅ (2)      | ❌         |
-|  Nested Styles                                                             | ✅    | ✅ (3) | ❌          | ❌         |
-|  256 Color Support                                                         | ✅    | ✅ (4) | ❌          | ✅ (4)     |
-|  16.7m Color Support                                                       | ✅    | ❌     | ❌          | ❌         |
-|  [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) | 60ns  | 196ns | 420ns       | 40ns       |
+|                                  Feature                                  | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
+| :-----------------------------------------------------------------------: | :--: | :---------------------------------------------: | :-------------------------------------------: | :-----------------------------------------: |
+|                               TTY Detection                               |  ✅  |                       ❌                        |                    ✅ (1)                     |                     ❌                      |
+|                              Color Detection                              |  ✅  |                       ❌                        |                      ❌                       |                     ❌                      |
+|                                Windows 10                                 |  ✅  |                       ❌                        |                    ✅ (2)                     |                     ❌                      |
+|                               Nested Styles                               |  ✅  |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
+|                             256 Color Support                             |  ✅  |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
+|                            16.7m Color Support                            |  ✅  |                       ❌                        |                      ❌                       |                     ❌                      |
+| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) | 60ns |                      196ns                      |                     420ns                     |                    40ns                     |
 
-1) fatih/color supports automatic TTY detection, but doesn't automatically detect when running in a CI environment.  fatih/color also assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
-2) fatih/color supports Windows 10, but you need to write to a special stream.
-3) auora supports nested styles via its custom `Sprintf()`, but you can't convert things to a string first - need to keep everything as aurora `Value`s.
-4) aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
+1. fatih/color supports automatic TTY detection, but assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
+2. fatih/color supports Windows 10, but you need to write to a special stream.
+3. aurora supports nested styles via its custom `Sprintf()`, but you can't convert things to a string first - need to keep everything as aurora `Value`s.
+4. aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
 
 ## Install
 
@@ -101,7 +101,7 @@ fmt.Println(warning("Warning!"))
 
 ## API
 
-### gawk[.With&lt;style>][.With&lt;style>...].&lt;style>(string [, string...])
+### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
 
 Example:
 
@@ -135,9 +135,7 @@ fmt.Println(gawk.StyleMust("bold", "red")("This is also bold and red."))
 
 ### gawk.SetLevel(level) and gawk.GetLevel()
 
-Specifies the level of color support. Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here.  For example, the environment variable `FORCE_COLOR=1` will force the application to use LevelBasic (see table below), or passing the command line argument `--no-color` will force your program to run without color.
-
-You can override the detected level by calling `SetLevel()`. You should however only do this in your own application, as it applies globally to all gawk consumers. If you need to change this in a library, create a new instance:
+Specifies the level of color support.  See [the section on color detection](https://github.com/jwalton/gawk#color-detection) for details about how gawk auto-detects color support.  You can override the detected level by calling `SetLevel()`. You should however only do this in your own application, as it applies globally to all gawk consumers. If you need to change this in a library, create a new instance:
 
 ```go
 var myGawk = gawk.New(gawk.ForceLevel(gawk.LevelNone))
@@ -154,7 +152,7 @@ var myGawk = gawk.New(gawk.ForceLevel(gawk.LevelNone))
 
 `gawk.Stderr` contains a separate instance configured with color support detected for `stderr` stream instead of `stdout`.
 
-Stdout and stderr can be different in cases where the user is piping output.  For example, if a user runs:
+Stdout and stderr can be different in cases where the user is piping output. For example, if a user runs:
 
 ```sh
 myprogram > out.txt
@@ -248,6 +246,24 @@ The following color models can be used:
 Gawk is cross-platform, and will work on Linux and MacOS systems, but will also work on Windows 10, and without the need for writing to a special stream or using [ansicon](https://github.com/adoxa/ansicon).
 
 Many ANSI color libraries for Go do a poor job of handling colors in Windows. This is because historically, Windows has not supported ANSI color codes, so hacks like ansicon or [go-colorable](https://github.com/mattn/go-colorable) were required. However, Windows 10 has supported ANSI escape codes since 2017 (build 10586 for 256 color support, and build 14931 for 16.7 million true color support). In [Windows Terminal](https://github.com/Microsoft/Terminal) this is enabled by default, but in `CMD.EXE` or PowerShell, ANSI support must be enabled via [`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences). Gawk, of course, takes care of all of this for you. This functionality is also availabile in the [supportscolor](https://github.com/jwalton/go-supportscolor) library if you're an ANSI library author and you'd like to add this functionality to your own project.
+
+## Color Detection
+
+Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here. Gawk will automatically obey all the recommendations from [Command Line Interface Guidelines](https://clig.dev/#output). The following will disable color:
+
+- stdout is not a TTY. (Or, for `gawk.Stderr`, stderr is not a TTY.)
+- The `NO_COLOR` environment variable is set.
+- The `TERM` variable has the value `dumb`.
+- The user passes the option `--no-color`, `--no-colors`, `--color=false`, or `--color=never`.
+- The `FORCE_COLOR` environment variable is 0.
+
+Color support will be forcefully enabled if:
+
+- The `FORCE_COLOR` environment variable is set to `1`, `2`, or `3` (for 16 color, 256 color, and 16.7m color support, respectively).
+- The `FORCE_COLOR` environment variable is set with no value, or with `true`.
+- The uses passes the option `--color`, `--colors`, `--color=true`, or `--color=always`.
+
+Gawk will also support colored output when run from popular CI environments, including Travis, CircleCI, Appveyor, GitlabCI, GitHub Actions, Buildkite, Drone, and TeamCity.
 
 ## Related
 
