@@ -13,7 +13,7 @@ There are quite a few popular libraries for doing ANSI escape codes in go, but m
 ## Install
 
 ```sh
-$ go get github.com/jwalton/gawk/pkg/ansistyles
+$ go get github.com/jwalton/gchalk/pkg/ansistyles
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ package main
 import (
     "fmt"
 
-    "github.com/jwalton/gawk/pkg/ansistyles"
+    "github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
 func main() {

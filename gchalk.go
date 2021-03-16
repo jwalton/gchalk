@@ -1,13 +1,13 @@
-// Package gawk is terminal string styling for go done right, with full Linux, MacOS, and painless Windows 10 support.
+// Package gchalk is terminal string styling for go done right, with full Linux, MacOS, and painless Windows 10 support.
 //
-// Gawk is a library heavily inspired by https://github.com/chalk/chalk, the
+// GChalk is a library heavily inspired by https://github.com/chalk/chalk, the
 // popular Node.js terminal color library, and using golang ports of supports-color
 // (https://github.com/jwalton/go-supportscolor) and ansi-styles
-// (https://github.com/jwalton/gawk/pkg/ansistyles).
+// (https://github.com/jwalton/gchalk/pkg/ansistyles).
 //
 // A very simple usage example would be:
 //
-//     fmt.Println(gawk.Blue("This line is blue"))
+//     fmt.Println(gchalk.Blue("This line is blue"))
 //
 // Note that this works on all platforms - there's no need to write to a special
 // stream or use a special print function to get color on Windows 10.
@@ -15,31 +15,31 @@
 // Some examples:
 //
 //     // Combine styled and normal strings
-//     fmt.Println(gawk.Blue("Hello") + " World" + gawk.Red("!"))
+//     fmt.Println(gchalk.Blue("Hello") + " World" + gchalk.Red("!"))
 //
 //     // Compose multiple styles using the chainable API
-//     fmt.Println(gawk.WithBlue().WithBgRed().Bold("Hello world!"))
+//     fmt.Println(gchalk.WithBlue().WithBgRed().Bold("Hello world!"))
 //
 //     // Pass in multiple arguments
-//     fmt.Println(gawk.Blue("Hello", "World!", "Foo", "bar", "biz", "baz"))
+//     fmt.Println(gchalk.Blue("Hello", "World!", "Foo", "bar", "biz", "baz"))
 //
 //     // Nest styles
-//     fmt.Println(gawk.Green(
+//     fmt.Println(gchalk.Green(
 //         "I am a green line " +
-//         gawk.WithBlue().WithUnderline().Bold("with a blue substring") +
+//         gchalk.WithBlue().WithUnderline().Bold("with a blue substring") +
 //         " that becomes green again!"
 //     ))
 //
 //     // Use RGB colors in terminal emulators that support it.
-//     fmt.Println(gawk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
-//     fmt.Println(gawk.WihHex("#DEADED").Bold("Bold gray!"))
+//     fmt.Println(gchalk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
+//     fmt.Println(gchalk.WihHex("#DEADED").Bold("Bold gray!"))
 //
 //     // Write to stderr:
-//     os.Stderr.WriteString(gawk.Stderr.Red("Ohs noes!\n"))
+//     os.Stderr.WriteString(gchalk.Stderr.Red("Ohs noes!\n"))
 //
 // See the README.md for more details.
 //
-package gawk
+package gchalk
 
 import (
 	"fmt"
@@ -127,7 +127,7 @@ func ForceLevel(level ColorLevel) Option {
 	}
 }
 
-// New creates a new instance of Gawk.
+// New creates a new instance of GChalk.
 func New(options ...Option) *Builder {
 	builder := &Builder{styler: nil}
 
@@ -142,10 +142,10 @@ func New(options ...Option) *Builder {
 	return builder
 }
 
-// rootBuilder is the default Gawk instance, pre-configured for stdout.
+// rootBuilder is the default GChalk instance, pre-configured for stdout.
 var rootBuilder = New()
 
-// Stderr is an instance of Gawk pre-configured for stderr.  Use this when coloring
+// Stderr is an instance of GChalk pre-configured for stderr.  Use this when coloring
 // strings you intend to write the stderr.
 var Stderr = New(
 	ForceLevel(ColorLevel(supportscolor.Stderr().Level)),
@@ -331,7 +331,7 @@ func (builder *Builder) WithStyle(styles ...string) (*Builder, error) {
 
 // Paint is similar to the `paint()` function from Rust's `ansi_term` crate.
 //
-//     gawk.WithRed().Paint("Hello World!")
+//     gchalk.WithRed().Paint("Hello World!")
 //
 func (builder *Builder) Paint(strs ...string) string {
 	return builder.applyStyle(strs...)
@@ -339,7 +339,7 @@ func (builder *Builder) Paint(strs ...string) string {
 
 // Sprintf is a convenience function for coloring formatted strings.
 //
-//     gawk.WithRed().Sprtinf("Hello %s", "World!")
+//     gchalk.WithRed().Sprtinf("Hello %s", "World!")
 //
 func (builder *Builder) Sprintf(format string, a ...interface{}) string {
 	return builder.applyStyle(fmt.Sprintf(format, a...))

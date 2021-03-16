@@ -1,11 +1,11 @@
-# Gawk
+# GChalk
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/jwalton/gawk)](https://pkg.go.dev/github.com/jwalton/gawk?readme=expanded#section-readme)
-[![Build Status](https://github.com/jwalton/gawk/workflows/Build/badge.svg)](https://github.com/jwalton/gawk/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/jwalton/gawk)](https://goreportcard.com/report/github.com/jwalton/gawk)
-[![Release](https://img.shields.io/github/release/jwalton/gawk.svg?style=flat-square)](https://github.com/jwalton/gawk/releases/latest)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/jwalton/gchalk)](https://pkg.go.dev/github.com/jwalton/gchalk?readme=expanded#section-readme)
+[![Build Status](https://github.com/jwalton/gchalk/workflows/Build/badge.svg)](https://github.com/jwalton/gchalk/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jwalton/gchalk)](https://goreportcard.com/report/github.com/jwalton/gchalk)
+[![Release](https://img.shields.io/github/release/jwalton/gchalk.svg?style=flat-square)](https://github.com/jwalton/gchalk/releases/latest)
 
-Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using go ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gawk/tree/master/pkg/ansistyles).
+GChalk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), the popular Node.js terminal color library, and using go ports of [supports-color](https://github.com/jwalton/go-supportscolor) and [ansi-styles](https://github.com/jwalton/gchalk/tree/master/pkg/ansistyles).
 
 <img src="screenshot.png" width="900">
 
@@ -14,21 +14,21 @@ Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), t
 - Expressive API
 - Highly performant
 - Ability to nest styles
-- [256/Truecolor color support](https://github.com/jwalton/gawk#256-and-truecolor-color-support) with automatic conversion if not supported
-- [Auto-detects color support](https://github.com/jwalton/gawk#color-detection)
-- Painless [Windows 10 support](https://github.com/jwalton/gawk#windows-10-support)
+- [256/Truecolor color support](https://github.com/jwalton/gchalk#256-and-truecolor-color-support) with automatic conversion if not supported
+- [Auto-detects color support](https://github.com/jwalton/gchalk#color-detection)
+- Painless [Windows 10 support](https://github.com/jwalton/gchalk#windows-10-support)
 
 ## Feature Comparison
 
-|                                  Feature                                  | gawk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
-| :-----------------------------------------------------------------------: | :--: | :---------------------------------------------: | :-------------------------------------------: | :-----------------------------------------: |
-|                               TTY Detection                               |  ✅  |                       ❌                        |                    ✅ (1)                     |                     ❌                      |
-|                              Color Detection                              |  ✅  |                       ❌                        |                      ❌                       |                     ❌                      |
-|                                Windows 10                                 |  ✅  |                       ❌                        |                    ✅ (2)                     |                     ❌                      |
-|                               Nested Styles                               |  ✅  |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
-|                             256 Color Support                             |  ✅  |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
-|                            16.7m Color Support                            |  ✅  |                       ❌                        |                      ❌                       |                     ❌                      |
-| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) | 60ns |                      196ns                      |                     420ns                     |                    40ns                     |
+|                                  Feature                                  | gchalk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
+| :-----------------------------------------------------------------------: | :----: | :---------------------------------------------: | :-------------------------------------------: | :-----------------------------------------: |
+|                               TTY Detection                               |   ✅   |                       ❌                        |                    ✅ (1)                     |                     ❌                      |
+|                              Color Detection                              |   ✅   |                       ❌                        |                      ❌                       |                     ❌                      |
+|                                Windows 10                                 |   ✅   |                       ❌                        |                    ✅ (2)                     |                     ❌                      |
+|                               Nested Styles                               |   ✅   |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
+|                             256 Color Support                             |   ✅   |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
+|                            16.7m Color Support                            |   ✅   |                       ❌                        |                      ❌                       |                     ❌                      |
+| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) |  60ns  |                      196ns                      |                     420ns                     |                    40ns                     |
 
 1. fatih/color supports automatic TTY detection, but assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
 2. fatih/color supports Windows 10, but you need to write to a special stream.
@@ -38,7 +38,7 @@ Gawk is a library heavily inspired by [chalk](https://github.com/chalk/chalk), t
 ## Install
 
 ```sh
-go get github.com/jwalton/gawk
+go get github.com/jwalton/gchalk
 ```
 
 ## Usage
@@ -48,52 +48,52 @@ package main
 
 import (
     "fmt"
-    "github.com/jwalton/gawk"
+    "github.com/jwalton/gchalk"
 )
 
 func main() {
-    fmt.Println(gawk.Blue("This line is blue"))
+    fmt.Println(gchalk.Blue("This line is blue"))
 }
 ```
 
 Note that this works on all platforms - there's no need to write to a special stream or use a special print function to get color on Windows 10.
 
-Gawk uses a chainable syntax for composing styles together, which should be instantly familiar if you've ever used chalk or similar libraries. To style a string blue, for example, you"d call `gawk.Blue("hello")`. To style it blue with a red background, you can use `gawk.WithBgRed().Blue("hello")`.
+GChalk uses a chainable syntax for composing styles together, which should be instantly familiar if you've ever used chalk or similar libraries. To style a string blue, for example, you"d call `gchalk.Blue("hello")`. To style it blue with a red background, you can use `gchalk.WithBgRed().Blue("hello")`.
 
 ```go
 // Combine styled and normal strings
-fmt.Println(gawk.Blue("Hello") + " World" + gawk.Red("!"))
+fmt.Println(gchalk.Blue("Hello") + " World" + gchalk.Red("!"))
 
 // Compose multiple styles using the chainable API
-fmt.Println(gawk.WithBlue().WithBgRed().Bold("Hello world!"))
+fmt.Println(gchalk.WithBlue().WithBgRed().Bold("Hello world!"))
 
 // Pass in multiple arguments
-fmt.Println(gawk.Blue("Hello", "World!", "Foo", "bar", "biz", "baz"))
+fmt.Println(gchalk.Blue("Hello", "World!", "Foo", "bar", "biz", "baz"))
 
 // Nest styles
-fmt.Println(gawk.Green(
+fmt.Println(gchalk.Green(
     "I am a green line " +
-    gawk.WithBlue().WithUnderline().Bold("with a blue substring") +
+    gchalk.WithBlue().WithUnderline().Bold("with a blue substring") +
     " that becomes green again!"
 ))
 
 // Use RGB colors in terminal emulators that support it.
-fmt.Println(gawk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
-fmt.Println(gawk.WihHex("#DEADED").Bold("Bold gray!"))
+fmt.Println(gchalk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
+fmt.Println(gchalk.WihHex("#DEADED").Bold("Bold gray!"))
 
 // Use color name strings
-fmt.Println(gawk.StyleMust("blue")("Hello World!"))
+fmt.Println(gchalk.StyleMust("blue")("Hello World!"))
 
 
 // Write to stderr:
-os.Stderr.WriteString(gawk.Stderr.Red("Ohs noes!\n"))
+os.Stderr.WriteString(gchalk.Stderr.Red("Ohs noes!\n"))
 ```
 
 You can easily define your own themes:
 
 ```go
-var error = gawk.WithBold().Red
-var warning = gawk.Yellow
+var error = gchalk.WithBold().Red
+var warning = gchalk.Yellow
 
 fmt.Println(error("Error!"))
 fmt.Println(warning("Warning!"))
@@ -101,12 +101,12 @@ fmt.Println(warning("Warning!"))
 
 ## API
 
-### gawk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
+### gchalk[.With&lt;style>][.with&lt;style>...].&lt;style>(string [, string...])
 
 Example:
 
 ```go
-fmt.Println(gawk.WithRed().WithBold().Underline("Hello", "world"))
+fmt.Println(gchalk.WithRed().WithBold().Underline("Hello", "world"))
 ```
 
 Chain styles and call the last one as a method with a string argument. Order doesn't matter, and later styles take precedent in case of a conflict. Multiple arguments will be separated by a space.
@@ -114,31 +114,31 @@ Chain styles and call the last one as a method with a string argument. Order doe
 You can also obtain a `Builder` instance and then use the `Paint()` function, similar to Rust's `ansi_term` crate, or use the `Sprintf()` convenience function:
 
 ```go
-fmt.Println(gawk.WithRed().Paint("Hello", "world"))
-fmt.Println(gawk.WithRed().Sprintf("Hello %v", "world"))
+fmt.Println(gchalk.WithRed().Paint("Hello", "world"))
+fmt.Println(gchalk.WithRed().Sprintf("Hello %v", "world"))
 ```
 
-### gawk.Style(style [, style...])(string [, string...])
+### gchalk.Style(style [, style...])(string [, string...])
 
 Example:
 
 ```go
-styler, err := gawk.Style("bold", "red")
+styler, err := gchalk.Style("bold", "red")
 if err == nil {
     fmt.Println(styler("This is bold and red"))
 }
 
-fmt.Println(gawk.StyleMust("bold", "red")("This is also bold and red."))
+fmt.Println(gchalk.StyleMust("bold", "red")("This is also bold and red."))
 ```
 
 `Style` and `StyleMust` allow styling a string based on the names of colors and modifiers. There's also a `WithStyle` and `WithStyleMust` for chaining named styles with other styles.
 
-### gawk.SetLevel(level) and gawk.GetLevel()
+### gchalk.SetLevel(level) and gchalk.GetLevel()
 
-Specifies the level of color support.  See [the section on color detection](https://github.com/jwalton/gawk#color-detection) for details about how gawk auto-detects color support.  You can override the detected level by calling `SetLevel()`. You should however only do this in your own application, as it applies globally to all gawk consumers. If you need to change this in a library, create a new instance:
+Specifies the level of color support. See [the section on color detection](https://github.com/jwalton/gchalk#color-detection) for details about how gchalk auto-detects color support. You can override the detected level by calling `SetLevel()`. You should however only do this in your own application, as it applies globally to all gchalk consumers. If you need to change this in a library, create a new instance:
 
 ```go
-var myGawk = gawk.New(gawk.ForceLevel(gawk.LevelNone))
+var myGChalk = gchalk.New(gchalk.ForceLevel(gchalk.LevelNone))
 ```
 
 |       Level        | Description                           |
@@ -148,9 +148,9 @@ var myGawk = gawk.New(gawk.ForceLevel(gawk.LevelNone))
 | `LevelAnsi256 = 2` | 256 color support                     |
 | `LevelAnsi16m = 3` | Truecolor support (16 million colors) |
 
-### gawk.Stderr
+### gchalk.Stderr
 
-`gawk.Stderr` contains a separate instance configured with color support detected for `stderr` stream instead of `stdout`.
+`gchalk.Stderr` contains a separate instance configured with color support detected for `stderr` stream instead of `stdout`.
 
 Stdout and stderr can be different in cases where the user is piping output. For example, if a user runs:
 
@@ -158,13 +158,13 @@ Stdout and stderr can be different in cases where the user is piping output. For
 myprogram > out.txt
 ```
 
-then `stdout` will not be a TTY, so by default gawk will not emit any color, however `stderr` will be a TTY, so `gawk.Stderr.Red(...)` will still generate colored output.
+then `stdout` will not be a TTY, so by default gchalk will not emit any color, however `stderr` will be a TTY, so `gchalk.Stderr.Red(...)` will still generate colored output.
 
-### gawk.New(options...)
+### gchalk.New(options...)
 
-Creates a new instance of gawk. Options include:
+Creates a new instance of gchalk. Options include:
 
-- `gawk.ForceLevel(level)` - Force the color level. If not specified, will be autodetected from stdout.
+- `gchalk.ForceLevel(level)` - Force the color level. If not specified, will be autodetected from stdout.
 
 ## Styles
 
@@ -220,38 +220,38 @@ Creates a new instance of gawk. Options include:
 
 ## 256 and Truecolor color support
 
-Gawk supports 256 colors and [Truecolor](https://gist.github.com/XVilka/8346728) (16 million colors) on supported terminal apps, including Windows 10.
+GChalk supports 256 colors and [Truecolor](https://gist.github.com/XVilka/8346728) (16 million colors) on supported terminal apps, including Windows 10.
 
-Colors are downsampled from 16 million RGB values to an ANSI color format that is supported by the terminal emulator (or by specifying `{level: n}` as a Chalk option). For example, Gawk configured to run at level 1 (basic color support) will downsample an RGB value of #FF0000 (red) to 91 (ANSI escape for bright-red).
+Colors are downsampled from 16 million RGB values to an ANSI color format that is supported by the terminal emulator (or by specifying `{level: n}` as a Chalk option). For example, GChalk configured to run at level 1 (basic color support) will downsample an RGB value of #FF0000 (red) to 91 (ANSI escape for bright-red).
 
 Examples:
 
-- `gawk.WithHex('#DEADED').Underline('Hello, world!')`
-- `gawk.WithRGB(15, 100, 204).Inverse('Hello!')`
+- `gchalk.WithHex('#DEADED').Underline('Hello, world!')`
+- `gchalk.WithRGB(15, 100, 204).Inverse('Hello!')`
 
 Background versions of these models are prefixed with `Bg` and the first level of the module capitalized:
 
-- `gawk.WithBgHex('#DEADED').Underline('Hello, world!')`
-- `gawk.WithBgRgb(15, 100, 204).Unverse('Hello!')`
+- `gchalk.WithBgHex('#DEADED').Underline('Hello, world!')`
+- `gchalk.WithBgRgb(15, 100, 204).Unverse('Hello!')`
 
 The following color models can be used:
 
-- [`rgb`](https://en.wikipedia.org/wiki/RGB_color_model) - Example: `gawk.RGB(255, 136, 0)('Orange!')`
-- [`hex`](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet) - Example: `gawk.Hex('#FF8800')('Orange!')`
-- [`ansi256`](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit) - Example: `gawk.BgAnsi256(194)('Honeydew, more or less')`
-- [`ansi`](https://en.wikipedia.org/wiki/ANSI_escape_code#3/4_bit) - Example: `gawk.WithAnsi(31).BgAnsi(93)('red on bright yellow')`
+- [`rgb`](https://en.wikipedia.org/wiki/RGB_color_model) - Example: `gchalk.RGB(255, 136, 0)('Orange!')`
+- [`hex`](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet) - Example: `gchalk.Hex('#FF8800')('Orange!')`
+- [`ansi256`](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit) - Example: `gchalk.BgAnsi256(194)('Honeydew, more or less')`
+- [`ansi`](https://en.wikipedia.org/wiki/ANSI_escape_code#3/4_bit) - Example: `gchalk.WithAnsi(31).BgAnsi(93)('red on bright yellow')`
 
 ## Windows 10 Support
 
-Gawk is cross-platform, and will work on Linux and MacOS systems, but will also work on Windows 10, and without the need for writing to a special stream or using [ansicon](https://github.com/adoxa/ansicon).
+GChalk is cross-platform, and will work on Linux and MacOS systems, but will also work on Windows 10, and without the need for writing to a special stream or using [ansicon](https://github.com/adoxa/ansicon).
 
-Many ANSI color libraries for Go do a poor job of handling colors in Windows. This is because historically, Windows has not supported ANSI color codes, so hacks like ansicon or [go-colorable](https://github.com/mattn/go-colorable) were required. However, Windows 10 has supported ANSI escape codes since 2017 (build 10586 for 256 color support, and build 14931 for 16.7 million true color support). In [Windows Terminal](https://github.com/Microsoft/Terminal) this is enabled by default, but in `CMD.EXE` or PowerShell, ANSI support must be enabled via [`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences). Gawk, of course, takes care of all of this for you. This functionality is also availabile in the [supportscolor](https://github.com/jwalton/go-supportscolor) library if you're an ANSI library author and you'd like to add this functionality to your own project.
+Many ANSI color libraries for Go do a poor job of handling colors in Windows. This is because historically, Windows has not supported ANSI color codes, so hacks like ansicon or [go-colorable](https://github.com/mattn/go-colorable) were required. However, Windows 10 has supported ANSI escape codes since 2017 (build 10586 for 256 color support, and build 14931 for 16.7 million true color support). In [Windows Terminal](https://github.com/Microsoft/Terminal) this is enabled by default, but in `CMD.EXE` or PowerShell, ANSI support must be enabled via [`ENABLE_VIRTUAL_TERMINAL_PROCESSING`](https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences). GChalk, of course, takes care of all of this for you. This functionality is also availabile in the [supportscolor](https://github.com/jwalton/go-supportscolor) library if you're an ANSI library author and you'd like to add this functionality to your own project.
 
 ## Color Detection
 
-Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here. Gawk will automatically obey all the recommendations from [Command Line Interface Guidelines](https://clig.dev/#output). The following will disable color:
+Color support is automatically detected using [supportscolor](https://github.com/jwalton/go-supportscolor), and [flags and command line arguments](https://github.com/jwalton/go-supportscolor#info) supported by supportscolor are also supported here. GChalk will automatically obey all the recommendations from [Command Line Interface Guidelines](https://clig.dev/#output). The following will disable color:
 
-- stdout is not a TTY. (Or, for `gawk.Stderr`, stderr is not a TTY.)
+- stdout is not a TTY. (Or, for `gchalk.Stderr`, stderr is not a TTY.)
 - The `NO_COLOR` environment variable is set.
 - The `TERM` variable has the value `dumb`.
 - The user passes the option `--no-color`, `--no-colors`, `--color=false`, or `--color=never`.
@@ -263,9 +263,9 @@ Color support will be forcefully enabled if:
 - The `FORCE_COLOR` environment variable is set with no value, or with `true`.
 - The uses passes the option `--color`, `--colors`, `--color=true`, or `--color=always`.
 
-Gawk will also support colored output when run from popular CI environments, including Travis, CircleCI, Appveyor, GitlabCI, GitHub Actions, Buildkite, Drone, and TeamCity.
+GChalk will also support colored output when run from popular CI environments, including Travis, CircleCI, Appveyor, GitlabCI, GitHub Actions, Buildkite, Drone, and TeamCity.
 
 ## Related
 
-- [ansistyles](https://github.com/jwalton/gawk/tree/master/pkg/ansistyles) - A low level library for generating ANSI escape codes, ported from Node.js's [ansi-styles](https://github.com/chalk/ansi-styles).
+- [ansistyles](https://github.com/jwalton/gchalk/tree/master/pkg/ansistyles) - A low level library for generating ANSI escape codes, ported from Node.js's [ansi-styles](https://github.com/chalk/ansi-styles).
 - [supportscolor](https://github.com/jwalton/go-supportscolor) - Detect whether a terminal supports color, ported from Node.js's [supports-color](https://github.com/chalk/supports-color).

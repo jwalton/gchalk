@@ -7,7 +7,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/jwalton/gawk/pkg/ansistyles"
+	"github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
 var functionsTemplate = template.Must(template.New("functions").Parse(`
@@ -65,12 +65,12 @@ func sortedStyles() []string {
 }
 
 func main() {
-	fmt.Print(`package gawk
+	fmt.Print(`package gchalk
 
 // This file was generated.  Don't edit it directly.
 
 import (
-	"github.com/jwalton/gawk/pkg/ansistyles"
+	"github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
 `)

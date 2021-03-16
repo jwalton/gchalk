@@ -1,4 +1,4 @@
-package gawk
+package gchalk
 
 //go:generate stringer -type=ColorLevel
 

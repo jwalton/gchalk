@@ -1,4 +1,4 @@
-module github.com/jwalton/gawk
+module github.com/jwalton/gchalk
 
 go 1.15
 

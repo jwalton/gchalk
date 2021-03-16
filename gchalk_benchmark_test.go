@@ -1,45 +1,45 @@
-package gawk
+package gchalk
 
 import (
 	"testing"
 )
 
-var benchGawk = New(ForceLevel(LevelAnsi16m))
+var benchGChalk = New(ForceLevel(LevelAnsi16m))
 
 func BenchmarkColor(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		benchGawk.Red("Hello world!")
+		benchGChalk.Red("Hello world!")
 	}
 }
 
 func BenchmarkRgb(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		benchGawk.RGB(10, 30, 255)("Hello world!")
+		benchGChalk.RGB(10, 30, 255)("Hello world!")
 	}
 }
 
 func BenchmarkColorNoSetup(b *testing.B) {
-	benchGawk.Red("Hello world!")
+	benchGChalk.Red("Hello world!")
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		benchGawk.Red("Hello world!")
+		benchGChalk.Red("Hello world!")
 	}
 }
 
 func BenchmarkComposed(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		benchGawk.WithBgBlue().WithBold().Red("Hello world!")
+		benchGChalk.WithBgBlue().WithBold().Red("Hello world!")
 	}
 }
 
 func BenchmarkNested(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		benchGawk.Red("Hello", benchGawk.Green("green"), "world!")
+		benchGChalk.Red("Hello", benchGChalk.Green("green"), "world!")
 	}
 }
 
 func BenchmarkStyle(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		benchGawk.StyleMust("red")("Hello world!")
+		benchGChalk.StyleMust("red")("Hello world!")
 	}
 }

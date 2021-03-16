@@ -1,9 +1,9 @@
-package gawk
+package gchalk
 
 // This file was generated.  Don't edit it directly.
 
 import (
-	"github.com/jwalton/gawk/pkg/ansistyles"
+	"github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
 

@@ -1,7 +1,7 @@
-package gawk
+package gchalk
 
 import (
-	"github.com/jwalton/gawk/pkg/ansistyles"
+	"github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
 // Ansi returns a function which colors a string using the ANSI 16 color pallette.

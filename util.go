@@ -1,4 +1,4 @@
-package gawk
+package gchalk
 
 import (
 	"regexp"
