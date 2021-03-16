@@ -6,7 +6,6 @@ import (
 	"github.com/jwalton/gchalk/pkg/ansistyles"
 )
 
-
 // Black returns a string where the color is black.
 func Black(str ...string) string {
 	return rootBuilder.WithBlack().applyStyle(str...)
