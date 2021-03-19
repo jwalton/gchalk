@@ -30,6 +30,9 @@ func (builder *Builder) {{.capStyle}}(str ...string) string {
 // With{{.capStyle}} returns a Builder that generates strings {{.description}},
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) With{{.capStyle}}() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.{{.style}} == nil {
 		builder.{{.style}} = createBuilder(builder, ansistyles.{{.capStyle}}.Open, ansistyles.{{.capStyle}}.Close)
 	}

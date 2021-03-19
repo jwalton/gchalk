@@ -73,7 +73,7 @@ func (builder *Builder) Ansi256(code uint8) func(strs ...string) string {
 // Note that if ANSI 256 support is unavailable, this will automatically
 // convert the color to the closest available color.
 func (builder *Builder) WithAnsi256(code uint8) *Builder {
-	if builder.config.Level < LevelAnsi256 {
+	if builder.shared.Level < LevelAnsi256 {
 		ansiCode := ansistyles.Ansi256ToAnsi(code)
 		return createBuilder(builder, ansistyles.Ansi(ansiCode), ansistyles.Close)
 	}
@@ -105,7 +105,7 @@ func (builder *Builder) BgAnsi256(code uint8) func(strs ...string) string {
 // Note that if ANSI 256 support is unavailable, this will automatically
 // convert the color to the closest available color.
 func (builder *Builder) WithBgAnsi256(code uint8) *Builder {
-	if builder.config.Level < LevelAnsi256 {
+	if builder.shared.Level < LevelAnsi256 {
 		ansiCode := ansistyles.Ansi256ToAnsi(code)
 		return createBuilder(builder, ansistyles.BgAnsi(ansiCode), ansistyles.BgClose)
 	}
@@ -137,7 +137,7 @@ func (builder *Builder) RGB(r uint8, g uint8, b uint8) func(strs ...string) stri
 // Note that if true color support is unavailable, this will automatically
 // convert the color to the closest available color.
 func (builder *Builder) WithRGB(r uint8, g uint8, b uint8) *Builder {
-	if builder.config.Level < LevelAnsi16m {
+	if builder.shared.Level < LevelAnsi16m {
 		return builder.WithAnsi256(ansistyles.RGBToAnsi256(r, g, b))
 	}
 	return createBuilder(builder, ansistyles.Ansi16m(r, g, b), ansistyles.Close)
@@ -168,7 +168,7 @@ func (builder *Builder) BgRGB(r uint8, g uint8, b uint8) func(strs ...string) st
 // Note that if true color support is unavailable, this will automatically
 // convert the color to the closest available color.
 func (builder *Builder) WithBgRGB(r uint8, g uint8, b uint8) *Builder {
-	if builder.config.Level < LevelAnsi16m {
+	if builder.shared.Level < LevelAnsi16m {
 		return builder.WithBgAnsi256(ansistyles.RGBToAnsi256(r, g, b))
 	}
 	return createBuilder(builder, ansistyles.BgAnsi16m(r, g, b), ansistyles.BgClose)

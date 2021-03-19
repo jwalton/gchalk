@@ -28,7 +28,7 @@ GChalk is a library heavily inspired by [chalk](https://github.com/chalk/chalk),
 |                               Nested Styles                               |   ✅   |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
 |                             256 Color Support                             |   ✅   |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
 |                            16.7m Color Support                            |   ✅   |                       ❌                        |                      ❌                       |                     ❌                      |
-| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) |  60ns  |                      196ns                      |                     420ns                     |                    40ns                     |
+| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) |  70ns  |                      196ns                      |                     420ns                     |                    40ns                     |
 
 1. fatih/color supports automatic TTY detection, but assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
 2. fatih/color supports Windows 10, but you need to write to a special stream.

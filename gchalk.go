@@ -44,6 +44,7 @@ package gchalk
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/jwalton/go-supportscolor"
 )
@@ -56,8 +57,10 @@ type stylerData struct {
 	parent   *stylerData
 }
 
-type configuration struct {
+// builderShared contains data shared between all builders.
+type builderShared struct {
 	Level ColorLevel
+	mutex sync.Mutex
 }
 
 // A Builder is used to define and chain together styles.
@@ -67,6 +70,9 @@ type configuration struct {
 // configure without modifying the "default" Builder.
 //
 type Builder struct {
+	styler *stylerData
+	shared *builderShared
+
 	bgBlack         *Builder
 	bgBrightBlack   *Builder
 	bgBlue          *Builder
@@ -112,8 +118,6 @@ type Builder struct {
 	strikethrough   *Builder
 	underline       *Builder
 	reset           *Builder
-	styler          *stylerData
-	config          *configuration
 }
 
 // An Option which can be passed to `New()`.
@@ -123,7 +127,7 @@ type Option func(*Builder)
 // used.
 func ForceLevel(level ColorLevel) Option {
 	return func(builder *Builder) {
-		builder.config.Level = level
+		builder.shared.Level = level
 	}
 }
 
@@ -131,7 +135,7 @@ func ForceLevel(level ColorLevel) Option {
 func New(options ...Option) *Builder {
 	builder := &Builder{styler: nil}
 
-	builder.config = &configuration{
+	builder.shared = &builderShared{
 		Level: ColorLevel(supportscolor.Stdout().Level),
 	}
 
@@ -165,7 +169,7 @@ func createBuilder(parentBuilder *Builder, open string, close string) *Builder {
 	}
 
 	return &Builder{
-		config: parentBuilder.config,
+		shared: parentBuilder.shared,
 		styler: &stylerData{
 			open:     open,
 			close:    close,
@@ -182,7 +186,7 @@ func (builder *Builder) applyStyle(strs ...string) string {
 	}
 
 	str := strings.Join(strs, " ")
-	if (builder.config != nil && builder.config.Level <= LevelNone) || str == "" {
+	if (builder.shared.Level <= LevelNone) || str == "" {
 		return str
 	}
 
@@ -247,12 +251,12 @@ func GetLevel() ColorLevel {
 // SetLevel is used to override the auto-detected color level for a builder.  Calling
 // this at any level of the builder will affect the entire instance of the builder.
 func (builder *Builder) SetLevel(level ColorLevel) {
-	builder.config.Level = level
+	builder.shared.Level = level
 }
 
 // GetLevel returns the currently configured level for this builder.
 func (builder *Builder) GetLevel() ColorLevel {
-	return builder.config.Level
+	return builder.shared.Level
 }
 
 // StyleMust will return a function which colors a string with the specified

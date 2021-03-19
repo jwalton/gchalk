@@ -25,6 +25,9 @@ func (builder *Builder) Black(str ...string) string {
 // WithBlack returns a Builder that generates strings where the color is black,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBlack() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.black == nil {
 		builder.black = createBuilder(builder, ansistyles.Black.Open, ansistyles.Black.Close)
 	}
@@ -50,6 +53,9 @@ func (builder *Builder) Blue(str ...string) string {
 // WithBlue returns a Builder that generates strings where the color is blue,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBlue() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.blue == nil {
 		builder.blue = createBuilder(builder, ansistyles.Blue.Open, ansistyles.Blue.Close)
 	}
@@ -75,6 +81,9 @@ func (builder *Builder) BrightBlack(str ...string) string {
 // WithBrightBlack returns a Builder that generates strings where the color is brightBlack,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightBlack() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightBlack == nil {
 		builder.brightBlack = createBuilder(builder, ansistyles.BrightBlack.Open, ansistyles.BrightBlack.Close)
 	}
@@ -100,6 +109,9 @@ func (builder *Builder) BrightBlue(str ...string) string {
 // WithBrightBlue returns a Builder that generates strings where the color is brightBlue,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightBlue() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightBlue == nil {
 		builder.brightBlue = createBuilder(builder, ansistyles.BrightBlue.Open, ansistyles.BrightBlue.Close)
 	}
@@ -125,6 +137,9 @@ func (builder *Builder) BrightCyan(str ...string) string {
 // WithBrightCyan returns a Builder that generates strings where the color is brightCyan,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightCyan() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightCyan == nil {
 		builder.brightCyan = createBuilder(builder, ansistyles.BrightCyan.Open, ansistyles.BrightCyan.Close)
 	}
@@ -150,6 +165,9 @@ func (builder *Builder) BrightGreen(str ...string) string {
 // WithBrightGreen returns a Builder that generates strings where the color is brightGreen,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightGreen() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightGreen == nil {
 		builder.brightGreen = createBuilder(builder, ansistyles.BrightGreen.Open, ansistyles.BrightGreen.Close)
 	}
@@ -175,6 +193,9 @@ func (builder *Builder) BrightMagenta(str ...string) string {
 // WithBrightMagenta returns a Builder that generates strings where the color is brightMagenta,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightMagenta() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightMagenta == nil {
 		builder.brightMagenta = createBuilder(builder, ansistyles.BrightMagenta.Open, ansistyles.BrightMagenta.Close)
 	}
@@ -200,6 +221,9 @@ func (builder *Builder) BrightRed(str ...string) string {
 // WithBrightRed returns a Builder that generates strings where the color is brightRed,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightRed() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightRed == nil {
 		builder.brightRed = createBuilder(builder, ansistyles.BrightRed.Open, ansistyles.BrightRed.Close)
 	}
@@ -225,6 +249,9 @@ func (builder *Builder) BrightWhite(str ...string) string {
 // WithBrightWhite returns a Builder that generates strings where the color is brightWhite,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightWhite() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightWhite == nil {
 		builder.brightWhite = createBuilder(builder, ansistyles.BrightWhite.Open, ansistyles.BrightWhite.Close)
 	}
@@ -250,6 +277,9 @@ func (builder *Builder) BrightYellow(str ...string) string {
 // WithBrightYellow returns a Builder that generates strings where the color is brightYellow,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBrightYellow() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.brightYellow == nil {
 		builder.brightYellow = createBuilder(builder, ansistyles.BrightYellow.Open, ansistyles.BrightYellow.Close)
 	}
@@ -275,6 +305,9 @@ func (builder *Builder) Cyan(str ...string) string {
 // WithCyan returns a Builder that generates strings where the color is cyan,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithCyan() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.cyan == nil {
 		builder.cyan = createBuilder(builder, ansistyles.Cyan.Open, ansistyles.Cyan.Close)
 	}
@@ -300,6 +333,9 @@ func (builder *Builder) Gray(str ...string) string {
 // WithGray returns a Builder that generates strings where the color is gray,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithGray() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.gray == nil {
 		builder.gray = createBuilder(builder, ansistyles.Gray.Open, ansistyles.Gray.Close)
 	}
@@ -325,6 +361,9 @@ func (builder *Builder) Green(str ...string) string {
 // WithGreen returns a Builder that generates strings where the color is green,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithGreen() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.green == nil {
 		builder.green = createBuilder(builder, ansistyles.Green.Open, ansistyles.Green.Close)
 	}
@@ -350,6 +389,9 @@ func (builder *Builder) Grey(str ...string) string {
 // WithGrey returns a Builder that generates strings where the color is grey,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithGrey() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.grey == nil {
 		builder.grey = createBuilder(builder, ansistyles.Grey.Open, ansistyles.Grey.Close)
 	}
@@ -375,6 +417,9 @@ func (builder *Builder) Magenta(str ...string) string {
 // WithMagenta returns a Builder that generates strings where the color is magenta,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithMagenta() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.magenta == nil {
 		builder.magenta = createBuilder(builder, ansistyles.Magenta.Open, ansistyles.Magenta.Close)
 	}
@@ -400,6 +445,9 @@ func (builder *Builder) Red(str ...string) string {
 // WithRed returns a Builder that generates strings where the color is red,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithRed() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.red == nil {
 		builder.red = createBuilder(builder, ansistyles.Red.Open, ansistyles.Red.Close)
 	}
@@ -425,6 +473,9 @@ func (builder *Builder) White(str ...string) string {
 // WithWhite returns a Builder that generates strings where the color is white,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithWhite() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.white == nil {
 		builder.white = createBuilder(builder, ansistyles.White.Open, ansistyles.White.Close)
 	}
@@ -450,6 +501,9 @@ func (builder *Builder) Yellow(str ...string) string {
 // WithYellow returns a Builder that generates strings where the color is yellow,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithYellow() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.yellow == nil {
 		builder.yellow = createBuilder(builder, ansistyles.Yellow.Open, ansistyles.Yellow.Close)
 	}
@@ -475,6 +529,9 @@ func (builder *Builder) BgBlack(str ...string) string {
 // WithBgBlack returns a Builder that generates strings where the background color is Black,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBlack() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBlack == nil {
 		builder.bgBlack = createBuilder(builder, ansistyles.BgBlack.Open, ansistyles.BgBlack.Close)
 	}
@@ -500,6 +557,9 @@ func (builder *Builder) BgBlue(str ...string) string {
 // WithBgBlue returns a Builder that generates strings where the background color is Blue,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBlue() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBlue == nil {
 		builder.bgBlue = createBuilder(builder, ansistyles.BgBlue.Open, ansistyles.BgBlue.Close)
 	}
@@ -525,6 +585,9 @@ func (builder *Builder) BgBrightBlack(str ...string) string {
 // WithBgBrightBlack returns a Builder that generates strings where the background color is BrightBlack,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightBlack() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightBlack == nil {
 		builder.bgBrightBlack = createBuilder(builder, ansistyles.BgBrightBlack.Open, ansistyles.BgBrightBlack.Close)
 	}
@@ -550,6 +613,9 @@ func (builder *Builder) BgBrightBlue(str ...string) string {
 // WithBgBrightBlue returns a Builder that generates strings where the background color is BrightBlue,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightBlue() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightBlue == nil {
 		builder.bgBrightBlue = createBuilder(builder, ansistyles.BgBrightBlue.Open, ansistyles.BgBrightBlue.Close)
 	}
@@ -575,6 +641,9 @@ func (builder *Builder) BgBrightCyan(str ...string) string {
 // WithBgBrightCyan returns a Builder that generates strings where the background color is BrightCyan,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightCyan() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightCyan == nil {
 		builder.bgBrightCyan = createBuilder(builder, ansistyles.BgBrightCyan.Open, ansistyles.BgBrightCyan.Close)
 	}
@@ -600,6 +669,9 @@ func (builder *Builder) BgBrightGreen(str ...string) string {
 // WithBgBrightGreen returns a Builder that generates strings where the background color is BrightGreen,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightGreen() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightGreen == nil {
 		builder.bgBrightGreen = createBuilder(builder, ansistyles.BgBrightGreen.Open, ansistyles.BgBrightGreen.Close)
 	}
@@ -625,6 +697,9 @@ func (builder *Builder) BgBrightMagenta(str ...string) string {
 // WithBgBrightMagenta returns a Builder that generates strings where the background color is BrightMagenta,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightMagenta() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightMagenta == nil {
 		builder.bgBrightMagenta = createBuilder(builder, ansistyles.BgBrightMagenta.Open, ansistyles.BgBrightMagenta.Close)
 	}
@@ -650,6 +725,9 @@ func (builder *Builder) BgBrightRed(str ...string) string {
 // WithBgBrightRed returns a Builder that generates strings where the background color is BrightRed,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightRed() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightRed == nil {
 		builder.bgBrightRed = createBuilder(builder, ansistyles.BgBrightRed.Open, ansistyles.BgBrightRed.Close)
 	}
@@ -675,6 +753,9 @@ func (builder *Builder) BgBrightWhite(str ...string) string {
 // WithBgBrightWhite returns a Builder that generates strings where the background color is BrightWhite,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightWhite() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightWhite == nil {
 		builder.bgBrightWhite = createBuilder(builder, ansistyles.BgBrightWhite.Open, ansistyles.BgBrightWhite.Close)
 	}
@@ -700,6 +781,9 @@ func (builder *Builder) BgBrightYellow(str ...string) string {
 // WithBgBrightYellow returns a Builder that generates strings where the background color is BrightYellow,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgBrightYellow() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgBrightYellow == nil {
 		builder.bgBrightYellow = createBuilder(builder, ansistyles.BgBrightYellow.Open, ansistyles.BgBrightYellow.Close)
 	}
@@ -725,6 +809,9 @@ func (builder *Builder) BgCyan(str ...string) string {
 // WithBgCyan returns a Builder that generates strings where the background color is Cyan,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgCyan() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgCyan == nil {
 		builder.bgCyan = createBuilder(builder, ansistyles.BgCyan.Open, ansistyles.BgCyan.Close)
 	}
@@ -750,6 +837,9 @@ func (builder *Builder) BgGray(str ...string) string {
 // WithBgGray returns a Builder that generates strings where the background color is Gray,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgGray() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgGray == nil {
 		builder.bgGray = createBuilder(builder, ansistyles.BgGray.Open, ansistyles.BgGray.Close)
 	}
@@ -775,6 +865,9 @@ func (builder *Builder) BgGreen(str ...string) string {
 // WithBgGreen returns a Builder that generates strings where the background color is Green,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgGreen() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgGreen == nil {
 		builder.bgGreen = createBuilder(builder, ansistyles.BgGreen.Open, ansistyles.BgGreen.Close)
 	}
@@ -800,6 +893,9 @@ func (builder *Builder) BgGrey(str ...string) string {
 // WithBgGrey returns a Builder that generates strings where the background color is Grey,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgGrey() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgGrey == nil {
 		builder.bgGrey = createBuilder(builder, ansistyles.BgGrey.Open, ansistyles.BgGrey.Close)
 	}
@@ -825,6 +921,9 @@ func (builder *Builder) BgMagenta(str ...string) string {
 // WithBgMagenta returns a Builder that generates strings where the background color is Magenta,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgMagenta() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgMagenta == nil {
 		builder.bgMagenta = createBuilder(builder, ansistyles.BgMagenta.Open, ansistyles.BgMagenta.Close)
 	}
@@ -850,6 +949,9 @@ func (builder *Builder) BgRed(str ...string) string {
 // WithBgRed returns a Builder that generates strings where the background color is Red,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgRed() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgRed == nil {
 		builder.bgRed = createBuilder(builder, ansistyles.BgRed.Open, ansistyles.BgRed.Close)
 	}
@@ -875,6 +977,9 @@ func (builder *Builder) BgWhite(str ...string) string {
 // WithBgWhite returns a Builder that generates strings where the background color is White,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgWhite() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgWhite == nil {
 		builder.bgWhite = createBuilder(builder, ansistyles.BgWhite.Open, ansistyles.BgWhite.Close)
 	}
@@ -900,6 +1005,9 @@ func (builder *Builder) BgYellow(str ...string) string {
 // WithBgYellow returns a Builder that generates strings where the background color is Yellow,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBgYellow() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bgYellow == nil {
 		builder.bgYellow = createBuilder(builder, ansistyles.BgYellow.Open, ansistyles.BgYellow.Close)
 	}
@@ -925,6 +1033,9 @@ func (builder *Builder) Bold(str ...string) string {
 // WithBold returns a Builder that generates strings with the bold modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithBold() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.bold == nil {
 		builder.bold = createBuilder(builder, ansistyles.Bold.Open, ansistyles.Bold.Close)
 	}
@@ -950,6 +1061,9 @@ func (builder *Builder) Dim(str ...string) string {
 // WithDim returns a Builder that generates strings with the dim modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithDim() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.dim == nil {
 		builder.dim = createBuilder(builder, ansistyles.Dim.Open, ansistyles.Dim.Close)
 	}
@@ -975,6 +1089,9 @@ func (builder *Builder) Hidden(str ...string) string {
 // WithHidden returns a Builder that generates strings with the hidden modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithHidden() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.hidden == nil {
 		builder.hidden = createBuilder(builder, ansistyles.Hidden.Open, ansistyles.Hidden.Close)
 	}
@@ -1000,6 +1117,9 @@ func (builder *Builder) Inverse(str ...string) string {
 // WithInverse returns a Builder that generates strings with the inverse modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithInverse() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.inverse == nil {
 		builder.inverse = createBuilder(builder, ansistyles.Inverse.Open, ansistyles.Inverse.Close)
 	}
@@ -1025,6 +1145,9 @@ func (builder *Builder) Italic(str ...string) string {
 // WithItalic returns a Builder that generates strings with the italic modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithItalic() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.italic == nil {
 		builder.italic = createBuilder(builder, ansistyles.Italic.Open, ansistyles.Italic.Close)
 	}
@@ -1050,6 +1173,9 @@ func (builder *Builder) Overline(str ...string) string {
 // WithOverline returns a Builder that generates strings with the overline modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithOverline() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.overline == nil {
 		builder.overline = createBuilder(builder, ansistyles.Overline.Open, ansistyles.Overline.Close)
 	}
@@ -1075,6 +1201,9 @@ func (builder *Builder) Reset(str ...string) string {
 // WithReset returns a Builder that generates strings with the reset modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithReset() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.reset == nil {
 		builder.reset = createBuilder(builder, ansistyles.Reset.Open, ansistyles.Reset.Close)
 	}
@@ -1100,6 +1229,9 @@ func (builder *Builder) Strikethrough(str ...string) string {
 // WithStrikethrough returns a Builder that generates strings with the strikethrough modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithStrikethrough() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.strikethrough == nil {
 		builder.strikethrough = createBuilder(builder, ansistyles.Strikethrough.Open, ansistyles.Strikethrough.Close)
 	}
@@ -1125,6 +1257,9 @@ func (builder *Builder) Underline(str ...string) string {
 // WithUnderline returns a Builder that generates strings with the underline modifier,
 // in addition to other styles from this builder, and further styles can be applied via chaining.
 func (builder *Builder) WithUnderline() *Builder {
+	builder.shared.mutex.Lock()
+	defer builder.shared.mutex.Unlock()
+
 	if builder.underline == nil {
 		builder.underline = createBuilder(builder, ansistyles.Underline.Open, ansistyles.Underline.Close)
 	}
