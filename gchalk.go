@@ -49,6 +49,20 @@ import (
 	"github.com/jwalton/go-supportscolor"
 )
 
+// ColorLevel represents the ANSI color level supported by the terminal.
+type ColorLevel = supportscolor.ColorLevel
+
+const (
+	// LevelNone represents a terminal that does not support color at all.
+	LevelNone ColorLevel = supportscolor.None
+	// LevelBasic represents a terminal with basic 16 color support.
+	LevelBasic ColorLevel = supportscolor.Basic
+	// LevelAnsi256 represents a terminal with 256 color support.
+	LevelAnsi256 ColorLevel = supportscolor.Ansi256
+	// LevelAnsi16m represents a terminal with full true color support.
+	LevelAnsi16m ColorLevel = supportscolor.Ansi16m
+)
+
 type stylerData struct {
 	open     string
 	close    string
@@ -136,7 +150,7 @@ func New(options ...Option) *Builder {
 	builder := &Builder{styler: nil}
 
 	builder.shared = &builderShared{
-		Level: ColorLevel(supportscolor.Stdout().Level),
+		Level: supportscolor.Stdout().Level,
 	}
 
 	for index := range options {
