@@ -54,15 +54,9 @@ func sortedKeys(collection map[string]ansistyles.CSPair) []string {
 func sortedStyles() []string {
 	styles := make([]string, 0)
 
-	for _, key := range sortedKeys(ansistyles.Color) {
-		styles = append(styles, key)
-	}
-	for _, key := range sortedKeys(ansistyles.BgColor) {
-		styles = append(styles, key)
-	}
-	for _, key := range sortedKeys(ansistyles.Modifier) {
-		styles = append(styles, key)
-	}
+	styles = append(styles, sortedKeys(ansistyles.Color)...)
+	styles = append(styles, sortedKeys(ansistyles.BgColor)...)
+	styles = append(styles, sortedKeys(ansistyles.Modifier)...)
 
 	return styles
 }
@@ -77,18 +71,23 @@ import (
 )
 
 `)
-	generateStyles()
+	if err := generateStyles(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 	generateWithStyle()
 }
 
-func generateStyles() {
+func generateStyles() error {
 	for _, style := range sortedKeys(ansistyles.Color) {
 		args := map[string]string{
 			"style":       style,
 			"capStyle":    strings.Title(style),
 			"description": fmt.Sprintf("where the color is %s", style),
 		}
-		functionsTemplate.Execute(os.Stdout, args)
+		if err := functionsTemplate.Execute(os.Stdout, args); err != nil {
+			return err
+		}
 	}
 
 	for _, style := range sortedKeys(ansistyles.BgColor) {
@@ -98,7 +97,9 @@ func generateStyles() {
 			"capStyle":    strings.Title(style),
 			"description": fmt.Sprintf("where the background color is %s", baseStyle),
 		}
-		functionsTemplate.Execute(os.Stdout, args)
+		if err := functionsTemplate.Execute(os.Stdout, args); err != nil {
+			return err
+		}
 	}
 
 	for _, style := range sortedKeys(ansistyles.Modifier) {
@@ -107,9 +108,12 @@ func generateStyles() {
 			"capStyle":    strings.Title(style),
 			"description": fmt.Sprintf("with the %s modifier", style),
 		}
-		functionsTemplate.Execute(os.Stdout, args)
+		if err := functionsTemplate.Execute(os.Stdout, args); err != nil {
+			return err
+		}
 	}
 
+	return nil
 }
 
 func generateWithStyle() {
@@ -125,11 +129,4 @@ func generateWithStyle() {
 
 	fmt.Println("	}")
 	fmt.Println("}")
-}
-
-func getBuilderForStyle(style string) {
-	switch style {
-	case "black":
-
-	}
 }
