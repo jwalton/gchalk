@@ -79,7 +79,7 @@ fmt.Println(gchalk.Green(
 
 // Use RGB colors in terminal emulators that support it.
 fmt.Println(gchalk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
-fmt.Println(gchalk.WihHex("#DEADED").Bold("Bold gray!"))
+fmt.Println(gchalk.WithHex("#DEADED").Bold("Bold gray!"))
 
 // Use color name strings
 fmt.Println(gchalk.StyleMust("blue")("Hello World!"))
