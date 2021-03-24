@@ -32,7 +32,7 @@
 //
 //     // Use RGB colors in terminal emulators that support it.
 //     fmt.Println(gchalk.WithRGB(123, 45, 67).Underline("Underlined reddish color"))
-//     fmt.Println(gchalk.WihHex("#DEADED").Bold("Bold gray!"))
+//     fmt.Println(gchalk.WithHex("#DEADED").Bold("Bold gray!"))
 //
 //     // Write to stderr:
 //     os.Stderr.WriteString(gchalk.Stderr.Red("Ohs noes!\n"))
