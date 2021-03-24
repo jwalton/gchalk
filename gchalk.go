@@ -199,7 +199,13 @@ func (builder *Builder) applyStyle(strs ...string) string {
 		return ""
 	}
 
-	str := strings.Join(strs, " ")
+	var str string
+	if len(strs) == 1 {
+		str = strs[0]
+	} else {
+		str = strings.Join(strs, " ")
+	}
+
 	if (builder.shared.Level <= LevelNone) || str == "" {
 		return str
 	}
