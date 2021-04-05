@@ -20,20 +20,22 @@ GChalk is a library heavily inspired by [chalk](https://github.com/chalk/chalk),
 
 ## Feature Comparison
 
-|                                  Feature                                  | gchalk | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
-| :-----------------------------------------------------------------------: | :----: | :---------------------------------------------: | :-------------------------------------------: | :-----------------------------------------: |
-|                               TTY Detection                               |   ✅   |                       ❌                        |                    ✅ (1)                     |                     ❌                      |
-|                              Color Detection                              |   ✅   |                       ❌                        |                      ❌                       |                     ❌                      |
-|                                Windows 10                                 |   ✅   |                       ❌                        |                    ✅ (2)                     |                     ❌                      |
-|                               Nested Styles                               |   ✅   |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
-|                             256 Color Support                             |   ✅   |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
-|                            16.7m Color Support                            |   ✅   |                       ❌                        |                      ❌                       |                     ❌                      |
-| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) |  70ns  |                      196ns                      |                     420ns                     |                    40ns                     |
+|                                  Feature                                  | gchalk | [termenv](https://github.com/muesli/termenv) | [aurora](https://github.com/logrusorgru/aurora) | [fatih/color](https://github.com/fatih/color) | [mgutz/ansi](https://github.com/mgutz/ansi) |
+| :-----------------------------------------------------------------------: | :----: | :------------------------------------------: | :---------------------------------------------: | :-------------------------------------------: | :-----------------------------------------: |
+|                               TTY Detection                               |   ✅   |                    ✅ (1)                    |                       ❌                        |                    ✅ (1)                     |                     ❌                      |
+|                              Color Detection                              |   ✅   |                      ✅                      |                       ❌                        |                      ❌                       |                     ❌                      |
+|                                Windows 10                                 |   ✅   |                    ✅ (5)                    |                       ❌                        |                    ✅ (2)                     |                     ❌                      |
+|                               Nested Styles                               |   ✅   |                    ? (6)                     |                     ✅ (3)                      |                      ❌                       |                     ❌                      |
+|                             256 Color Support                             |   ✅   |                      ✅                      |                     ✅ (4)                      |                      ❌                       |                   ✅ (4)                    |
+|                            16.7m Color Support                            |   ✅   |                      ✅                      |                       ❌                        |                      ❌                       |                     ❌                      |
+| [Speed](https://gist.github.com/jwalton/2394e848be3070c6667220baa70cdeda) |  70ns  |                    330ns                     |                      196ns                      |                     420ns                     |                    40ns                     |
 
-1. fatih/color supports automatic TTY detection, but assumes that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
+1. fatih/color and termenv support automatic TTY detection, but assume that if stdout is not a TTY, then stderr is also not a TTY, which may not be true.
 2. fatih/color supports Windows 10, but you need to write to a special stream.
 3. aurora supports nested styles via its custom `Sprintf()`, but you can't convert things to a string first - need to keep everything as aurora `Value`s.
 4. aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
+5. termenv assumes Windows always supports 16.7m colors, which might cause problems on really old Windows 10 builds. termenv also does not enable ANSI support on Windows 10, so users not using Windows Terminal may have to take extra steps to enable ANSI support.
+6. termenv claims to support nested styles, but I couldn't figure out how to make them work.
 
 ## Install
 
