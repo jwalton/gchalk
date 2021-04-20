@@ -180,7 +180,7 @@ Creates a new instance of gchalk. Options include:
 - `Inverse`- Inverse background and foreground colors.
 - `Hidden` - Prints the text, but makes it invisible.
 - `Strikethrough` - Puts a horizontal line through the center of the text. _(Not widely supported)_
-- `Visible`- Prints the text only when Chalk has a color level > 0. Can be useful for things that are purely cosmetic.
+- `Visible`- Prints the text only when gchalk has a color level > 0. Can be useful for things that are purely cosmetic.
 
 ### Colors
 
