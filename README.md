@@ -34,7 +34,7 @@ GChalk is a library heavily inspired by [chalk](https://github.com/chalk/chalk),
 2. fatih/color supports Windows 10, but you need to write to a special stream.
 3. aurora supports nested styles via its custom `Sprintf()`, but you can't convert things to a string first - need to keep everything as aurora `Value`s.
 4. aurora and mgutz/ansi both support 256 color output, but they don't detect whether the terminal supports it or not, and won't automatically convert 256 color output to 16 color output if it doesn't.
-5. termenv assumes Windows always supports 16.7m colors, which might cause problems on really old Windows 10 builds. termenv also does not enable ANSI support on Windows 10, so users not using Windows Terminal may have to take extra steps to enable ANSI support.
+5. termenv assumes Windows always supports 16.7m colors, which might cause problems on really old Windows 10 builds. termenv also does not enable ANSI support on Windows 10, so users not using Windows Terminal may have to take extra steps to enable ANSI support (although this is done for you if you are using the related library [LipGloss](https://github.com/charmbracelet/lipgloss/blob/master/ansi_windows.go)).
 6. termenv claims to support nested styles, but I couldn't figure out how to make them work.
 
 ## Install
