@@ -309,7 +309,7 @@ func (builder *Builder) WithStyleMust(styles ...string) *Builder {
 }
 
 // Style will return a function which colors a string with the specified
-// named styles,  or an error if any named style does not exist.
+// named styles, or an error if any named style does not exist.
 func Style(styles ...string) (func(strs ...string) string, error) {
 	newBuilder, err := rootBuilder.WithStyle(styles...)
 	if err != nil {
@@ -353,7 +353,8 @@ func (builder *Builder) WithStyle(styles ...string) (*Builder, error) {
 	return result, err
 }
 
-// Paint is similar to the `paint()` function from Rust's `ansi_term` crate.
+// Paint will apply a style to a string.
+// This is similar to the `paint()` function from Rust's `ansi_term` crate.
 //
 //     gchalk.WithRed().Paint("Hello World!")
 //
