@@ -133,7 +133,7 @@ if err == nil {
 fmt.Println(gchalk.StyleMust("bold", "red")("This is also bold and red."))
 ```
 
-`Style` and `StyleMust` allow styling a string based on the names of colors and modifiers. There's also a `WithStyle` and `WithStyleMust` for chaining named styles with other styles.
+`Style` and `StyleMust` allow styling a string based on the case-insensitive names of colors and modifiers. There's also a `WithStyle` and `WithStyleMust` for chaining named styles with other styles.  These funcions can also accept hex codes or `bg#000000` hex codes for background colors.
 
 ### gchalk.SetLevel(level) and gchalk.GetLevel()
 
