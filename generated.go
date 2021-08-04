@@ -1266,96 +1266,96 @@ func (builder *Builder) WithUnderline() *Builder {
 	return builder.underline
 }
 func (builder *Builder) getBuilderForStyle(style string) *Builder {
-	switch style {
-	case "black":
+	switch {
+	case strEqualsIgnoreCase(style, "black"):
 		return builder.WithBlack()
-	case "blue":
+	case strEqualsIgnoreCase(style, "blue"):
 		return builder.WithBlue()
-	case "brightBlack":
+	case strEqualsIgnoreCase(style, "brightBlack"):
 		return builder.WithBrightBlack()
-	case "brightBlue":
+	case strEqualsIgnoreCase(style, "brightBlue"):
 		return builder.WithBrightBlue()
-	case "brightCyan":
+	case strEqualsIgnoreCase(style, "brightCyan"):
 		return builder.WithBrightCyan()
-	case "brightGreen":
+	case strEqualsIgnoreCase(style, "brightGreen"):
 		return builder.WithBrightGreen()
-	case "brightMagenta":
+	case strEqualsIgnoreCase(style, "brightMagenta"):
 		return builder.WithBrightMagenta()
-	case "brightRed":
+	case strEqualsIgnoreCase(style, "brightRed"):
 		return builder.WithBrightRed()
-	case "brightWhite":
+	case strEqualsIgnoreCase(style, "brightWhite"):
 		return builder.WithBrightWhite()
-	case "brightYellow":
+	case strEqualsIgnoreCase(style, "brightYellow"):
 		return builder.WithBrightYellow()
-	case "cyan":
+	case strEqualsIgnoreCase(style, "cyan"):
 		return builder.WithCyan()
-	case "gray":
+	case strEqualsIgnoreCase(style, "gray"):
 		return builder.WithGray()
-	case "green":
+	case strEqualsIgnoreCase(style, "green"):
 		return builder.WithGreen()
-	case "grey":
+	case strEqualsIgnoreCase(style, "grey"):
 		return builder.WithGrey()
-	case "magenta":
+	case strEqualsIgnoreCase(style, "magenta"):
 		return builder.WithMagenta()
-	case "red":
+	case strEqualsIgnoreCase(style, "red"):
 		return builder.WithRed()
-	case "white":
+	case strEqualsIgnoreCase(style, "white"):
 		return builder.WithWhite()
-	case "yellow":
+	case strEqualsIgnoreCase(style, "yellow"):
 		return builder.WithYellow()
-	case "bgBlack":
+	case strEqualsIgnoreCase(style, "bgBlack"):
 		return builder.WithBgBlack()
-	case "bgBlue":
+	case strEqualsIgnoreCase(style, "bgBlue"):
 		return builder.WithBgBlue()
-	case "bgBrightBlack":
+	case strEqualsIgnoreCase(style, "bgBrightBlack"):
 		return builder.WithBgBrightBlack()
-	case "bgBrightBlue":
+	case strEqualsIgnoreCase(style, "bgBrightBlue"):
 		return builder.WithBgBrightBlue()
-	case "bgBrightCyan":
+	case strEqualsIgnoreCase(style, "bgBrightCyan"):
 		return builder.WithBgBrightCyan()
-	case "bgBrightGreen":
+	case strEqualsIgnoreCase(style, "bgBrightGreen"):
 		return builder.WithBgBrightGreen()
-	case "bgBrightMagenta":
+	case strEqualsIgnoreCase(style, "bgBrightMagenta"):
 		return builder.WithBgBrightMagenta()
-	case "bgBrightRed":
+	case strEqualsIgnoreCase(style, "bgBrightRed"):
 		return builder.WithBgBrightRed()
-	case "bgBrightWhite":
+	case strEqualsIgnoreCase(style, "bgBrightWhite"):
 		return builder.WithBgBrightWhite()
-	case "bgBrightYellow":
+	case strEqualsIgnoreCase(style, "bgBrightYellow"):
 		return builder.WithBgBrightYellow()
-	case "bgCyan":
+	case strEqualsIgnoreCase(style, "bgCyan"):
 		return builder.WithBgCyan()
-	case "bgGray":
+	case strEqualsIgnoreCase(style, "bgGray"):
 		return builder.WithBgGray()
-	case "bgGreen":
+	case strEqualsIgnoreCase(style, "bgGreen"):
 		return builder.WithBgGreen()
-	case "bgGrey":
+	case strEqualsIgnoreCase(style, "bgGrey"):
 		return builder.WithBgGrey()
-	case "bgMagenta":
+	case strEqualsIgnoreCase(style, "bgMagenta"):
 		return builder.WithBgMagenta()
-	case "bgRed":
+	case strEqualsIgnoreCase(style, "bgRed"):
 		return builder.WithBgRed()
-	case "bgWhite":
+	case strEqualsIgnoreCase(style, "bgWhite"):
 		return builder.WithBgWhite()
-	case "bgYellow":
+	case strEqualsIgnoreCase(style, "bgYellow"):
 		return builder.WithBgYellow()
-	case "bold":
+	case strEqualsIgnoreCase(style, "bold"):
 		return builder.WithBold()
-	case "dim":
+	case strEqualsIgnoreCase(style, "dim"):
 		return builder.WithDim()
-	case "hidden":
+	case strEqualsIgnoreCase(style, "hidden"):
 		return builder.WithHidden()
-	case "inverse":
+	case strEqualsIgnoreCase(style, "inverse"):
 		return builder.WithInverse()
-	case "italic":
+	case strEqualsIgnoreCase(style, "italic"):
 		return builder.WithItalic()
-	case "overline":
+	case strEqualsIgnoreCase(style, "overline"):
 		return builder.WithOverline()
-	case "reset":
+	case strEqualsIgnoreCase(style, "reset"):
 		return builder.WithReset()
-	case "strikethrough":
+	case strEqualsIgnoreCase(style, "strikethrough"):
 		return builder.WithStrikethrough()
-	case "underline":
+	case strEqualsIgnoreCase(style, "underline"):
 		return builder.WithUnderline()
 	default:
 		return nil

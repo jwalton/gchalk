@@ -118,10 +118,10 @@ func generateStyles() error {
 
 func generateWithStyle() {
 	fmt.Println("func (builder *Builder) getBuilderForStyle(style string) *Builder {")
-	fmt.Println("	switch style {")
+	fmt.Println("	switch {")
 
 	for _, style := range sortedStyles() {
-		fmt.Printf("	case \"%s\":\n", style)
+		fmt.Printf("	case strEqualsIgnoreCase(style, \"%s\"):\n", style)
 		fmt.Printf("		return builder.With%s()\n", strings.Title(style))
 	}
 	fmt.Println("	default:")

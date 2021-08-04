@@ -280,25 +280,33 @@ func (builder *Builder) GetLevel() ColorLevel {
 }
 
 // StyleMust will return a function which colors a string with the specified
-// named styles.  If a given style does not exist, this will panic.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will panic.
 func StyleMust(styles ...string) func(strs ...string) string {
 	return rootBuilder.WithStyleMust(styles...).applyStyle
 }
 
 // WithStyleMust will construct a Builder that generates strings with the specified
-// named styles.  If a given style does not exist, this will panic.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will panic.
 func WithStyleMust(styles ...string) *Builder {
 	return rootBuilder.WithStyleMust(styles...)
 }
 
 // StyleMust will return a function which colors a string with the specified
-// named styles.  If a given style does not exist, this will panic.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will panic.
 func (builder *Builder) StyleMust(styles ...string) func(strs ...string) string {
 	return builder.WithStyleMust(styles...).applyStyle
 }
 
 // WithStyleMust will construct a Builder that generates strings with the specified
-// named styles.  If a given style does not exist, this will panic.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will panic.
 func (builder *Builder) WithStyleMust(styles ...string) *Builder {
 	var result, err = builder.WithStyle(styles...)
 	if err != nil {
@@ -309,7 +317,9 @@ func (builder *Builder) WithStyleMust(styles ...string) *Builder {
 }
 
 // Style will return a function which colors a string with the specified
-// named styles, or an error if any named style does not exist.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will return an error.
 func Style(styles ...string) (func(strs ...string) string, error) {
 	newBuilder, err := rootBuilder.WithStyle(styles...)
 	if err != nil {
@@ -319,13 +329,17 @@ func Style(styles ...string) (func(strs ...string) string, error) {
 }
 
 // WithStyle will construct a Builder that generates strings with the specified
-// named styles, or an error if any named style does not exist.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will return an error.
 func WithStyle(styles ...string) (*Builder, error) {
 	return rootBuilder.WithStyle(styles...)
 }
 
 // Style will return a function which colors a string with the specified
-// named styles,  or an error if any named style does not exist.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will return an error.
 func (builder *Builder) Style(styles ...string) (func(strs ...string) string, error) {
 	newBuilder, err := rootBuilder.WithStyle(styles...)
 	if err != nil {
@@ -335,13 +349,25 @@ func (builder *Builder) Style(styles ...string) (func(strs ...string) string, er
 }
 
 // WithStyle will construct a Builder that generates strings with the specified
-// named styles, or an error if any named style does not exist.
+// styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
+// or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
+// be parsed, this will return an error.
 func (builder *Builder) WithStyle(styles ...string) (*Builder, error) {
 	var err error = nil
 	var result *Builder = builder
 
 	for _, style := range styles {
 		newBuilder := result.getBuilderForStyle(style)
+
+		if newBuilder == nil {
+			// Handle hex codes.
+			if style[0] == '#' {
+				newBuilder = builder.WithHex(style)
+			} else if strings.HasPrefix(style, "bg#") {
+				newBuilder = builder.WithBgHex(style[2:])
+			}
+		}
+
 		if newBuilder != nil {
 			result = newBuilder
 		} else {

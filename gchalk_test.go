@@ -211,6 +211,8 @@ func TestStyle(t *testing.T) {
 	assertEqual(t, gchalk.StyleMust("red")("foo"), "\u001B[31mfoo\u001B[39m")
 	assertEqual(t, gchalk.StyleMust("brightRed")("foo"), "\u001B[91mfoo\u001B[39m")
 	assertEqual(t, gchalk.StyleMust("bgRed")("foo"), "\u001B[41mfoo\u001B[49m")
+	// Should be case insensitive.
+	assertEqual(t, gchalk.StyleMust("bgred")("foo"), "\u001B[41mfoo\u001B[49m")
 
 	assertEqual(t,
 		gchalk.StyleMust("red", "bgGreen", "underline")("foo"),
@@ -221,6 +223,13 @@ func TestStyle(t *testing.T) {
 	str := styler("foo")
 	assertEqual(t, str, "foo")
 	assertEqual(t, fmt.Sprintf("%v", err), "No such style: idonotexist")
+}
+
+func TestStyleWithHex(t *testing.T) {
+	gchalk := New(ForceLevel(LevelAnsi16m))
+
+	assertEqual(t, gchalk.StyleMust("#FF00FF")("foo"), "\u001b[38;2;255;0;255mfoo\u001b[39m")
+	assertEqual(t, gchalk.StyleMust("bg#FF00FF")("foo"), "\u001b[48;2;255;0;255mfoo\u001b[49m")
 }
 
 func TestPaint(t *testing.T) {
