@@ -102,7 +102,6 @@ import (
 	"fmt"
 	"math"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -124,13 +123,13 @@ func namedCSPair(open uint8, close uint8) CSPair {
 //
 // `color` should be a number between 30 and 37 or 90 and 97, inclusive.
 func Ansi(color uint8) string {
-	return "\u001B[" + strconv.FormatUint(uint64(color), 10) + "m"
+	return "\u001B[" + byteToString[color] + "m"
 }
 
 // WriteStringAnsi writes an ANSI escape code to the given strings.Builder.
 func WriteStringAnsi(out *strings.Builder, color uint8) {
 	out.WriteString("\u001B[")
-	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString(byteToString[color])
 	out.WriteString("m")
 }
 
@@ -138,13 +137,13 @@ func WriteStringAnsi(out *strings.Builder, color uint8) {
 //
 // `color` should be a number between 30 and 37 or 90 and 97, inclusive.
 func BgAnsi(color uint8) string {
-	return "\u001B[" + strconv.FormatUint(uint64(color+10), 10) + "m"
+	return "\u001B[" + byteToString[color+10] + "m"
 }
 
 // WriteStringBgAnsi writes an ANSI escape code to set the background color to  the given strings.Builder.
 func WriteStringBgAnsi(out *strings.Builder, color uint8) {
 	out.WriteString("\u001B[")
-	out.WriteString(strconv.FormatUint(uint64(color+10), 10))
+	out.WriteString(byteToString[color+10])
 	out.WriteString("m")
 }
 
@@ -152,13 +151,13 @@ func WriteStringBgAnsi(out *strings.Builder, color uint8) {
 //
 // See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
 func Ansi256(color uint8) string {
-	return "\u001B[38;5;" + strconv.FormatUint(uint64(color), 10) + "m"
+	return "\u001B[38;5;" + byteToString[color] + "m"
 }
 
 // WriteStringAnsi256 writes the string used to set the foreground color, based on Ansi 256 color lookup table.
 func WriteStringAnsi256(out *strings.Builder, color uint8) {
 	out.WriteString("\u001B[38;5;")
-	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString(byteToString[color])
 	out.WriteString("m")
 }
 
@@ -166,51 +165,51 @@ func WriteStringAnsi256(out *strings.Builder, color uint8) {
 //
 // See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
 func BgAnsi256(color uint8) string {
-	return "\u001B[48;5;" + strconv.FormatUint(uint64(color), 10) + "m"
+	return "\u001B[48;5;" + byteToString[color] + "m"
 }
 
 // WriteStringBgAnsi256 writes the string used to set the background color, based on Ansi 256 color lookup table.
 func WriteStringBgAnsi256(out *strings.Builder, color uint8) {
 	out.WriteString("\u001B[48;5;")
-	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString(byteToString[color])
 	out.WriteString("m")
 }
 
 // Ansi16m returns the string used to set a 24bit foreground color.
 func Ansi16m(red uint8, green uint8, blue uint8) string {
 	return "\u001B[38;2;" +
-		strconv.FormatUint(uint64(red), 10) + ";" +
-		strconv.FormatUint(uint64(green), 10) + ";" +
-		strconv.FormatUint(uint64(blue), 10) + "m"
+		byteToString[red] + ";" +
+		byteToString[green] + ";" +
+		byteToString[blue] + "m"
 }
 
 // WriteStringAnsi16m writes the string used to set a 24bit foreground color.
 func WriteStringAnsi16m(out *strings.Builder, red uint8, green uint8, blue uint8) {
 	out.WriteString("\u001B[38;2;")
-	out.WriteString(strconv.FormatUint(uint64(red), 10))
+	out.WriteString(byteToString[red])
 	out.WriteString(";")
-	out.WriteString(strconv.FormatUint(uint64(green), 10))
+	out.WriteString(byteToString[green])
 	out.WriteString(";")
-	out.WriteString(strconv.FormatUint(uint64(blue), 10))
+	out.WriteString(byteToString[blue])
 	out.WriteString("m")
 }
 
 // BgAnsi16m returns the string used to set a 24bit background color.
 func BgAnsi16m(red uint8, green uint8, blue uint8) string {
 	return "\u001B[48;2;" +
-		strconv.FormatUint(uint64(red), 10) + ";" +
-		strconv.FormatUint(uint64(green), 10) + ";" +
-		strconv.FormatUint(uint64(blue), 10) + "m"
+		byteToString[red] + ";" +
+		byteToString[green] + ";" +
+		byteToString[blue] + "m"
 }
 
 // WriteStringBgAnsi16m writes the string used to set a 24bit background color.
 func WriteStringBgAnsi16m(out *strings.Builder, red uint8, green uint8, blue uint8) {
 	out.WriteString("\u001B[48;2;")
-	out.WriteString(strconv.FormatUint(uint64(red), 10))
+	out.WriteString(byteToString[red])
 	out.WriteString(";")
-	out.WriteString(strconv.FormatUint(uint64(green), 10))
+	out.WriteString(byteToString[green])
 	out.WriteString(";")
-	out.WriteString(strconv.FormatUint(uint64(blue), 10))
+	out.WriteString(byteToString[blue])
 	out.WriteString("m")
 }
 
