@@ -28,3 +28,10 @@ func BenchmarkWriteStringAnsi(b *testing.B) {
 		WriteStringAnsi(&out, 7)
 	}
 }
+
+func BenchmarkParsingHex(b *testing.B) {
+	b.ReportAllocs()
+	for i := 0; i < b.N; i++ {
+		HexToRGB("#8000ff")
+	}
+}

@@ -101,7 +101,6 @@ package ansistyles
 import (
 	"fmt"
 	"math"
-	"regexp"
 	"strings"
 )
 
@@ -486,7 +485,30 @@ func RGBToAnsi256(red uint8, green uint8, blue uint8) uint8 {
 				math.Round(float64(blue)/255*5))
 }
 
-var hexColorRegex = regexp.MustCompile(`([a-fA-F\d]{6}|[a-fA-F\d]{3})`)
+func isHexDigit(c byte) bool {
+	return c >= '0' && c <= '9' || c >= 'a' && c <= 'f' || c >= 'A' && c <= 'F'
+}
+
+func parseHexColor(str string) string {
+	index := 0
+
+	// Find the "#"
+	if index < len(str) && str[index] == '#' {
+		index++
+	}
+
+	hexStart := index
+	for index < len(str) && isHexDigit(str[index]) {
+		index++
+	}
+
+	colorStr := str[hexStart:index]
+	if len(colorStr) != 3 && len(colorStr) != 6 {
+		return ""
+	}
+
+	return colorStr
+}
 
 // HexToRGB converts from the RGB HEX color space to the RGB color space.
 //
@@ -495,12 +517,10 @@ var hexColorRegex = regexp.MustCompile(`([a-fA-F\d]{6}|[a-fA-F\d]{3})`)
 // this will return 0, 0, 0 - it's up to you to validate the input if you want to
 // detect invalid values.
 func HexToRGB(hex string) (red uint8, green uint8, blue uint8) {
-	matches := hexColorRegex.FindStringSubmatch(hex)
-	if matches == nil {
+	s := parseHexColor(hex)
+	if s == "" {
 		return 0, 0, 0
 	}
-
-	s := matches[0]
 
 	// Adapted from https://stackoverflow.com/questions/54197913/parse-hex-string-to-image-color
 	hexToByte := func(b byte) byte {
