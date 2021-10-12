@@ -103,6 +103,7 @@ import (
 	"math"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 // CSPair contains the ANSI color codes to open and close a given color.
@@ -126,11 +127,25 @@ func Ansi(color uint8) string {
 	return "\u001B[" + strconv.FormatUint(uint64(color), 10) + "m"
 }
 
+// WriteStringAnsi writes an ANSI escape code to the given strings.Builder.
+func WriteStringAnsi(out *strings.Builder, color uint8) {
+	out.WriteString("\u001B[")
+	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString("m")
+}
+
 // BgAnsi returns the string used to set the background color, based on a basic 16-color Ansi code.
 //
 // `color` should be a number between 30 and 37 or 90 and 97, inclusive.
 func BgAnsi(color uint8) string {
 	return "\u001B[" + strconv.FormatUint(uint64(color+10), 10) + "m"
+}
+
+// WriteStringBgAnsi writes an ANSI escape code to set the background color to  the given strings.Builder.
+func WriteStringBgAnsi(out *strings.Builder, color uint8) {
+	out.WriteString("\u001B[")
+	out.WriteString(strconv.FormatUint(uint64(color+10), 10))
+	out.WriteString("m")
 }
 
 // Ansi256 returns the string used to set the foreground color, based on Ansi 256 color lookup table.
@@ -140,11 +155,25 @@ func Ansi256(color uint8) string {
 	return "\u001B[38;5;" + strconv.FormatUint(uint64(color), 10) + "m"
 }
 
+// WriteStringAnsi256 writes the string used to set the foreground color, based on Ansi 256 color lookup table.
+func WriteStringAnsi256(out *strings.Builder, color uint8) {
+	out.WriteString("\u001B[38;5;")
+	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString("m")
+}
+
 // BgAnsi256 returns the string used to set the background color, based on Ansi 256 color lookup table.
 //
 // See https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
 func BgAnsi256(color uint8) string {
 	return "\u001B[48;5;" + strconv.FormatUint(uint64(color), 10) + "m"
+}
+
+// WriteStringBgAnsi256 writes the string used to set the background color, based on Ansi 256 color lookup table.
+func WriteStringBgAnsi256(out *strings.Builder, color uint8) {
+	out.WriteString("\u001B[48;5;")
+	out.WriteString(strconv.FormatUint(uint64(color), 10))
+	out.WriteString("m")
 }
 
 // Ansi16m returns the string used to set a 24bit foreground color.
@@ -155,12 +184,34 @@ func Ansi16m(red uint8, green uint8, blue uint8) string {
 		strconv.FormatUint(uint64(blue), 10) + "m"
 }
 
+// WriteStringAnsi16m writes the string used to set a 24bit foreground color.
+func WriteStringAnsi16m(out *strings.Builder, red uint8, green uint8, blue uint8) {
+	out.WriteString("\u001B[38;2;")
+	out.WriteString(strconv.FormatUint(uint64(red), 10))
+	out.WriteString(";")
+	out.WriteString(strconv.FormatUint(uint64(green), 10))
+	out.WriteString(";")
+	out.WriteString(strconv.FormatUint(uint64(blue), 10))
+	out.WriteString("m")
+}
+
 // BgAnsi16m returns the string used to set a 24bit background color.
 func BgAnsi16m(red uint8, green uint8, blue uint8) string {
 	return "\u001B[48;2;" +
 		strconv.FormatUint(uint64(red), 10) + ";" +
 		strconv.FormatUint(uint64(green), 10) + ";" +
 		strconv.FormatUint(uint64(blue), 10) + "m"
+}
+
+// WriteStringBgAnsi16m writes the string used to set a 24bit background color.
+func WriteStringBgAnsi16m(out *strings.Builder, red uint8, green uint8, blue uint8) {
+	out.WriteString("\u001B[48;2;")
+	out.WriteString(strconv.FormatUint(uint64(red), 10))
+	out.WriteString(";")
+	out.WriteString(strconv.FormatUint(uint64(green), 10))
+	out.WriteString(";")
+	out.WriteString(strconv.FormatUint(uint64(blue), 10))
+	out.WriteString("m")
 }
 
 // Close is the "close" code for 256 amd 16m ansi color codes.
