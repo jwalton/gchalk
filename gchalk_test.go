@@ -68,10 +68,11 @@ func TestResetAllStyles(t *testing.T) {
 func TestCachingMultipleStyles(t *testing.T) {
 	gchalk := New(ForceLevel(LevelAnsi16m))
 
-	red := gchalk.WithRed().Red
-	green := gchalk.WithRed().Green
-	redBold := gchalk.WithRed().WithRed().Bold
-	greenBold := gchalk.WithRed().WithGreen().Bold
+	var red, green, redBold, greenBold ColorFn
+	red = gchalk.WithRed().Red
+	green = gchalk.WithRed().Green
+	redBold = gchalk.WithRed().WithRed().Bold
+	greenBold = gchalk.WithRed().WithGreen().Bold
 
 	if red("foo") == green("foo") {
 		t.Errorf("red and green should produce different output")
@@ -223,6 +224,12 @@ func TestStyle(t *testing.T) {
 	str := styler("foo")
 	assertEqual(t, str, "foo")
 	assertEqual(t, fmt.Sprintf("%v", err), "No such style: idonotexist")
+
+	var styler2 ColorFn = gchalk.StyleMust("red")
+	styler2("a")
+	// Make sure we can assign a ColorFn to a regular func.
+	var styler3 func(s ...string) string = gchalk.StyleMust("blue")
+	styler3("b")
 }
 
 func TestStyleWithHex(t *testing.T) {

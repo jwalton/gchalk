@@ -5,7 +5,7 @@ import (
 )
 
 // Ansi returns a function which colors a string using the ANSI 16 color pallette.
-func Ansi(code uint8) func(strs ...string) string {
+func Ansi(code uint8) ColorFn {
 	return rootBuilder.WithAnsi(code).applyStyle
 }
 
@@ -15,7 +15,7 @@ func WithAnsi(code uint8) *Builder {
 }
 
 // Ansi returns a function which colors a string using the ANSI 16 color pallette.
-func (builder *Builder) Ansi(code uint8) func(strs ...string) string {
+func (builder *Builder) Ansi(code uint8) ColorFn {
 	return builder.WithAnsi(code).applyStyle
 }
 
@@ -29,7 +29,7 @@ func (builder *Builder) WithAnsi(code uint8) *Builder {
 }
 
 // BgAnsi returns a function which colors the background of a string using the ANSI 16 color pallette.
-func BgAnsi(code uint8) func(strs ...string) string {
+func BgAnsi(code uint8) ColorFn {
 	return rootBuilder.WithBgAnsi(code).applyStyle
 }
 
@@ -39,7 +39,7 @@ func WithBgAnsi(code uint8) *Builder {
 }
 
 // BgAnsi returns a function which colors the background of a string using the ANSI 16 color pallette.
-func (builder *Builder) BgAnsi(code uint8) func(strs ...string) string {
+func (builder *Builder) BgAnsi(code uint8) ColorFn {
 	return builder.WithBgAnsi(code).applyStyle
 }
 
@@ -51,7 +51,7 @@ func (builder *Builder) WithBgAnsi(code uint8) *Builder {
 // Ansi256 returns a function which colors a string using the ANSI 256 color pallette.
 // If ANSI 256 color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func Ansi256(code uint8) func(strs ...string) string {
+func Ansi256(code uint8) ColorFn {
 	return rootBuilder.WithAnsi256(code).applyStyle
 }
 
@@ -65,7 +65,7 @@ func WithAnsi256(code uint8) *Builder {
 // Ansi256 returns a function which colors a string using the ANSI 256 color pallette.
 // If ANSI 256 color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func (builder *Builder) Ansi256(code uint8) func(strs ...string) string {
+func (builder *Builder) Ansi256(code uint8) ColorFn {
 	return builder.WithAnsi256(code).applyStyle
 }
 
@@ -83,7 +83,7 @@ func (builder *Builder) WithAnsi256(code uint8) *Builder {
 // BgAnsi256 returns a function which colors the background of a string using the ANSI 256 color pallette.
 // If ANSI 256 color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func BgAnsi256(code uint8) func(strs ...string) string {
+func BgAnsi256(code uint8) ColorFn {
 	return rootBuilder.WithBgAnsi256(code).applyStyle
 }
 
@@ -97,7 +97,7 @@ func WithBgAnsi256(code uint8) *Builder {
 // BgAnsi256 returns a function which colors the background of a string using the ANSI 256 color pallette.
 // If ANSI 256 color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func (builder *Builder) BgAnsi256(code uint8) func(strs ...string) string {
+func (builder *Builder) BgAnsi256(code uint8) ColorFn {
 	return builder.WithBgAnsi256(code).applyStyle
 }
 
@@ -115,7 +115,7 @@ func (builder *Builder) WithBgAnsi256(code uint8) *Builder {
 // RGB returns a function which colors a string using true color support.  Note that
 // if true color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func RGB(r uint8, g uint8, b uint8) func(strs ...string) string {
+func RGB(r uint8, g uint8, b uint8) ColorFn {
 	return rootBuilder.WithRGB(r, g, b).applyStyle
 }
 
@@ -129,7 +129,7 @@ func WithRGB(r uint8, g uint8, b uint8) *Builder {
 // RGB returns a function which colors a string using true color support.  Note that
 // if true color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func (builder *Builder) RGB(r uint8, g uint8, b uint8) func(strs ...string) string {
+func (builder *Builder) RGB(r uint8, g uint8, b uint8) ColorFn {
 	return builder.WithRGB(r, g, b).applyStyle
 }
 
@@ -146,7 +146,7 @@ func (builder *Builder) WithRGB(r uint8, g uint8, b uint8) *Builder {
 // BgRGB returns a function which colors the background of a string using true color support.  Note that
 // if true color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func BgRGB(r uint8, g uint8, b uint8) func(strs ...string) string {
+func BgRGB(r uint8, g uint8, b uint8) ColorFn {
 	return rootBuilder.WithBgRGB(r, g, b).applyStyle
 }
 
@@ -160,7 +160,7 @@ func WithBgRGB(r uint8, g uint8, b uint8) *Builder {
 // BgRGB returns a function which colors the background of a string using true color support.  Note that
 // if true color support is unavailable, this will automatically convert the color
 // to the closest available color.
-func (builder *Builder) BgRGB(r uint8, g uint8, b uint8) func(strs ...string) string {
+func (builder *Builder) BgRGB(r uint8, g uint8, b uint8) ColorFn {
 	return builder.WithBgRGB(r, g, b).applyStyle
 }
 
@@ -178,7 +178,7 @@ func (builder *Builder) WithBgRGB(r uint8, g uint8, b uint8) *Builder {
 // hexadecimal color string (e.g. "#FF00FF" or "#FFF"). If true color support is
 // unavailable, this will automatically convert the color  to the closest
 // available color.
-func Hex(hex string) func(strs ...string) string {
+func Hex(hex string) ColorFn {
 	return rootBuilder.WithRGB(ansistyles.HexToRGB(hex)).applyStyle
 }
 
@@ -193,7 +193,7 @@ func WithHex(hex string) *Builder {
 // hexadecimal color string (e.g. "#FF00FF" or "#FFF"). If true color support is
 // unavailable, this will automatically convert the color  to the closest
 // available color.
-func (builder *Builder) Hex(hex string) func(strs ...string) string {
+func (builder *Builder) Hex(hex string) ColorFn {
 	return builder.WithRGB(ansistyles.HexToRGB(hex)).applyStyle
 }
 
@@ -208,7 +208,7 @@ func (builder *Builder) WithHex(hex string) *Builder {
 // hexadecimal color string (e.g. "#FF00FF" or "#FFF"). If true color support is
 // unavailable, this will automatically convert the color  to the closest
 // available color.
-func BgHex(hex string) func(strs ...string) string {
+func BgHex(hex string) ColorFn {
 	return rootBuilder.WithBgRGB(ansistyles.HexToRGB(hex)).applyStyle
 }
 
@@ -223,7 +223,7 @@ func WithBgHex(hex string) *Builder {
 // hexadecimal color string (e.g. "#FF00FF" or "#FFF"). If true color support is
 // unavailable, this will automatically convert the color  to the closest
 // available color.
-func (builder *Builder) BgHex(hex string) func(strs ...string) string {
+func (builder *Builder) BgHex(hex string) ColorFn {
 	return builder.WithBgRGB(ansistyles.HexToRGB(hex)).applyStyle
 }
 

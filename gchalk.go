@@ -52,6 +52,9 @@ import (
 // ColorLevel represents the ANSI color level supported by the terminal.
 type ColorLevel = supportscolor.ColorLevel
 
+// ColorFn is a convenience type for a function that takes in a string and returns a colored string.
+type ColorFn func(str ...string) string
+
 const (
 	// LevelNone represents a terminal that does not support color at all.
 	LevelNone ColorLevel = supportscolor.None
@@ -283,7 +286,7 @@ func (builder *Builder) GetLevel() ColorLevel {
 // styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
 // or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
 // be parsed, this will panic.
-func StyleMust(styles ...string) func(strs ...string) string {
+func StyleMust(styles ...string) ColorFn {
 	return rootBuilder.WithStyleMust(styles...).applyStyle
 }
 
@@ -299,7 +302,7 @@ func WithStyleMust(styles ...string) *Builder {
 // styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
 // or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
 // be parsed, this will panic.
-func (builder *Builder) StyleMust(styles ...string) func(strs ...string) string {
+func (builder *Builder) StyleMust(styles ...string) ColorFn {
 	return builder.WithStyleMust(styles...).applyStyle
 }
 
@@ -320,7 +323,7 @@ func (builder *Builder) WithStyleMust(styles ...string) *Builder {
 // styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
 // or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
 // be parsed, this will return an error.
-func Style(styles ...string) (func(strs ...string) string, error) {
+func Style(styles ...string) (ColorFn, error) {
 	newBuilder, err := rootBuilder.WithStyle(styles...)
 	if err != nil {
 		return rootBuilder.applyStyle, err
@@ -340,7 +343,7 @@ func WithStyle(styles ...string) (*Builder, error) {
 // styles. Styles can be specified as a named style (e.g. "red", "bgRed", "bgred"),
 // or as a hex color ("#ff00ff" or "bg#ff00ff").  If the style cannot
 // be parsed, this will return an error.
-func (builder *Builder) Style(styles ...string) (func(strs ...string) string, error) {
+func (builder *Builder) Style(styles ...string) (ColorFn, error) {
 	newBuilder, err := rootBuilder.WithStyle(styles...)
 	if err != nil {
 		return rootBuilder.applyStyle, err
